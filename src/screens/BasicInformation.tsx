@@ -1,8 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 const BasicInformation = () => {
-  return <View>BasicInformation</View>;
+  return (
+    <View>
+      <Text>BasicInformation</Text>
+    </View>
+  );
 };
 
 export default BasicInformation;
