@@ -1,8 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 const EndChat = () => {
-  return <View>EndChat</View>;
+  return (
+    <View>
+      <Text>EndChat</Text>
+    </View>
+  );
 };
 
 export default EndChat;
