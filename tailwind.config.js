@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'sans-serif'],
+        Regular: ['Pretendard-Regular'],
+        Medium: ['Pretendard-Medium'],
+        SemiBold: ['Pretendard-SemiBold'],
+        Bold: ['Pretendard-Bold'],
       },
       colors: {
         // gray

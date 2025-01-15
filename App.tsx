@@ -6,13 +6,21 @@
  */
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import Navigator from './src/navigation/Navigator';
 import './src/input.css';
 
+const BodyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+  },
+};
+
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={BodyTheme}>
       <Navigator />
     </NavigationContainer>
   );
