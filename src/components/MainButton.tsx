@@ -17,7 +17,7 @@ const MainButton = (props: ButtonProps) => {
         className="items-center w-full px-3.5 py-4 rounded-xl bg-primary_500"
         onPress={() => navigation.navigate(props.nav)}
       >
-        <Text className="text-white font-SemiBold text-base">{props.text}</Text>
+        <Text className="text-white font-SemiBold text-lg">{props.text}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,12 +1,8 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../models/navigation.model';
 import MainButton from '../components/MainButton';
 
 const Entry = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   return (
     <View className="flex-1 gap-20">
       <View className="flex-1 justify-end items-center">
@@ -16,7 +12,7 @@ const Entry = () => {
         <Text className="custom-title">졸음 감지 및 맞춤형 AI 대화</Text>
         <Text className="custom-description">DriveMate와 함께 안전 운전을 시작하세요 !</Text>
       </View>
-      <MainButton text="시작하기" nav="BasicInformation" />
+      <MainButton text="시작하기" nav="NameForm" />
     </View>
   );
 };
