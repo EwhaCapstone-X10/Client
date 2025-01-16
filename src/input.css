@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .custom-view {
-  @apply w-full px-4 py-6 justify-center items-center;
+  @apply w-full px-6 py-6 justify-center items-center;
 }
 
 .custom-title {
@@ -12,4 +12,16 @@
 
 .custom-description {
   @apply text-base text-gray-600 font-SemiBold leading-6;
+}
+
+.custom-inputinfo {
+  @apply w-full text-gray-500 font-Regular py-1;
+}
+
+.custom-input {
+  @apply w-full border-b-2 border-b-gray-200 py-1;
+}
+
+.left-view {
+  @apply w-full px-6 py-4;
 }

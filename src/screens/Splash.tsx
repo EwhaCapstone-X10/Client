@@ -18,8 +18,8 @@ const Splash = () => {
       <TouchableOpacity onPress={() => navigation.navigate('EndChat')}>
         <Text className="text-2xl">EndChat</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('BasicInformation')}>
-        <Text className="text-2xl">BasicInformation</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('NameForm')}>
+        <Text className="text-2xl">NameForm</Text>
       </TouchableOpacity>
     </View>
   );

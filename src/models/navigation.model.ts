@@ -1,7 +1,9 @@
 export type RootStackParamList = {
   Splash: undefined;
   Entry: undefined;
-  BasicInformation: undefined;
+  NameForm: undefined;
+  AgeForm: undefined;
+  InfoForm: undefined;
   Main: undefined;
   EndChat: undefined;
 };

@@ -3,11 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Splash from '../screens/Splash';
 import Main from '../screens/Main';
 import Entry from '../screens/Entry';
-import BasicInformation from '../screens/BasicInformation';
 import EndChat from '../screens/EndChat';
 import { RootStackParamList } from '../models/navigation.model';
 import { Text } from 'react-native';
 import getDate from '../utils/getDate';
+import AgeForm from '../screens/AgeForm';
+import NameForm from '../screens/NameForm';
+import InfoForm from '../screens/InfoForm';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,8 +19,26 @@ function Navigator() {
       <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
       <Stack.Screen name="Entry" component={Entry} options={{ headerShown: false }} />
       <Stack.Screen
-        name="BasicInformation"
-        component={BasicInformation}
+        name="NameForm"
+        component={NameForm}
+        options={{
+          headerTitle: '',
+          headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="AgeForm"
+        component={AgeForm}
+        options={{
+          headerTitle: '',
+          headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="InfoForm"
+        component={InfoForm}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
