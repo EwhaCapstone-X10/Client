@@ -10,6 +10,7 @@ import getDate from '../utils/getDate';
 import AgeForm from '../screens/AgeForm';
 import NameForm from '../screens/NameForm';
 import InfoForm from '../screens/InfoForm';
+import StretchingList from '../screens/StretchingList';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -58,6 +59,16 @@ function Navigator() {
       <Stack.Screen
         name="EndChat"
         component={EndChat}
+        options={{
+          headerLeft: () => <Text className="text-lg font-Bold">{getDate()}</Text>,
+          headerTitle: '',
+          headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="StretchingList"
+        component={StretchingList}
         options={{
           headerLeft: () => <Text className="text-lg font-Bold">{getDate()}</Text>,
           headerTitle: '',

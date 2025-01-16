@@ -6,4 +6,5 @@ export type RootStackParamList = {
   InfoForm: undefined;
   Main: undefined;
   EndChat: undefined;
+  StretchingList: undefined;
 };
