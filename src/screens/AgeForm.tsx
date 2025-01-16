@@ -10,7 +10,7 @@ const AgeForm = () => {
         <Text className="custom-title">나이를 입력해주세요</Text>
         <Text className="custom-description">숫자만 입력해주세요</Text>
       </View>
-      <View className="flex-1 w-full px-6 py-6 gap-4">
+      <View className="flex-1 w-full px-7 py-6 gap-4">
         <FormInput title="*나이" keyboardType="number-pad" />
       </View>
       <MainButton text="다음" nav="InfoForm" />

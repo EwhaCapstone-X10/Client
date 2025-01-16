@@ -10,7 +10,7 @@ const InfoForm = () => {
       <View className="left-view">
         <Text className="custom-title">직업과 성별을 알려주세요</Text>
       </View>
-      <View className="flex-1 w-full px-6 py-6 gap-4">
+      <View className="flex-1 w-full px-7 py-6 gap-4">
         <FormInput title="직업" keyboardType="default" />
         <View className="w-full">
           <Text className="custom-inputinfo">*성별</Text>
