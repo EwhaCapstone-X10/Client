@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-view {
+  @apply w-full px-4 py-6 justify-center items-center;
+}
+
+.custom-title {
+  @apply text-2xl font-Bold leading-10;
+}
+
+.custom-description {
+  @apply text-base text-gray-600 font-SemiBold leading-6;
+}
