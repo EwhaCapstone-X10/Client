@@ -7,19 +7,19 @@
 }
 
 .custom-title {
-  @apply text-2xl font-Bold leading-10;
+  @apply text-3xl font-Bold leading-10;
 }
 
 .custom-description {
-  @apply text-lg text-gray-600 font-SemiBold leading-6;
+  @apply text-xl text-gray-600 font-SemiBold leading-6;
 }
 
 .custom-inputinfo {
-  @apply w-full text-gray-500 font-Regular py-1;
+  @apply w-full text-xl text-gray-500 font-Medium py-3;
 }
 
 .custom-input {
-  @apply w-full border-b-2 border-b-gray-200 py-1;
+  @apply w-full text-2xl font-SemiBold border-b-2 border-b-gray-200 py-1;
 }
 
 .left-view {
