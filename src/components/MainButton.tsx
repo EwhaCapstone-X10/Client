@@ -14,7 +14,7 @@ const MainButton = (props: ButtonProps) => {
   return (
     <View className="custom-view">
       <TouchableOpacity
-        className="items-center w-full px-3.5 py-4 rounded-xl bg-primary_500"
+        className="items-center w-full py-4 rounded-xl bg-primary_500"
         onPress={() => navigation.navigate(props.nav)}
       >
         <Text className="text-white font-SemiBold text-lg">{props.text}</Text>

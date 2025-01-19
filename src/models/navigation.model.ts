@@ -3,7 +3,8 @@ export type RootStackParamList = {
   Entry: undefined;
   NameForm: undefined;
   AgeForm: undefined;
-  InfoForm: undefined;
+  GenderForm: undefined;
+  JobForm: undefined;
   Main: undefined;
   EndChat: undefined;
   StretchingList: undefined;

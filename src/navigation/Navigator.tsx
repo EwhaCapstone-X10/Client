@@ -9,7 +9,8 @@ import { Text } from 'react-native';
 import getDate from '../utils/getDate';
 import AgeForm from '../screens/AgeForm';
 import NameForm from '../screens/NameForm';
-import InfoForm from '../screens/InfoForm';
+import GenderForm from '../screens/GenderForm';
+import JobForm from '../screens/JobForm';
 import StretchingList from '../screens/StretchingList';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,8 +39,17 @@ function Navigator() {
         }}
       />
       <Stack.Screen
-        name="InfoForm"
-        component={InfoForm}
+        name="GenderForm"
+        component={GenderForm}
+        options={{
+          headerTitle: '',
+          headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="JobForm"
+        component={JobForm}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
