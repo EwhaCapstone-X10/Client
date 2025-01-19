@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import MainButton from '../components/MainButton';
 
-const GenderForm = () => {
+const FormGender = () => {
   const [genders, setGenders] = useState([
     { id: 0, type: '남성', isClicked: false },
     { id: 1, type: '여성', isClicked: false },
@@ -50,9 +50,9 @@ const GenderForm = () => {
           ))}
         </View>
       </View>
-      <MainButton text="다음" nav="JobForm" onClick={handleNext} isAbled={btnDisbled} />
+      <MainButton text="다음" nav="FormJob" onClick={handleNext} isAbled={btnDisbled} />
     </View>
   );
 };
 
-export default GenderForm;
+export default FormGender;

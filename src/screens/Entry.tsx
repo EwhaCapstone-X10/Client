@@ -12,7 +12,7 @@ const Entry = () => {
           <Text className="custom-description">DriveMate와 함께 안전 운전을 시작하세요 !</Text>
         </View>
       </View>
-      <MainButton text="시작하기" nav="NameForm" onClick={() => {}} isAbled={false} />
+      <MainButton text="시작하기" nav="FormName" onClick={() => {}} isAbled={false} />
     </View>
   );
 };

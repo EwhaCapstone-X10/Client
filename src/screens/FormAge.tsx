@@ -3,8 +3,10 @@ import { Text, View, TextInput } from 'react-native';
 import MainButton from '../components/MainButton';
 import { useState } from 'react';
 
-const AgeForm = () => {
+const FormAge = () => {
   const [age, onChangeAge] = useState('');
+  const [focus, setFocus] = useState(false);
+
   const handleNext = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
   };
@@ -16,11 +18,20 @@ const AgeForm = () => {
       </View>
       <View className="flex-1 left-view gap-1">
         <Text className="custom-inputinfo">나이</Text>
-        <TextInput className="custom-input" onChangeText={onChangeAge} value={age} keyboardType="number-pad" />
+        <TextInput
+          className="custom-input"
+          onChangeText={onChangeAge}
+          value={age}
+          keyboardType="number-pad"
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          cursorColor="black"
+          style={[focus && { borderBottomColor: '#3370FF' }]}
+        />
       </View>
-      <MainButton text="다음" nav="GenderForm" onClick={handleNext} isAbled={!age} />
+      <MainButton text="다음" nav="FormGender" onClick={handleNext} isAbled={!age} />
     </View>
   );
 };
 
-export default AgeForm;
+export default FormAge;

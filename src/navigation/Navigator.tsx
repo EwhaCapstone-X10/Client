@@ -7,11 +7,11 @@ import EndChat from '../screens/EndChat';
 import { RootStackParamList } from '../models/navigation.model';
 import { Text } from 'react-native';
 import getDate from '../utils/getDate';
-import AgeForm from '../screens/AgeForm';
-import NameForm from '../screens/NameForm';
-import GenderForm from '../screens/GenderForm';
-import JobForm from '../screens/JobForm';
 import StretchingList from '../screens/StretchingList';
+import FormName from '../screens/FormName';
+import FormAge from '../screens/FormAge';
+import FormGender from '../screens/FormGender';
+import FormJob from '../screens/FormJob';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,8 +21,8 @@ function Navigator() {
       <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
       <Stack.Screen name="Entry" component={Entry} options={{ headerShown: false }} />
       <Stack.Screen
-        name="NameForm"
-        component={NameForm}
+        name="FormName"
+        component={FormName}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
@@ -30,8 +30,8 @@ function Navigator() {
         }}
       />
       <Stack.Screen
-        name="AgeForm"
-        component={AgeForm}
+        name="FormAge"
+        component={FormAge}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
@@ -39,8 +39,8 @@ function Navigator() {
         }}
       />
       <Stack.Screen
-        name="GenderForm"
-        component={GenderForm}
+        name="FormGender"
+        component={FormGender}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,
@@ -48,8 +48,8 @@ function Navigator() {
         }}
       />
       <Stack.Screen
-        name="JobForm"
-        component={JobForm}
+        name="FormJob"
+        component={FormJob}
         options={{
           headerTitle: '',
           headerRight: () => <Text className="custom-title text-primary_500">DriveMate</Text>,

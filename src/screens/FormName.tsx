@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import MainButton from '../components/MainButton';
 
-const NameForm = () => {
+const FormName = () => {
   const [name, onChangeName] = useState('');
+  const [focus, setFocus] = useState(false);
   const handleNext = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
   };
@@ -16,11 +17,19 @@ const NameForm = () => {
       </View>
       <View className="flex-1 left-view gap-1">
         <Text className="custom-inputinfo">이름</Text>
-        <TextInput className="custom-input" onChangeText={onChangeName} value={name} />
+        <TextInput
+          className={'custom-input'}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          onChangeText={onChangeName}
+          cursorColor="black"
+          value={name}
+          style={[focus && { borderBottomColor: '#3370FF' }]}
+        />
       </View>
-      <MainButton text="다음" nav="AgeForm" onClick={handleNext} isAbled={!name} />
+      <MainButton text="다음" nav="FormAge" onClick={handleNext} isAbled={!name} />
     </View>
   );
 };
 
-export default NameForm;
+export default FormName;
