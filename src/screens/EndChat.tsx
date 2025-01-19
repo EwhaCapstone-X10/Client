@@ -11,7 +11,7 @@ const EndChat = () => {
       <View className="flex-1 justify-center items-center">
         <Image className="w-72 h-44" source={require('../assets/images/flag.png')} />
       </View>
-      <MainButton text="메인화면으로 이동" nav="Main" />
+      <MainButton text="메인화면으로 이동" nav="Main" onClick={() => {}} isAbled={false} />
     </View>
   );
 };
