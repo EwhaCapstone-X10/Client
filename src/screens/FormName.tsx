@@ -19,11 +19,11 @@ const FormName = () => {
         <Text className="custom-inputinfo">이름</Text>
         <TextInput
           className={'custom-input'}
+          onChangeText={onChangeName}
+          value={name}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
-          onChangeText={onChangeName}
           cursorColor="black"
-          value={name}
           style={[focus && { borderBottomColor: '#3370FF' }]}
         />
       </View>

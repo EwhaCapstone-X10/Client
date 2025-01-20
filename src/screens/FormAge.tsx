@@ -29,7 +29,12 @@ const FormAge = () => {
           style={[focus && { borderBottomColor: '#3370FF' }]}
         />
       </View>
-      <MainButton text="다음" nav="FormGender" onClick={handleNext} isAbled={!age} />
+      <MainButton
+        text="다음"
+        nav="FormGender"
+        onClick={handleNext}
+        isAbled={!age || Number(age) > 90 || Number(age) < 17}
+      />
     </View>
   );
 };
