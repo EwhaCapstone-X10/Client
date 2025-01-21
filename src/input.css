@@ -7,11 +7,11 @@
 }
 
 .custom-title {
-  @apply text-3xl font-Bold leading-10;
+  @apply text-3xl font-Bold leading-normal;
 }
 
 .custom-description {
-  @apply text-xl text-gray-600 font-SemiBold leading-6;
+  @apply text-xl text-gray-600 font-SemiBold leading-normal;
 }
 
 .custom-logo {
