@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import MainButton from '../components/MainButton';
 import KakaoButton from '../components/KakaoButton';
+import Header from '../components/Header';
 
 const Entry = () => {
   return (
     <View className="flex-1">
+      <Header left="" title="" right="drivemate" />
       <View className="flex-1 justify-center items-center">
         <Image className="w-80 h-64" source={require('../assets/images/speech_bubble.png')} />
         <View className="custom-view gap-4">

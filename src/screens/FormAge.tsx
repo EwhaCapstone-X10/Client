@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 import MainButton from '../components/MainButton';
 import { useState } from 'react';
+import Header from '../components/Header';
 
 const FormAge = () => {
   const [age, onChangeAge] = useState('');
@@ -12,6 +13,7 @@ const FormAge = () => {
   };
   return (
     <View className="flex-1">
+      <Header left="<-" title="" right="drivemate" />
       <View className="left-view gap-3">
         <Text className="custom-title">나이를 입력해주세요</Text>
         <Text className="custom-description">숫자만 입력해주세요</Text>

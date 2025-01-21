@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import MainButton from '../components/MainButton';
+import Header from '../components/Header';
 
 const FormGender = () => {
   const [genders, setGenders] = useState([
@@ -22,6 +23,7 @@ const FormGender = () => {
   };
   return (
     <View className="flex-1">
+      <Header left="<-" title="" right="drivemate" />
       <View className="left-view gap-3">
         <Text className="custom-title">성별을 선택해주세요</Text>
         <Text className="custom-description">더욱 개인화 된 서비스를 제공해드립니다</Text>

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import LookupButton from '../components/LookupButton';
+import Header from '../components/Header';
+import getDate from '../utils/getDate';
 
 const Main = () => {
+  const date = getDate();
   return (
     <View className="flex-1">
+      <Header left={date} title="" right="drivemate" />
       <View className="left-view gap-10">
         <Text className="custom-title">개인 맞춤형 대화를 통해 {'\n'}졸음 운전을 예방해보세요</Text>
         <TouchableOpacity className="w-full px-5 py-6 rounded-xl bg-primary_400">
