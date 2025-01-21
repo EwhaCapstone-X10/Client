@@ -9,6 +9,7 @@ module.exports = {
         Medium: ['Pretendard-Medium'],
         SemiBold: ['Pretendard-SemiBold'],
         Bold: ['Pretendard-Bold'],
+        Logo: ['Jalnan2TTF'],
       },
       colors: {
         // gray
