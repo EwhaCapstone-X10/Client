@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import MainButton from '../components/MainButton';
+import Header from '../components/Header';
 
 const FormJob = () => {
   const [job, onChangeJob] = useState('');
@@ -11,6 +12,7 @@ const FormJob = () => {
   };
   return (
     <View className="flex-1">
+      <Header left="<-" title="" right="drivemate" />
       <View className="left-view gap-3">
         <Text className="custom-title">직업을 입력해주세요</Text>
         <Text className="custom-description">필수 입력은 아닙니다 !</Text>
@@ -24,7 +26,7 @@ const FormJob = () => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
-          style={[focus && { borderBottomColor: '#3370FF' }]}
+          style={[focus && { borderBottomColor: '#5299FF' }]}
         />
       </View>
       <MainButton text="완료" nav="Main" onClick={handleSubmit} isAbled={false} />

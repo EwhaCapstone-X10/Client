@@ -9,6 +9,7 @@ module.exports = {
         Medium: ['Pretendard-Medium'],
         SemiBold: ['Pretendard-SemiBold'],
         Bold: ['Pretendard-Bold'],
+        Logo: ['Jalnan2TTF'],
       },
       colors: {
         // gray
@@ -28,14 +29,12 @@ module.exports = {
         primary_50: '#E5EDFF',
         primary_100: '#CCDBFF',
         primary_200: '#99B8FF',
-        primary_300: '#6694FF',
+        primary_300: '#5299FF',
         primary_400: '#3182F6',
-        primary_500: '#3370FF',
-        primary_600: '#003DCC',
-        primary_700: '#002E99',
-        primary_800: '#001F66',
-        primary_900: '#000F33',
-        primary_950: '#00081A',
+        primary_500: '#386BF6',
+        primary_600: '#9DB2CE',
+
+        kakao: '#FFF06A',
       },
     },
   },

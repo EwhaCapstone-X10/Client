@@ -1,10 +1,12 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import MainButton from '../components/MainButton';
+import KakaoButton from '../components/KakaoButton';
+import Header from '../components/Header';
 
 const Entry = () => {
   return (
     <View className="flex-1">
+      <Header left="" title="" right="drivemate" />
       <View className="flex-1 justify-center items-center">
         <Image className="w-80 h-64" source={require('../assets/images/speech_bubble.png')} />
         <View className="custom-view gap-4">
@@ -12,7 +14,7 @@ const Entry = () => {
           <Text className="custom-description">DriveMate와 함께 안전 운전을 시작하세요 !</Text>
         </View>
       </View>
-      <MainButton text="시작하기" nav="FormName" onClick={() => {}} isAbled={false} />
+      <KakaoButton text="카카오로 계속하기" nav="FormName" onClick={() => {}} />
     </View>
   );
 };

@@ -1,16 +1,15 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { RootStackParamList } from '../models/navigation.model';
 
 type ButtonProps = {
   text: string;
   nav: keyof RootStackParamList;
-  isAbled: boolean;
   onClick: () => void;
 };
 
-const MainButton = (props: ButtonProps) => {
+const KakaoButton = (props: ButtonProps) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const handlePress = () => {
     navigation.navigate(props.nav);
@@ -18,16 +17,17 @@ const MainButton = (props: ButtonProps) => {
   };
 
   return (
-    <View className="custom-view">
+    <View className="custom-view gap-3">
       <TouchableOpacity
-        className="items-center w-full py-4 rounded-xl bg-primary_300 disabled:bg-gray-200"
+        className="flex flex-row items-center justify-center w-full gap-3 py-4 rounded-xl bg-kakao"
         onPress={handlePress}
-        disabled={props.isAbled}
       >
-        <Text className="text-white font-SemiBold text-lg">{props.text}</Text>
+        <Image className="w-4 h-4" source={require('../assets/images/kakao.png')} />
+        <Text className="font-SemiBold text-lg">{props.text}</Text>
       </TouchableOpacity>
+      <Text className="font-SemiBold text-base text-gray-600">⚡3초만에 빠른 회원가입</Text>
     </View>
   );
 };
 
-export default MainButton;
+export default KakaoButton;
