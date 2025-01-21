@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import MainButton from '../components/MainButton';
+import KakaoButton from '../components/KakaoButton';
 
 const Entry = () => {
   return (
@@ -12,7 +13,7 @@ const Entry = () => {
           <Text className="custom-description">DriveMate와 함께 안전 운전을 시작하세요 !</Text>
         </View>
       </View>
-      <MainButton text="시작하기" nav="FormName" onClick={() => {}} isAbled={false} />
+      <KakaoButton text="카카오로 계속하기" nav="FormName" onClick={() => {}} />
     </View>
   );
 };
