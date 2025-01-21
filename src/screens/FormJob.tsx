@@ -24,7 +24,7 @@ const FormJob = () => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
-          style={[focus && { borderBottomColor: '#3370FF' }]}
+          style={[focus && { borderBottomColor: '#5299FF' }]}
         />
       </View>
       <MainButton text="완료" nav="Main" onClick={handleSubmit} isAbled={false} />

@@ -20,7 +20,7 @@ const MainButton = (props: ButtonProps) => {
   return (
     <View className="custom-view">
       <TouchableOpacity
-        className="items-center w-full py-4 rounded-xl bg-primary_500 disabled:bg-gray-200"
+        className="items-center w-full py-4 rounded-xl bg-primary_300 disabled:bg-gray-200"
         onPress={handlePress}
         disabled={props.isAbled}
       >

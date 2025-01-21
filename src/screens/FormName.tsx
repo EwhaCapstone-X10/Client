@@ -24,7 +24,7 @@ const FormName = () => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
-          style={[focus && { borderBottomColor: '#3370FF' }]}
+          style={[focus && { borderBottomColor: '#5299FF' }]}
         />
       </View>
       <MainButton text="다음" nav="FormAge" onClick={handleNext} isAbled={!name} />

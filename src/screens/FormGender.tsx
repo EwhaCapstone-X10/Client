@@ -35,13 +35,13 @@ const FormGender = () => {
               className="gender-button"
               onPress={() => onClickGender(gender.id)}
               style={{
-                borderColor: gender.isClicked ? '#3370FF' : '#DFDEDA',
+                borderColor: gender.isClicked ? '#5299FF' : '#DFDEDA',
               }}
             >
               <Text
                 className="font-Medium text-xl"
                 style={{
-                  color: gender.isClicked ? '#3370FF' : 'black',
+                  color: gender.isClicked ? '#5299FF' : 'black',
                 }}
               >
                 {gender.type}
