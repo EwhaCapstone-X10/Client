@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, DeviceEventEmitter } from 'react-native';
+import { Text, View, TouchableOpacity, Image, DeviceEventEmitter, Linking } from 'react-native';
 import LookupButton from '../components/LookupButton';
 import Header from '../components/Header';
 import getDate from '../utils/getDate';
@@ -10,12 +10,9 @@ import {
   requestPermission,
   showFloatingBubble,
 } from 'react-native-floating-bubble-plugin';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../models/navigation.model';
 
 const Main = () => {
   const date = getDate();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     requestPermission()
@@ -26,16 +23,15 @@ const Main = () => {
   }, []);
 
   // 대화 시작하기 버튼 눌렀을 때
-  const handleStart = async () => {
-    await showFloatingBubble(800, 1500).then(() => console.log('Floating Bubble Added'));
+  const handleStart = () => {
+    showFloatingBubble(800, 1500).then(() => console.log('Floating Bubble Added'));
   };
 
   // 플로팅 버튼 눌렀을 때
   DeviceEventEmitter.addListener('floating-bubble-press', (e) => {
-    navigation.navigate('EndChat');
+    Linking.openURL('drivemate://EndChat');
 
     hideFloatingBubble().then(() => console.log('Floating Bubble Removed'));
-    console.log('Press Bubble');
   });
 
   return (
