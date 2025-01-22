@@ -1,10 +1,14 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import MainButton from '../components/MainButton';
+import Header from '../components/Header';
+import getDate from '../utils/getDate';
 
 const EndChat = () => {
+  const date = getDate();
   return (
     <View className="flex-1">
+      <Header left={date} title="" right="drivemate" />
       <View className="left-view gap-3">
         <Text className="custom-title">대화가 종료되었습니다 {'\n'}다음에 또 만나요 !</Text>
       </View>

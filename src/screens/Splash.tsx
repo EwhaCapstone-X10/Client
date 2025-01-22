@@ -20,6 +20,9 @@ const Splash = () => {
       <TouchableOpacity onPress={() => navigation.navigate('Entry')}>
         <Text>Entry</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+        <Text>Main</Text>
+      </TouchableOpacity>
     </View>
   );
 };
