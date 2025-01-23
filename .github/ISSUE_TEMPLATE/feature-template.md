@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## 🛠️ Description for refactoring features
+## 🛠️ Description for features
 
 작업할 사항
 
