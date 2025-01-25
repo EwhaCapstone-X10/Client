@@ -11,6 +11,7 @@ import {
   showFloatingBubble,
 } from 'react-native-floating-bubble-plugin';
 import backgroundServer from 'react-native-background-actions';
+import Tts from 'react-native-tts';
 
 const Main = () => {
   const date = getDate();
@@ -99,6 +100,21 @@ const Main = () => {
           />
         </View>
       </View>
+      <TouchableOpacity
+        onPress={() =>
+          Tts.speak('안녕하세요 테스트입니다.', {
+            androidParams: {
+              KEY_PARAM_PAN: 0, // 스테레오 위치 (좌측 -1~1)
+              KEY_PARAM_VOLUME: 1, // 볼륨 (0-1)
+              KEY_PARAM_STREAM: 'STREAM_MUSIC',
+            },
+            rate: 1.0, // 음성 속도 (기본: 1.0)
+            iosVoiceId: 'com.apple.ttsbundle.Samantha-compact', // iOS 음성 설정
+          })
+        }
+      >
+        <Text>테스트용</Text>
+      </TouchableOpacity>
 
       <NavBar type="홈" />
     </View>
