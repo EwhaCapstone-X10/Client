@@ -42,7 +42,7 @@ const FormGender = () => {
     <View className="flex-1">
       <Header left="<-" title="drivemate" />
       <View className="left-view gap-3">
-        <Text className="custom-title">성별을 선택해주세요</Text>
+        <Text className="custom-title">성별 및 대화모드를 선택해주세요</Text>
         <Text className="custom-description">더욱 개인화 된 서비스를 제공해드립니다</Text>
       </View>
 
