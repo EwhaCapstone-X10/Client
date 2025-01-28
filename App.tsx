@@ -19,7 +19,18 @@ const BodyTheme = {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer theme={BodyTheme}>
+    <NavigationContainer
+      theme={BodyTheme}
+      linking={{
+        prefixes: ['mydrivemate://'],
+        config: {
+          screens: {
+            Main: '', //앱을 실행할 때 이동 지정안하면 navigator의 첫 화면(splash)
+            EndChat: 'EndChat', // 딥링크 UL로 이동
+          },
+        },
+      }}
+    >
       <Navigator />
     </NavigationContainer>
   );
