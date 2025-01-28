@@ -7,7 +7,7 @@
 }
 
 .custom-title {
-  @apply text-lg font-Bold leading-normal;
+  @apply text-lg font-Bold leading-loose;
 }
 
 .custom-description {
@@ -31,5 +31,5 @@
 }
 
 .gender-button {
-  @apply items-center px-16 py-2.5 rounded-lg border-2 border-gray-100;
+  @apply flex items-center min-w-[140] py-2.5 rounded-lg border-2 border-gray-100;
 }
