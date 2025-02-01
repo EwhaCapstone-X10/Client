@@ -44,7 +44,7 @@ const FormJob = () => {
           style={[CommonStyles.input, focus && { borderBottomColor: '#5299FF' }]}
         />
       </View>
-      <MainBtn text="완료" nav="Main" onClick={handleNext} isAbled={false} />
+      <MainBtn text="다음" nav="FormHobby" onClick={handleNext} isAbled={false} />
     </View>
   );
 };

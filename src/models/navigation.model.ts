@@ -5,6 +5,7 @@ export type RootStackParamList = {
   FormAge: undefined;
   FormGender: undefined;
   FormJob: undefined;
+  FormHobby: undefined;
   Main: undefined;
   EndChat: undefined;
   StretchingList: undefined;

@@ -18,13 +18,13 @@ const CommonStyles = StyleSheet.create({
   title: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 16,
-    lineHeight: 30,
+    lineHeight: 26,
   },
 
   description: {
     fontFamily: 'Pretendard-SemiBold',
     fontSize: 10,
-    lineHeight: 30,
+    lineHeight: 26,
     color: '#6A6967',
   },
 
@@ -38,7 +38,6 @@ const CommonStyles = StyleSheet.create({
     width: '100%',
     fontSize: 12,
     fontFamily: 'Pretendard-Regular',
-    paddingVertical: 8,
   },
 
   input: {
