@@ -1,10 +1,9 @@
 export type User = {
   name: string;
-  age: number;
+  age: string;
   gender: string;
   job: string;
-  personality: string;
-  family: string;
+  hobby: string[];
   mode: string;
 };
 
@@ -13,3 +12,9 @@ export type Gender = {
   type: string;
   isClicked: boolean;
 };
+
+export interface InfoItem {
+  id: number;
+  title: string;
+  value: string;
+}

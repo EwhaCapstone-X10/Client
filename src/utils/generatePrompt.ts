@@ -5,8 +5,7 @@ export const generatePrompt = (info: User) => `
 나이: ${info.age}
 성별: ${info.gender}
 직업: ${info.job}
-성격: ${info.personality}
-가족: ${info.family}
+취미: ${info.hobby}
 대화모드: ${info.mode}
 
 너는 사용자의 친한 친구이다.

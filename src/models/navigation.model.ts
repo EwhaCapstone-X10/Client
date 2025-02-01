@@ -11,4 +11,5 @@ export type RootStackParamList = {
   EndChat: undefined;
   StretchingList: undefined;
   ChattingList: undefined;
+  MyInfo: undefined;
 };

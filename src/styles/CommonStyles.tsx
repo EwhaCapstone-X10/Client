@@ -57,5 +57,11 @@ const CommonStyles = StyleSheet.create({
     borderColor: '#ededec',
     borderWidth: 1,
   },
+
+  myTitle: {
+    width: '100%',
+    fontSize: 14,
+    fontFamily: 'Pretendard-SemiBold',
+  },
 });
 export default CommonStyles;

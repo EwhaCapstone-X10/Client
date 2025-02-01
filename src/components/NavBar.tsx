@@ -136,7 +136,7 @@ const NavBar = (props: NavProps) => {
       </TouchableOpacity>
 
       {/* 내 정보 */}
-      <NavBtn type={my} nav="Splash" />
+      <NavBtn type={my} nav="MyInfo" />
     </View>
   );
 };

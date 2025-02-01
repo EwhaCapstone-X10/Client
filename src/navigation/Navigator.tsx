@@ -14,6 +14,7 @@ import FormJob from '../screens/FormJob';
 import ChattingList from '../screens/ChattingList';
 import FormHobby from '../screens/FormHobby';
 import Welcome from '../screens/Welcome';
+import MyInfo from '../screens/MyInfo';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,6 +33,7 @@ function Navigator() {
       <Stack.Screen name="EndChat" component={EndChat} options={{ headerShown: false }} />
       <Stack.Screen name="StretchingList" component={StretchingList} options={{ headerShown: false }} />
       <Stack.Screen name="ChattingList" component={ChattingList} options={{ headerShown: false }} />
+      <Stack.Screen name="MyInfo" component={MyInfo} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
