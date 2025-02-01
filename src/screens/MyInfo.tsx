@@ -81,7 +81,7 @@ const MyInfo = () => {
         >
           <Text style={CommonStyles.description}>내 정보 관리</Text>
           {infoList.map((info) => (
-            <MyInfoEdit info={info} />
+            <MyInfoEdit key={info.id} info={info} />
           ))}
         </View>
         <View
