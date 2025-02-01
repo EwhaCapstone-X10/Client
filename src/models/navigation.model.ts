@@ -8,4 +8,5 @@ export type RootStackParamList = {
   Main: undefined;
   EndChat: undefined;
   StretchingList: undefined;
+  ChattingList: undefined;
 };
