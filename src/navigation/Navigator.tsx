@@ -13,6 +13,7 @@ import FormGender from '../screens/FormGender';
 import FormJob from '../screens/FormJob';
 import ChattingList from '../screens/ChattingList';
 import FormHobby from '../screens/FormHobby';
+import Welcome from '../screens/Welcome';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,6 +22,7 @@ function Navigator() {
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
       <Stack.Screen name="Entry" component={Entry} options={{ headerShown: false }} />
+      <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
       <Stack.Screen name="FormName" component={FormName} options={{ headerShown: false }} />
       <Stack.Screen name="FormAge" component={FormAge} options={{ headerShown: false }} />
       <Stack.Screen name="FormGender" component={FormGender} options={{ headerShown: false }} />

@@ -92,7 +92,7 @@ const FormHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn text="완료" nav="Main" onClick={handleNext} isAbled={false} />
+      <MainBtn text="완료" nav="Welcome" onClick={handleNext} isAbled={false} />
     </View>
   );
 };

@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Splash: undefined;
   Entry: undefined;
+  Welcome: undefined;
   FormName: undefined;
   FormAge: undefined;
   FormGender: undefined;
