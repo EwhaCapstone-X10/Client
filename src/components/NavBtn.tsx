@@ -14,14 +14,14 @@ const NavBtn = (props: NavButtonProps) => {
 
   return (
     <TouchableOpacity
-      style={{ flex: 0, alignItems: 'center', paddingHorizontal: 10 }}
+      style={{ flex: 0, alignItems: 'center', paddingHorizontal: 10, gap: 3 }}
       onPress={() => navigation.navigate(props.nav)}
     >
-      <Image style={{ width: 28, height: 28 }} source={props.type.isBlue ? props.type.bluesrc : props.type.graysrc} />
+      <Image style={{ width: 24, height: 24 }} source={props.type.isBlue ? props.type.bluesrc : props.type.graysrc} />
       <Text
         style={{
           fontFamily: 'Pretendard-SemiBold',
-          fontSize: 16,
+          fontSize: 14,
           color: props.type.isBlue ? '#3182f6' : '#9db2ce',
         }}
       >
