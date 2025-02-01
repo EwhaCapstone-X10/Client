@@ -111,7 +111,7 @@ const NavBar = (props: NavProps) => {
   DeviceEventEmitter.addListener('floating-bubble-press', (e) => {
     hideFloatingBubble().then(() => console.log('bubble 삭제'));
     backgroundServer.stop().then(() => console.log('bg 작업 중단'));
-    Linking.openURL('mydrivemate://EndChat');
+    Linking.openURL('mydrivemate://EndChat'); // 이름 중복되면 오류남
   });
 
   return (
@@ -121,7 +121,7 @@ const NavBar = (props: NavProps) => {
         width: '100%',
         alignItems: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 24,
+        paddingHorizontal: 40,
         justifyContent: 'space-between',
       }}
     >
@@ -132,11 +132,11 @@ const NavBar = (props: NavProps) => {
 
       {/* Plus */}
       <TouchableOpacity style={{ flex: 0, alignItems: 'center' }} onPress={handleStart}>
-        <Image style={{ width: 70, height: 70 }} source={plusSrc} />
+        <Image style={{ width: 60, height: 60 }} source={plusSrc} />
       </TouchableOpacity>
 
       {/* 내 정보 */}
-      <NavBtn type={my} nav="Splash" />
+      <NavBtn type={my} nav="MyInfo" />
     </View>
   );
 };

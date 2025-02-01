@@ -57,14 +57,19 @@ const FormGender = () => {
           CommonStyles.leftview,
           {
             flex: 1,
+            gap: 16,
           },
         ]}
       >
-        <Text style={CommonStyles.inputinfo}>성별</Text>
-        <GenderBtn genders={genders} onClick={onClickGender} />
+        <View>
+          <Text style={CommonStyles.inputinfo}>성별</Text>
+          <GenderBtn genders={genders} onClick={onClickGender} />
+        </View>
 
-        <Text style={CommonStyles.inputinfo}>대화 모드</Text>
-        <GenderBtn genders={modes} onClick={onClickMode} />
+        <View>
+          <Text style={CommonStyles.inputinfo}>대화 모드</Text>
+          <GenderBtn genders={modes} onClick={onClickMode} />
+        </View>
       </View>
       <MainBtn text="다음" nav="FormJob" onClick={handleNext} isAbled={btnDisbled} />
     </View>
