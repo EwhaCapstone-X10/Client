@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "drivemate",
+    "slug": "drivemate",
+    "version": "1.0.0",
+    "plugins": ["expo-router"],
+    "scheme": "drivemate"
+  }
+}
