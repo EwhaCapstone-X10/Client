@@ -32,7 +32,7 @@ const GenderBtn = (props: GenderProps) => {
           <Text
             style={{
               fontFamily: 'Pretendard-Regular',
-              fontSize: 8,
+              fontSize: 9,
               color: gender.isClicked ? '#5299FF' : 'black',
             }}
           >

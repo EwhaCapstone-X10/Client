@@ -54,60 +54,51 @@ const Main = () => {
   return (
     <View style={{ flex: 1 }}>
       <Header left="" title="drivemate" />
-      <View
-        style={[
-          CommonStyles.leftview,
-          {
-            gap: 40,
-          },
-        ]}
-      >
+      <View style={[CommonStyles.leftview, { flex: 1, gap: 30 }]}>
         <Text style={CommonStyles.title}>
           <Text style={{ color: '#3182F6' }}>개인 맞춤형 대화</Text>
           {'를 통해\n'}
           졸음 운전을 예방해보세요
         </Text>
-      </View>
 
-      <View style={[CommonStyles.leftview, { gap: 10 }]}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={CommonStyles.title}>최근 대화</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('ChattingList')}>
-            <Text style={CommonStyles.description}>전체 보기</Text>
-          </TouchableOpacity>
+        <View style={{ gap: 10 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={CommonStyles.myTitle}>최근 대화</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('ChattingList')}>
+              <Text style={CommonStyles.description}>전체 보기</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ gap: 16 }}>
+            {mockData.map((item) => (
+              <ChatSummary key={item.id} item={item} />
+            ))}
+          </View>
         </View>
-        <View style={{ gap: 16 }}>
-          {mockData.map((item) => (
-            <ChatSummary key={item.id} item={item} />
-          ))}
-        </View>
-      </View>
 
-      <View
-        style={[
-          CommonStyles.leftview,
-          {
+        <View
+          style={{
             flex: 1,
             gap: 10,
-          },
-        ]}
-      >
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={CommonStyles.title}>스트레칭 영상</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('StretchingList')}>
-            <Text style={CommonStyles.description}>전체 보기</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          horizontal={true}
-          style={{ flex: 1 }}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 30 }}
+            paddingTop: 20,
+          }}
         >
-          {video.map((item) => (
-            <StretchingVideo key={item.id} item={item} />
-          ))}
-        </ScrollView>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={CommonStyles.myTitle}>스트레칭 영상</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('StretchingList')}>
+              <Text style={CommonStyles.description}>전체 보기</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView
+            horizontal={true}
+            style={{ flex: 1 }}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ gap: 30 }}
+          >
+            {video.map((item) => (
+              <StretchingVideo key={item.id} item={item} />
+            ))}
+          </ScrollView>
+        </View>
       </View>
 
       <NavBar type={'home'} />

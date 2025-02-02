@@ -32,7 +32,7 @@ const Header = (props: HeaderProps) => {
       <Text style={CommonStyles.title} onPress={() => onClickLeft(props.left)}>
         {props.left}
       </Text>
-      <Text style={CommonStyles.title}>{props.title}</Text>
+      <Text style={CommonStyles.myTitle}>{props.title}</Text>
       <Text />
     </View>
   );

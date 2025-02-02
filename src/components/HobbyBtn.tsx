@@ -22,7 +22,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
           onPress={() => onClick(item.title)}
           style={[
             {
-              borderRadius: 16,
+              borderRadius: 20,
               borderColor: '#ededec',
               borderWidth: 1,
               paddingVertical: 7,

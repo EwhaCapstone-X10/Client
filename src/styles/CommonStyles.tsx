@@ -59,8 +59,7 @@ const CommonStyles = StyleSheet.create({
   },
 
   myTitle: {
-    width: '100%',
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'Pretendard-SemiBold',
   },
 });

@@ -21,7 +21,7 @@ const NavBtn = (props: NavButtonProps) => {
       <Text
         style={{
           fontFamily: 'Pretendard-SemiBold',
-          fontSize: 14,
+          fontSize: 12,
           color: props.type.isBlue ? '#3182f6' : '#9db2ce',
         }}
       >
