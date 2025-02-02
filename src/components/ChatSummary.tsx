@@ -11,16 +11,17 @@ const ChatSummary = ({ item }: SummaryProps) => {
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
         {item.id % 2 === 0 ? (
-          <Image style={{ width: 30, height: 30 }} source={require('../assets/images/note_blue.png')} />
+          <Image style={{ width: 40, height: 40 }} source={require('../assets/images/note_blue.png')} />
         ) : (
-          <Image style={{ width: 30, height: 30 }} source={require('../assets/images/note_sky.png')} />
+          <Image style={{ width: 40, height: 40 }} source={require('../assets/images/note_sky.png')} />
         )}
         <View>
           <Text style={CommonStyles.description}>{item.date}</Text>
-          <Text style={{ fontFamily: 'Pretendard-Regular' }}>{item.summary}</Text>
+          <Text style={[CommonStyles.myTitle, { maxWidth: 220 }]} numberOfLines={1} ellipsizeMode="tail">
+            {item.summary}
+          </Text>
         </View>
       </View>
-
       <Image style={{ width: 30, height: 30 }} source={require('../assets/images/forward.png')} />
     </View>
   );

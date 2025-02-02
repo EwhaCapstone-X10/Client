@@ -88,7 +88,7 @@ const MyInfo = () => {
           style={[
             CommonStyles.leftview,
             {
-              gap: 10,
+              gap: 12,
             },
           ]}
         >

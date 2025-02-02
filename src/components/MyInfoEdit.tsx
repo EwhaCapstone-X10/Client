@@ -27,6 +27,7 @@ const MyInfoEdit = ({ info }: InfoProps) => {
           style={{
             fontFamily: 'Pretendard-Regular',
             color: '#8D8D8A',
+            fontSize: 12,
           }}
         >
           {info.value}

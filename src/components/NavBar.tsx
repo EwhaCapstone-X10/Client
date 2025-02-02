@@ -120,13 +120,13 @@ const NavBar = (props: NavProps) => {
         flexDirection: 'row',
         width: '100%',
         alignItems: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 40,
+        paddingVertical: 10,
+        paddingHorizontal: 32,
         justifyContent: 'space-between',
       }}
     >
       {/* 홈 */}
-      <View style={{ paddingHorizontal: 8 }}>
+      <View style={{ paddingHorizontal: 10 }}>
         <NavBtn type={home} nav="EndChat" />
       </View>
 
