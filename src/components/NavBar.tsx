@@ -31,7 +31,7 @@ export type Nav = {
 const NavBar = (props: NavProps) => {
   const [home, setHome] = useState<Nav>({
     title: "홈",
-    isBlue: true,
+    isBlue: false,
     graysrc: require("../../assets/images/home_gray.png"),
     bluesrc: require("../../assets/images/home_blue.png"),
   });
@@ -83,14 +83,14 @@ const NavBar = (props: NavProps) => {
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
-        paddingVertical: 10,
-        paddingHorizontal: 32,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
         justifyContent: "space-between",
       }}
     >
       {/* 홈 */}
-      <View style={{ paddingHorizontal: 10 }}>
-        <NavBtn type={home} nav="endchat" />
+      <View>
+        <NavBtn type={home} nav="main" />
       </View>
 
       {/* Plus */}

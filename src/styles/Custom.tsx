@@ -17,7 +17,7 @@ const Custom = StyleSheet.create({
 
   title: {
     fontFamily: "Pretendard-Bold",
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 26,
   },
 
@@ -30,8 +30,13 @@ const Custom = StyleSheet.create({
 
   logo: {
     fontFamily: "Jalnan",
-    fontSize: 28,
+    fontSize: 12,
     color: "#3182F6",
+  },
+
+  header: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
   },
 
   inputinfo: {
@@ -43,7 +48,7 @@ const Custom = StyleSheet.create({
   input: {
     width: "100%",
     fontFamily: "Pretendard-Regular",
-    fontSize: 16,
+    fontSize: 14,
     borderBottomColor: "#6A6967",
     borderBottomWidth: 1,
     paddingVertical: 4,
