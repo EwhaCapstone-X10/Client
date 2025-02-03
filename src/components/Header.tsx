@@ -1,15 +1,18 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 
 type HeaderProps = {
   left: string;
   title: string;
+  style: string;
 };
 
 const Header = (props: HeaderProps) => {
   const onClickLeft = (left: string) => {
     if (left === "<-") {
+      router.back();
     } else {
       return;
     }
@@ -24,10 +27,10 @@ const Header = (props: HeaderProps) => {
         padding: 24,
       }}
     >
-      <Text style={Custom.title} onPress={() => onClickLeft(props.left)}>
+      <Text style={Custom.header} onPress={() => onClickLeft(props.left)}>
         {props.left}
       </Text>
-      <Text style={Custom.myTitle}>{props.title}</Text>
+      <Text style={Custom[props.style]}>{props.title}</Text>
       <Text />
     </View>
   );

@@ -11,37 +11,31 @@ const ChatSummary = ({ item }: SummaryProps) => {
     <View
       style={{
         flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        alignItems: "flex-start",
+        gap: 16,
       }}
     >
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-        {item.id % 2 === 0 ? (
-          <Image
-            style={{ width: 40, height: 40 }}
-            source={require("../../assets/images/note_blue.png")}
-          />
-        ) : (
-          <Image
-            style={{ width: 40, height: 40 }}
-            source={require("../../assets/images/note_sky.png")}
-          />
-        )}
-        <View>
-          <Text style={Custom.description}>{item.date}</Text>
-          <Text
-            style={[Custom.myTitle, { maxWidth: 220 }]}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          >
-            {item.summary}
-          </Text>
-        </View>
+      {item.id % 2 === 0 ? (
+        <Image
+          style={{ width: 40, height: 40 }}
+          source={require("../../assets/images/note_blue.png")}
+        />
+      ) : (
+        <Image
+          style={{ width: 40, height: 40 }}
+          source={require("../../assets/images/note_sky.png")}
+        />
+      )}
+      <View>
+        <Text
+          style={[Custom.myTitle, { maxWidth: 254 }]}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
+          {item.summary}
+        </Text>
+        <Text style={Custom.description}>{item.date}</Text>
       </View>
-      <Image
-        style={{ width: 30, height: 30 }}
-        source={require("../../assets/images/forward.png")}
-      />
     </View>
   );
 };

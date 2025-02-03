@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
 import { User, InfoItem } from "@/models/user.model";
 import MyInfoEdit from "@/components/MyInfoEdit";
+import NavBar from "@/components/NavBar";
 
 const mockData: User = {
   name: "안수이",
@@ -67,8 +68,8 @@ const MyInfo = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header left="<-" title="내 정보" />
-      <View style={{ gap: 10 }}>
+      <Header left="<-" title="내 정보" style="header" />
+      <View style={{ flex: 1, gap: 10 }}>
         <View
           style={[
             Custom.leftview,
@@ -103,6 +104,7 @@ const MyInfo = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <NavBar type={"my"} />
     </View>
   );
 };

@@ -11,7 +11,7 @@ type NavButtonProps = {
 const NavBtn = (props: NavButtonProps) => {
   return (
     <TouchableOpacity
-      style={{ flex: 0, alignItems: "center", paddingHorizontal: 10, gap: 3 }}
+      style={{ flex: 0, alignItems: "center", gap: 3, minWidth: 100 }}
       //이동 코드
       onPress={() => router.push(props.nav)}
     >
@@ -22,7 +22,7 @@ const NavBtn = (props: NavButtonProps) => {
       <Text
         style={{
           fontFamily: "Pretendard-SemiBold",
-          fontSize: 12,
+          fontSize: 9,
           color: props.type.isBlue ? "#3182f6" : "#9db2ce",
         }}
       >

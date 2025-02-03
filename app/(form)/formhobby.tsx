@@ -26,7 +26,6 @@ const FormHobby = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header left="<-" title="drivemate" />
       <View
         style={[
           Custom.leftview,
