@@ -4,9 +4,7 @@ import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
 import { Summary } from "@/models/chatting.model";
-import { Video } from "@/models/video.model";
 import ChatSummary from "@/components/ChatSummary";
-import StretchingVideo from "@/components/StretchingVideo";
 import NavBar from "@/components/NavBar";
 import { router } from "expo-router";
 
@@ -28,23 +26,6 @@ const mockData: Summary[] = [
     year: 2024,
     date: "08월 25일 12:32 126분",
     summary: "다음주 금요일에 있을 딸의 학예회가 매우 기대됨",
-  },
-];
-const video: Video[] = [
-  {
-    id: 0,
-    src: "영상 링크 1",
-    title: "영상 제목 1",
-  },
-  {
-    id: 1,
-    src: "영상 링크 2",
-    title: "영상 제목 2",
-  },
-  {
-    id: 2,
-    src: "영상 링크 3",
-    title: "영상 제목 3",
   },
 ];
 
@@ -85,21 +66,10 @@ const Main = () => {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={Custom.myTitle}>스트레칭 영상</Text>
-            <TouchableOpacity>
-              <Text style={Custom.description}>전체 보기</Text>
+            <TouchableOpacity onPress={() => router.push("stretchinglist")}>
+              <Text style={Custom.myTitle}>스트레칭 영상</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView
-            horizontal={true}
-            style={{ flex: 1 }}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ gap: 30 }}
-          >
-            {video.map((item) => (
-              <StretchingVideo key={item.id} item={item} />
-            ))}
-          </ScrollView>
         </View>
       </View>
 
