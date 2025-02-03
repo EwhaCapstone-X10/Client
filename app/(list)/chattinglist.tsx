@@ -25,6 +25,12 @@ const mockData: Summary[] = [
     date: "08월 25일 12:32",
     summary: "다음주 금요일에 있을 딸의 학예회가 매우 기대됨",
   },
+  {
+    id: 3,
+    year: 2024,
+    date: "06월 25일 12:32",
+    summary: "날씨가 좋아서 혼자 한강까지 드라이브 함",
+  },
 ];
 
 const ChattingList = () => {
