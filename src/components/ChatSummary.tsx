@@ -1,14 +1,19 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Summary } from "../models/chatting.model";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 
 type SummaryProps = {
   item: Summary;
 };
 
 const ChatSummary = ({ item }: SummaryProps) => {
+  const handleClick = () => {
+    router.push(`chattingdetail/${item.id}`);
+  };
   return (
-    <View
+    <TouchableOpacity
+      onPress={handleClick}
       style={{
         flexDirection: "row",
         alignItems: "flex-start",
@@ -36,7 +41,7 @@ const ChatSummary = ({ item }: SummaryProps) => {
         </Text>
         <Text style={Custom.description}>{item.date}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
