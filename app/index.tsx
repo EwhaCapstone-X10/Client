@@ -48,10 +48,10 @@ const Splash = () => {
 
       <Link
         href={{
-          pathname: "/example",
+          pathname: "/voicechat",
         }}
       >
-        <Text>example</Text>
+        <Text>voicechat</Text>
       </Link>
     </View>
   );
