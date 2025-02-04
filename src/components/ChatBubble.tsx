@@ -11,6 +11,7 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
     <ScrollView showsVerticalScrollIndicator={false}>
       {chatting.map((item) => (
         <View
+          key={item.id}
           style={{
             width: "100%",
             flexDirection: "row",
@@ -19,7 +20,6 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
           }}
         >
           <Text
-            key={item.id}
             style={[
               {
                 fontFamily: "Pretendard-SemiBold",

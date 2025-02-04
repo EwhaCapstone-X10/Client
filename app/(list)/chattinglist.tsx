@@ -1,10 +1,10 @@
 import ChatSummary from "@/components/ChatSummary";
 import NoChat from "@/components/NoChat";
+import YearModal from "@/components/YearModal";
 import { Summary } from "@/models/chatting.model";
 import Custom from "@/styles/Custom";
-import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const mockData: Summary[] = [
   {
@@ -34,29 +34,41 @@ const mockData: Summary[] = [
 ];
 
 const ChattingList = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const [selectedYear, setSelectedYear] = useState(year);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const filteredData = mockData.filter((item) => item.year === selectedYear);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <View style={[Custom.leftview, { flex: 1, gap: 10 }]}>
-      <Picker
-        dropdownIconRippleColor={"white"}
-        selectedValue={selectedYear}
-        onValueChange={(itemValue, itemIndex) => setSelectedYear(itemValue)}
+    <View style={[Custom.leftview, { flex: 1, gap: 20 }]}>
+      <TouchableOpacity
+        onPress={() => setModalOpen(true)}
+        style={{ flexDirection: "row", alignItems: "flex-end", gap: 8 }}
       >
-        <Picker.Item label={String(year)} value={year} />
-        <Picker.Item label={String(year - 1)} value={year - 1} />
-        <Picker.Item label={String(year - 2)} value={year - 2} />
-        <Picker.Item label={String(year - 3)} value={year - 3} />
-        <Picker.Item label={String(year - 4)} value={year - 4} />
-      </Picker>
+        <Text
+          style={{
+            fontFamily: "Pretendard-SemiBold",
+            fontSize: 11,
+            color: "#4E4C49",
+          }}
+        >
+          {selectedYear}
+        </Text>
+        <Image
+          source={require("../../assets/images/drop_down.png")}
+          style={{ width: 22, height: 22 }}
+        />
+      </TouchableOpacity>
 
       {filteredData.length > 0 ? (
         filteredData.map((item) => <ChatSummary key={item.id} item={item} />)
       ) : (
         <NoChat />
+      )}
+      {modalOpen && (
+        <YearModal
+          setModalOpen={setModalOpen}
+          setSelectedYear={setSelectedYear}
+        />
       )}
     </View>
   );
