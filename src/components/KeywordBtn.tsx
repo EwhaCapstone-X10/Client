@@ -13,8 +13,9 @@ const KeywordBtn = ({ keywords }: KeywordProps) => {
         gap: 10,
       }}
     >
-      {keywords.map((item) => (
+      {keywords.map((item, idx) => (
         <View
+          key={idx}
           style={{
             borderRadius: 20,
             backgroundColor: "#E5EDFF",
