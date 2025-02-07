@@ -1,8 +1,8 @@
-import { User } from '../models/user.model';
+import { User } from "../models/user.model";
 export const generatePrompt = (info: User) => `
 사용자 정보
 이름: ${info.name}
-나이: ${info.age}
+생년월일: ${info.birthdate}
 성별: ${info.gender}
 직업: ${info.job}
 취미: ${info.hobby}
