@@ -83,8 +83,7 @@ const NavBar = (props: NavProps) => {
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
-        paddingVertical: 8,
-        paddingHorizontal: 12,
+        padding: 8,
         justifyContent: "space-between",
       }}
     >
@@ -98,7 +97,7 @@ const NavBar = (props: NavProps) => {
         style={{ flex: 0, alignItems: "center" }}
         onPress={handleStart}
       >
-        <Image style={{ width: 60, height: 60 }} source={plusSrc} />
+        <Image style={{ width: 70, height: 70 }} source={plusSrc} />
       </TouchableOpacity>
 
       {/* 내 정보 */}

@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import React, { useState } from "react";
@@ -7,6 +6,7 @@ import { Text, View, TextInput } from "react-native";
 const FormName = () => {
   const [name, onChangeName] = useState("");
   const [focus, setFocus] = useState(false);
+
   const handleNext = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
   };
@@ -29,6 +29,7 @@ const FormName = () => {
           Custom.leftview,
           {
             flex: 1,
+            gap: 12,
           },
         ]}
       >
@@ -42,7 +43,12 @@ const FormName = () => {
           style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
         />
       </View>
-      <MainBtn text="다음" nav="formage" onClick={handleNext} isAbled={!name} />
+      <MainBtn
+        text="다음"
+        nav="formbirth"
+        onClick={handleNext}
+        isAbled={!name}
+      />
     </View>
   );
 };

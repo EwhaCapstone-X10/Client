@@ -41,14 +41,14 @@ const Custom = StyleSheet.create({
 
   inputinfo: {
     width: "100%",
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: "Pretendard-Regular",
   },
 
   input: {
     width: "100%",
     fontFamily: "Pretendard-Regular",
-    fontSize: 14,
+    fontSize: 12,
     borderBottomColor: "#6A6967",
     borderBottomWidth: 1,
     paddingVertical: 4,
@@ -64,7 +64,7 @@ const Custom = StyleSheet.create({
   },
 
   myTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: "Pretendard-SemiBold",
   },
 });

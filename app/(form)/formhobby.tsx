@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Text, View, ScrollView } from "react-native";
-import Header from "@/components/Header";
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import HobbyBtn from "@/components/HobbyBtn";

@@ -30,6 +30,7 @@ const FormJob = () => {
           Custom.leftview,
           {
             flex: 1,
+            gap: 12,
           },
         ]}
       >
