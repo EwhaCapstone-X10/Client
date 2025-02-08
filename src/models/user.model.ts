@@ -1,6 +1,6 @@
 export type User = {
   name: string;
-  age: string;
+  birthdate: string;
   gender: string;
   job: string;
   hobby: string[];
@@ -17,4 +17,5 @@ export interface InfoItem {
   id: number;
   title: string;
   value: string;
+  canedit: boolean;
 }

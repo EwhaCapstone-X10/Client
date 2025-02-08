@@ -5,7 +5,7 @@ import Custom from "@/styles/Custom";
 import HobbyBtn from "@/components/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
 
-const FormHobby = () => {
+const EditHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
 
   const onClickHobby = (title: string) => {
@@ -19,7 +19,7 @@ const FormHobby = () => {
       return prevHobbies;
     });
   };
-  const handleNext = () => {
+  const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
   };
 
@@ -33,7 +33,7 @@ const FormHobby = () => {
           },
         ]}
       >
-        <Text style={Custom.title}>취미나 관심사를 선택해주세요</Text>
+        <Text style={Custom.myTitle}>취미 및 관심사</Text>
         <Text style={Custom.description}>최대 5개까지 선택 가능합니다</Text>
       </View>
       <ScrollView
@@ -90,9 +90,14 @@ const FormHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn text="완료" nav="welcome" onClick={handleNext} isAbled={false} />
+      <MainBtn
+        text="완료"
+        nav="myinfo"
+        onClick={handleComplete}
+        isAbled={false}
+      />
     </View>
   );
 };
 
-export default FormHobby;
+export default EditHobby;

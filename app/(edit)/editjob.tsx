@@ -3,11 +3,10 @@ import Custom from "@/styles/Custom";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
 
-const FormName = () => {
-  const [name, onChangeName] = useState("");
+const EditJob = () => {
+  const [job, onChangeJob] = useState("");
   const [focus, setFocus] = useState(false);
-
-  const handleNext = () => {
+  const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
   };
 
@@ -17,26 +16,16 @@ const FormName = () => {
         style={[
           Custom.leftview,
           {
-            gap: 12,
-          },
-        ]}
-      >
-        <Text style={Custom.title}>이름을 입력해주세요</Text>
-        <Text style={Custom.description}>대화 시 불릴 이름을 알려주세요</Text>
-      </View>
-      <View
-        style={[
-          Custom.leftview,
-          {
             flex: 1,
             gap: 12,
           },
         ]}
       >
-        <Text style={Custom.inputinfo}>이름</Text>
+        <Text style={Custom.myTitle}>직업</Text>
+
         <TextInput
-          onChangeText={onChangeName}
-          value={name}
+          onChangeText={onChangeJob}
+          value={job}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
@@ -44,13 +33,13 @@ const FormName = () => {
         />
       </View>
       <MainBtn
-        text="다음"
-        nav="formbirth"
-        onClick={handleNext}
-        isAbled={!name}
+        text="완료"
+        nav="myinfo"
+        onClick={handleComplete}
+        isAbled={!job}
       />
     </View>
   );
 };
 
-export default FormName;
+export default EditJob;

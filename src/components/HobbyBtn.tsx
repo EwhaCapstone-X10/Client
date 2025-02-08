@@ -14,6 +14,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
         flexDirection: "row",
         flexWrap: "wrap",
         gap: 10,
+        paddingHorizontal: 6,
       }}
     >
       {hobby.map((item) => (
@@ -26,7 +27,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
               borderColor: "#ededec",
               borderWidth: 1,
               paddingVertical: 7,
-              paddingHorizontal: 16,
+              paddingHorizontal: 18,
             },
             {
               borderColor: hobbies.includes(item.title) ? "#5299FF" : "#DFDEDA",
@@ -36,7 +37,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
           <Text
             style={{
               fontFamily: "Pretendard-Regular",
-              fontSize: 12,
+              fontSize: 10,
               color: hobbies.includes(item.title) ? "#5299FF" : "black",
             }}
           >

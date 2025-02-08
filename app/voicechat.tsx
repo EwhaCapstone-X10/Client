@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Button, Text, ScrollView } from "react-native";
 import axios from "axios";
 import { router } from "expo-router";
-import * as ExpoStt from "@crossplatformkorea/expo-stt";
 import * as Speech from "expo-speech";
 import { generatePrompt } from "@/utils/generatePrompt";
 import { driverInfo } from "@/utils/driverInfo";
 import { OPENAI_API_KEY } from "@env";
 import { useAudioPlayer } from "expo-audio";
+import { Audio } from "expo-av";
+import * as FileSystem from "expo-file-system";
 
 const audioSource = require("../assets/sounds/alarm.mp3");
 
@@ -16,15 +17,21 @@ type Message = {
   content: string;
 };
 const API_KEY = OPENAI_API_KEY;
+const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
+
+const start = "Just say '오늘 기분 어때? 어디 가는 길이야?' ";
 
 const VoiceChat = () => {
   const player = useAudioPlayer(audioSource);
 
   const [messages, setMessages] = useState<Message[]>([]); // gpt, user 메시지
+  const [recording, setRecording] = useState<Audio.Recording | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
   const [spokenText, setSpokenText] = useState(""); // user가 방금 말한 메시지
   const [loading, setLoading] = useState(false); // 대화 로딩중
-  const [recognizing, setRecognizing] = useState(false); // 음성 인식중
   const willSendRef = useRef(true);
+
+  const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
 
   // 챗봇 대화 가져오기 - tts - 사용자 음성인식
   const botFunc = (response: any) => {
@@ -38,23 +45,99 @@ const VoiceChat = () => {
     Speech.speak(botMessage.content, {
       language: "ko",
       rate: 1.6,
-      onDone: startSpeechRecognition,
+      onDone: () => {
+        startRecording()
+          .then(() => {})
+          .catch((error) => {
+            console.error("녹음 시작 실패:", error);
+          });
+      },
     });
   };
 
-  // 사용자 음성 인식 시작
-  const startSpeechRecognition = () => {
+  // 사용자 음성 녹음
+  const startRecording = async () => {
     try {
-      setRecognizing(true);
-      willSendRef.current = true;
-      ExpoStt.startSpeech();
-    } catch (err) {
-      console.error("Speech recognition failed:", err);
+      const permission = await Audio.requestPermissionsAsync();
+      if (!permission.granted) {
+        alert("녹음 권한이 필요합니다.");
+        return;
+      }
+
+      setIsRecording(true);
+      const { recording } = await Audio.Recording.createAsync(
+        Audio.RecordingOptionsPresets.HIGH_QUALITY
+      );
+      setRecording(recording);
+    } catch (error) {
+      console.error("녹음 실패:", error);
+    }
+  };
+
+  // 사용자 녹음 종료
+  const stopRecording = async () => {
+    try {
+      if (recording) {
+        setIsRecording(false);
+        await recording.stopAndUnloadAsync();
+        const uri = recording.getURI();
+        console.log("녹음 완료:", uri);
+        setRecording(null);
+
+        await transcribeAudio(uri);
+      }
+    } catch (error) {
+      console.error("녹음 종료 실패:", error);
+    }
+  };
+
+  const transcribeAudio = async (uri: string) => {
+    try {
+      const response = await FileSystem.uploadAsync(whisperEndpoint, uri, {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "multipart/form-data",
+        },
+        httpMethod: "POST",
+        uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+        fieldName: "file",
+        mimeType: "audio/mpeg",
+        parameters: {
+          model: "whisper-1",
+        },
+      });
+
+      const parsedResponse = JSON.parse(response.body);
+      const transcribedText = parsedResponse.text;
+
+      console.log("Transcribed Text:", transcribedText);
+
+      if (transcribedText && willSendRef.current) {
+        setSpokenText(transcribedText);
+        handleChat(transcribedText);
+      } else if (transcribedText && !willSendRef.current) {
+        if (
+          transcribedText.includes("응") ||
+          transcribedText.includes("네") ||
+          transcribedText.includes("맞아")
+        ) {
+          playAlarm();
+          return;
+        } else if (
+          transcribedText.includes("아니") ||
+          transcribedText.includes("괜찮아") ||
+          transcribedText.includes("아냐")
+        ) {
+          handleStartConversation(generatePrompt(driverInfo));
+        }
+      }
+    } catch (error) {
+      console.error("Whisper API Error:", error);
     }
   };
 
   // 대화 시작
-  const handleStartConversation = async () => {
+  const handleStartConversation = async (prompt: string) => {
     setLoading(true);
     try {
       const response = await axios.post(
@@ -64,7 +147,7 @@ const VoiceChat = () => {
           messages: [
             {
               role: "user",
-              content: "Just say '오늘 기분 어때? 어디 가는 길이야?'",
+              content: prompt,
             },
           ],
         },
@@ -151,25 +234,22 @@ const VoiceChat = () => {
   // 졸리다고 물어봤을 때 대답듣기
   const sleepyResponse = () => {
     try {
-      setRecognizing(true);
+      setIsRecording(true);
 
-      ExpoStt.startSpeech();
+      startRecording();
     } catch (err) {
       console.error("Speech recognition failed:", err);
     } finally {
-      setRecognizing(false);
+      setIsRecording(false);
     }
   };
 
   const playAlarm = () => {
     try {
       player.play(); // 알람 소리 재생
-
+      willSendRef.current = true;
       setTimeout(() => {
-        Speech.speak("대화 종료할게. 근처에 차를 주차하고 쉬어.", {
-          language: "ko",
-          onDone: () => router.push("endchat"),
-        });
+        handleStartConversation(generatePrompt(driverInfo));
       }, 10000);
     } catch (error) {
       console.error("Failed to load and play sound", error);
@@ -177,50 +257,36 @@ const VoiceChat = () => {
   };
 
   useEffect(() => {
-    const onSpeechResult = ExpoStt.addOnSpeechResultListener((result: any) => {
-      console.log(willSendRef);
+    // 소리가 없으면 녹음 종료
+    if (!recording) return;
 
-      if (result?.results?.length && willSendRef.current) {
-        const userSpeech = result.results.join(" ");
-        setSpokenText(userSpeech);
-        handleChat(userSpeech);
-      } else if (result?.results?.length && !willSendRef.current) {
-        const sleepyres = result.results.join(" ");
-        if (
-          sleepyres.includes("응") ||
-          sleepyres.includes("네") ||
-          sleepyres.includes("맞아")
-        ) {
-          playAlarm();
-          return;
-        } else if (
-          sleepyres.includes("아니") ||
-          sleepyres.includes("괜찮아") ||
-          sleepyres.includes("아냐")
-        ) {
-          Speech.speak("알겠어. 우리 무슨 얘기 하고 있었지?", {
-            language: "ko",
-            onDone: startSpeechRecognition,
-          });
+    const intervalID = setInterval(async () => {
+      const status = await recording.getStatusAsync();
+      console.log("Metering level:", status.metering); // Check the metering level
+
+      // 소리가 -120보다 작으면 타이머 시작
+      if (status.metering < -90) {
+        if (!silenceTimeoutRef.current) {
+          silenceTimeoutRef.current = setTimeout(() => {
+            stopRecording();
+          }, 1500); // 2초동안 말 안하면 녹음 종료
+        }
+      } else {
+        // 소리가 감지되면 타이머 리셋
+        if (silenceTimeoutRef.current) {
+          clearTimeout(silenceTimeoutRef.current);
+          silenceTimeoutRef.current = null;
         }
       }
-    });
-
-    const onSpeechEnd = ExpoStt.addOnSpeechEndListener(() => {
-      setRecognizing(false);
-    });
-
-    const onSpeechError = ExpoStt.addOnSpeechErrorListener((error: any) => {
-      console.error("Speech recognition error:", error);
-      setRecognizing(false);
-    });
+    }, 500);
 
     return () => {
-      onSpeechResult.remove();
-      onSpeechEnd.remove();
-      onSpeechError.remove();
+      clearInterval(intervalID);
+      if (silenceTimeoutRef.current) {
+        clearTimeout(silenceTimeoutRef.current);
+      }
     };
-  }, []);
+  }, [recording]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -238,11 +304,11 @@ const VoiceChat = () => {
 
       <Button
         title="대화 시작"
-        onPress={handleStartConversation}
-        disabled={loading || recognizing}
+        onPress={() => handleStartConversation(start)}
+        disabled={loading || isRecording}
       />
       <Button title="종료" onPress={() => router.push("endchat")} />
-      {recognizing && <Text style={styles.listeningText}>Listening...</Text>}
+      {isRecording && <Text style={styles.listeningText}>Listening...</Text>}
     </ScrollView>
   );
 };

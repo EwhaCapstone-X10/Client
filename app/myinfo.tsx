@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 
 import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
@@ -9,7 +15,7 @@ import NavBar from "@/components/NavBar";
 
 const mockData: User = {
   name: "안수이",
-  age: "25",
+  birthdate: "2001-02-18",
   gender: "여성",
   job: "학생",
   hobby: ["자전거", "서핑", "볼링", "테니스", "야구"],
@@ -22,26 +28,37 @@ const MyInfo = () => {
       id: 0,
       title: "이름",
       value: "",
+      canedit: true,
     },
     {
       id: 1,
       title: "나이",
       value: "",
+      canedit: false,
     },
     {
       id: 2,
       title: "성별",
       value: "",
+      canedit: false,
     },
     {
       id: 3,
-      title: "직업",
+      title: "대화모드",
       value: "",
+      canedit: true,
     },
     {
       id: 4,
+      title: "직업",
+      value: "",
+      canedit: true,
+    },
+    {
+      id: 5,
       title: "취미 및 관심사",
       value: "",
+      canedit: true,
     },
   ]);
 
@@ -52,9 +69,11 @@ const MyInfo = () => {
           case "이름":
             return { ...info, value: mockData.name };
           case "나이":
-            return { ...info, value: mockData.age };
+            return { ...info, value: mockData.birthdate };
           case "성별":
             return { ...info, value: mockData.gender };
+          case "대화모드":
+            return { ...info, value: mockData.mode };
           case "직업":
             return { ...info, value: mockData.job };
           case "취미 및 관심사":
@@ -69,7 +88,7 @@ const MyInfo = () => {
   return (
     <View style={{ flex: 1 }}>
       <Header left="<-" title="내 정보" style="header" />
-      <View style={{ flex: 1, gap: 10 }}>
+      <ScrollView style={{ flex: 1, gap: 10 }}>
         <View
           style={[
             Custom.leftview,
@@ -89,7 +108,7 @@ const MyInfo = () => {
           style={[
             Custom.leftview,
             {
-              gap: 12,
+              gap: 18,
             },
           ]}
         >
@@ -103,7 +122,7 @@ const MyInfo = () => {
             <Text style={Custom.myTitle}>로그아웃</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
       <NavBar type={"my"} />
     </View>
   );
