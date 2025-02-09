@@ -6,6 +6,7 @@ import Custom from "@/styles/Custom";
 import { User, InfoItem } from "@/models/user.model";
 import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
+import { getUserInfo } from "@/api/user.api";
 
 const mockData: User = {
   memberId: 0,
@@ -58,6 +59,46 @@ const MyInfo = () => {
   ]);
 
   useEffect(() => {
+    /* 백에서 user 정보 가져오기
+    const fetchUser = async () => {
+      try {
+        const res = await getUserInfo();
+        const data = res.data;
+        console.log(res);
+        if (res.status === 200) {
+          setInfoList((prevInfoList) =>
+            prevInfoList.map((info) => {
+              switch (info.title) {
+                case "이름":
+                  return { ...info, value: data.name };
+                case "나이":
+                  return { ...info, value: data.birthdate };
+                case "성별":
+                  return { ...info, value: data.sex };
+                case "대화모드":
+                  return { ...info, value: data.mode };
+                case "직업":
+                  return { ...info, value: data.occupation };
+                case "취미 및 관심사":
+                  return { ...info, value: data.hobby.join(", ") };
+                default:
+                  return info;
+              }
+            })
+          );
+        }
+      } catch (err: any) {
+        if (err.response.statue === 400 || err.response.status === 500) {
+          console.log("error: ", err.response.data.error);
+        } else {
+          console.log(err);
+        }
+      }
+    };
+
+    fetchUser()
+    */
+
     setInfoList((prevInfoList) =>
       prevInfoList.map((info) => {
         switch (info.title) {

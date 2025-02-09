@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
-import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import HobbyBtn from "@/components/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
-import { router } from "expo-router";
+import EditBtn from "@/components/EditBtn";
+import useUserStore from "@/store/userStore";
 
 const EditHobby = () => {
-  const [hobbies, setHobbies] = useState<string[]>([]);
+  const { user, setHobby } = useUserStore();
+  const [hobbies, setHobbies] = useState<string[]>(user.hobby);
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
@@ -20,9 +21,9 @@ const EditHobby = () => {
       return prevHobbies;
     });
   };
-  const handleComplete = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-    router.push("myinfo");
+
+  const handleComplete = async () => {
+    await setHobby(hobbies);
   };
 
   return (
@@ -92,7 +93,7 @@ const EditHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn text="완료" onClick={handleComplete} isAbled={false} />
+      <EditBtn isAbled={false} onClick={handleComplete} />
     </View>
   );
 };

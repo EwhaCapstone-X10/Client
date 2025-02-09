@@ -8,7 +8,7 @@ import useUserStore from "@/store/userStore";
 import { router } from "expo-router";
 
 const FormGender = () => {
-  const { user, setSex, setMode } = useUserStore();
+  const { setSex, setMode } = useUserStore();
 
   const [genders, setGenders] = useState<Gender[]>([
     { id: 0, title: "남성", type: "MALE", isClicked: false },

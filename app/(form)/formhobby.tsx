@@ -10,7 +10,7 @@ import { postUserInfo } from "@/api/user.api";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
-  const { user, setHobby } = useUserStore();
+  const { setHobby } = useUserStore();
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
