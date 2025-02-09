@@ -9,7 +9,9 @@ import { OPENAI_API_KEY } from "@env";
 import { useAudioPlayer } from "expo-audio";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
-import { Message } from "@/models/chatting.model";
+import { Chat } from "@/models/chatting.model";
+import useChatStore from "@/store/chatStore";
+import { postChatting } from "@/api/chat.api";
 
 const audioSource = require("../assets/sounds/alarm.mp3");
 
@@ -21,7 +23,9 @@ const start = "Just say '오늘 기분 어때? 어디 가는 길이야?' ";
 const VoiceChat = () => {
   const player = useAudioPlayer(audioSource);
 
-  const [messages, setMessages] = useState<Message[]>([]); // gpt, user 메시지
+  const { chat, setChat } = useChatStore();
+
+  const [messages, setMessages] = useState<Chat[]>([]); // gpt, user 메시지
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [spokenText, setSpokenText] = useState(""); // user가 방금 말한 메시지
@@ -30,16 +34,16 @@ const VoiceChat = () => {
 
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
 
-  const storeMessage = (role: "user" | "bot", message: string) => {
+  const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
       const newIdx =
         prevMessages.length > 0
           ? prevMessages[prevMessages.length - 1].idx + 1
           : 0; // 마지막 idx + 1, 없으면 0
-      const newMessage: Message = {
+      const newMessage: Chat = {
         idx: newIdx,
         role: role,
-        content: message,
+        chat: message,
       };
       return [...prevMessages, newMessage];
     });
@@ -52,14 +56,14 @@ const VoiceChat = () => {
         prevMessages.length > 0
           ? prevMessages[prevMessages.length - 1].idx + 1
           : 0; // 마지막 idx + 1, 메시지가 없으면 0
-      const botMessage: Message = {
+      const botMessage: Chat = {
         idx: newIdx,
-        role: "bot",
-        content: response.data.choices[0].message.content,
+        role: "gpt",
+        chat: response.data.choices[0].message.content,
       };
 
       // 챗봇 대화 TTS
-      Speech.speak(botMessage.content, {
+      Speech.speak(botMessage.chat, {
         language: "ko",
         rate: 1.6,
         onDone: () => {
@@ -244,11 +248,11 @@ const VoiceChat = () => {
     setLoading(true);
     willSendRef.current = false;
 
-    storeMessage("bot", "대화 종료할게 안전 운전해.");
+    storeMessage("gpt", "대화 종료할게 안전 운전해.");
 
     Speech.speak("대화 종료할게 안전 운전해.", {
       language: "ko",
-      onDone: () => router.push("endchat"),
+      onDone: () => handleQuit,
     });
   };
 
@@ -257,7 +261,7 @@ const VoiceChat = () => {
     setLoading(true);
     willSendRef.current = false;
 
-    storeMessage("bot", "졸려? 큰 알람소리 들려줄까?");
+    storeMessage("gpt", "졸려? 큰 알람소리 들려줄까?");
 
     Speech.speak("졸려? 큰 알람소리 들려줄까?", {
       language: "ko",
@@ -288,6 +292,25 @@ const VoiceChat = () => {
     } catch (error) {
       console.error("Failed to load and play sound", error);
     }
+  };
+
+  const handleQuit = async () => {
+    /*
+    try {
+      const res = await postChatting(messages);
+      console.log(res);
+      if (res.status === 200) {
+        router.push("endchat");
+      }
+    } catch (err: any) {
+      if (err.response.statue === 400 || err.response.status === 500) {
+        console.log("error: ", err.response.data.error);
+      } else {
+        console.log(err);
+      }
+    }
+*/
+    router.push("endchat");
   };
 
   useEffect(() => {
@@ -321,7 +344,8 @@ const VoiceChat = () => {
   }, [recording]);
 
   useEffect(() => {
-    console.log(messages);
+    setChat(messages);
+    console.log(chat);
   }, [messages]);
 
   return (
@@ -334,7 +358,7 @@ const VoiceChat = () => {
             message.role === "user" ? styles.userBubble : styles.botBubble,
           ]}
         >
-          <Text style={styles.messageText}>{message.content}</Text>
+          <Text style={styles.messageText}>{message.chat}</Text>
         </View>
       ))}
 
@@ -343,7 +367,7 @@ const VoiceChat = () => {
         onPress={() => handleStartConversation(start)}
         disabled={loading || isRecording}
       />
-      <Button title="종료" onPress={() => router.push("endchat")} />
+      <Button title="종료" onPress={handleQuit} />
       {isRecording && <Text style={styles.listeningText}>Listening...</Text>}
     </ScrollView>
   );

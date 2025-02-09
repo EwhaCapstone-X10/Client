@@ -1,11 +1,11 @@
-import { Message } from "@/models/chatting.model";
+import { SaveChat } from "@/models/chatting.model";
 import { BASE_URL } from "@env";
 import axios from "axios";
 
 const baseURL = BASE_URL;
 
 // 대화 내역 저장
-export const postChatting = async (message: Message) => {
+export const postChatting = async (message: SaveChat) => {
   const res = axios.post(`${baseURL}/chat`, message, {
     headers: {
       "Content-Type": "application/json",
