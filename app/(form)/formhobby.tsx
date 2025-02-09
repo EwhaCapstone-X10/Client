@@ -6,6 +6,7 @@ import HobbyBtn from "@/components/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
 import { router } from "expo-router";
 import useUserStore from "@/store/userStore";
+import { postUserInfo } from "@/api/user.api";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
@@ -26,6 +27,22 @@ const FormHobby = () => {
     await setHobby(hobbies);
 
     router.push("main");
+
+    /* 버튼 클릭 시 백에 정보 보내기
+    try {
+      const res = await postUserInfo(user);
+      console.log(res);
+
+      if (res.status === 200) {
+        router.push("main");
+      }
+    } catch (err: any) {
+      if (err.response.statue === 400 || err.response.status === 500) {
+        console.log("error: ", err.response.data.error);
+      } else {
+        console.log(err);
+      }
+    } */
   };
   return (
     <View style={{ flex: 1 }}>
