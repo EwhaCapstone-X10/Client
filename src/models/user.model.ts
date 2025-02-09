@@ -5,7 +5,7 @@ export type User = {
   sex: string;
   mode: string;
   occupation: string;
-  hobby: string[];
+  interests: string[];
 };
 
 export type Gender = {

@@ -10,7 +10,7 @@ import { postUserInfo } from "@/api/user.api";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
-  const { setHobby } = useUserStore();
+  const { setInterests } = useUserStore();
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
@@ -23,8 +23,8 @@ const FormHobby = () => {
       return prevHobbies;
     });
   };
-  const handleNext = async () => {
-    await setHobby(hobbies);
+  const handleSubmit = async () => {
+    await setInterests(hobbies);
 
     router.push("main");
 
@@ -111,7 +111,7 @@ const FormHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn text="완료" onClick={handleNext} isAbled={false} />
+      <MainBtn text="완료" onClick={handleSubmit} isAbled={false} />
     </View>
   );
 };

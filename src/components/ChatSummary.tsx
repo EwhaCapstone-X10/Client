@@ -2,14 +2,16 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Summary } from "../models/chatting.model";
 import Custom from "@/styles/Custom";
 import { router } from "expo-router";
+import { getDate } from "@/utils/getDate";
 
 type SummaryProps = {
   item: Summary;
 };
 
 const ChatSummary = ({ item }: SummaryProps) => {
+  const date = getDate(item.started_at);
   const handleClick = () => {
-    router.push(`chattingdetail/${item.id}`);
+    router.push(`chattingdetail/${item.session_id}`);
   };
   return (
     <TouchableOpacity
@@ -20,7 +22,7 @@ const ChatSummary = ({ item }: SummaryProps) => {
         gap: 16,
       }}
     >
-      {item.id % 2 === 0 ? (
+      {item.session_id % 2 === 0 ? (
         <Image
           style={{ width: 40, height: 40 }}
           source={require("../../assets/images/note_blue.png")}
@@ -39,7 +41,7 @@ const ChatSummary = ({ item }: SummaryProps) => {
         >
           {item.summary}
         </Text>
-        <Text style={Custom.description}>{item.date}</Text>
+        <Text style={Custom.description}>{date}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -1,25 +1,26 @@
-export type Message = {
-  idx: number;
-  role: "user" | "bot";
-  content: string;
-};
-
 export type Summary = {
-  id: number;
+  session_id: number;
   year: number;
-  date: string;
+  started_at: Date;
   summary: string;
 };
 
 export type Detail = {
-  date: string;
+  chatId: number;
+  date: Date;
   summary: string;
-  keywords: string[];
+  keywords: string;
   chatting: Chat[];
 };
 
 export type Chat = {
-  id: number;
-  role: string;
+  idx: number;
+  role: "user" | "gpt";
   chat: string;
+};
+
+export type SaveChat = {
+  memberId: number;
+  date: Date;
+  chatting: Chat[];
 };

@@ -11,11 +11,11 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
     <ScrollView showsVerticalScrollIndicator={false}>
       {chatting.map((item) => (
         <View
-          key={item.id}
+          key={item.idx}
           style={{
             width: "100%",
             flexDirection: "row",
-            justifyContent: item.id % 2 === 0 ? "flex-start" : "flex-end",
+            justifyContent: item.idx % 2 === 0 ? "flex-start" : "flex-end",
             marginBottom: 12,
           }}
         >
@@ -29,8 +29,8 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
                 paddingVertical: 12,
               },
               {
-                backgroundColor: item.id % 2 === 0 ? "#EDEDEC" : "#5299FF",
-                color: item.id % 2 === 0 ? "black" : "white",
+                backgroundColor: item.idx % 2 === 0 ? "#EDEDEC" : "#5299FF",
+                color: item.idx % 2 === 0 ? "black" : "white",
               },
             ]}
           >

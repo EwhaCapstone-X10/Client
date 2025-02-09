@@ -9,7 +9,7 @@ interface UserStore {
   setSex: (sex: string) => void;
   setMode: (mode: string) => void;
   setOccupation: (occupation: string) => void;
-  setHobby: (hobby: string[]) => void;
+  setInterests: (interests: string[]) => void;
 }
 
 const useUserStore = create<UserStore>((set) => ({
@@ -20,7 +20,7 @@ const useUserStore = create<UserStore>((set) => ({
     sex: "",
     mode: "",
     occupation: "",
-    hobby: [],
+    interests: [],
   },
 
   setName: (name: string) =>
@@ -43,9 +43,9 @@ const useUserStore = create<UserStore>((set) => ({
     set((state) => ({
       user: { ...state.user, occupation },
     })),
-  setHobby: (hobby: string[]) =>
+  setInterests: (interests: string[]) =>
     set((state) => ({
-      user: { ...state.user, hobby },
+      user: { ...state.user, interests },
     })),
 }));
 

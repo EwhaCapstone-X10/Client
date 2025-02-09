@@ -7,5 +7,5 @@ export const driverInfo: User = {
   sex: "남성",
   mode: "반말",
   occupation: "화물 트럭 운전 기사",
-  hobby: ["축구", "야구", "여행"],
+  interests: ["축구", "야구", "여행"],
 };
