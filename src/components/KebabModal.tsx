@@ -1,14 +1,30 @@
+import { deleteChat } from "@/api/chat.api";
 import ModalStyle from "@/styles/ModalStyle";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 type ModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string;
+  id: number;
 };
 
 const KebabModal = ({ setModalOpen, id }: ModalProps) => {
   const handleDelete = async () => {
+    /*
+    try {
+      const res = await deleteChat(id);
+      console.log(res);
+      if (res.status === 200) {
+      }
+    } catch (err: any) {
+      if (err.response.statue === 400 || err.response.status === 500) {
+        console.log("error: ", err.response.data.error);
+      } else {
+        console.log(err);
+      }
+    } finally {
+      setModalOpen(false);
+    } */
     setModalOpen(false);
   };
 
