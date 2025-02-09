@@ -13,6 +13,7 @@ import * as FileSystem from "expo-file-system";
 const audioSource = require("../assets/sounds/alarm.mp3");
 
 type Message = {
+  idx: number;
   role: "user" | "bot";
   content: string;
 };
@@ -33,25 +34,48 @@ const VoiceChat = () => {
 
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
 
+  const storeMessage = (role: "user" | "bot", message: string) => {
+    setMessages((prevMessages) => {
+      const newIdx =
+        prevMessages.length > 0
+          ? prevMessages[prevMessages.length - 1].idx + 1
+          : 0; // 마지막 idx + 1, 없으면 0
+      const newMessage: Message = {
+        idx: newIdx,
+        role: role,
+        content: message,
+      };
+      return [...prevMessages, newMessage];
+    });
+  };
+
   // 챗봇 대화 가져오기 - tts - 사용자 음성인식
   const botFunc = (response: any) => {
-    const botMessage: Message = {
-      role: "bot",
-      content: response.data.choices[0].message.content,
-    };
-    setMessages((prevMessages) => [...prevMessages, botMessage]);
+    setMessages((prevMessages) => {
+      const newIdx =
+        prevMessages.length > 0
+          ? prevMessages[prevMessages.length - 1].idx + 1
+          : 0; // 마지막 idx + 1, 메시지가 없으면 0
+      const botMessage: Message = {
+        idx: newIdx,
+        role: "bot",
+        content: response.data.choices[0].message.content,
+      };
 
-    // 챗봇 대화 tts
-    Speech.speak(botMessage.content, {
-      language: "ko",
-      rate: 1.6,
-      onDone: () => {
-        startRecording()
-          .then(() => {})
-          .catch((error) => {
-            console.error("녹음 시작 실패:", error);
-          });
-      },
+      // 챗봇 대화 TTS
+      Speech.speak(botMessage.content, {
+        language: "ko",
+        rate: 1.6,
+        onDone: () => {
+          startRecording()
+            .then(() => {})
+            .catch((error) => {
+              console.error("녹음 시작 실패:", error);
+            });
+        },
+      });
+
+      return [...prevMessages, botMessage];
     });
   };
 
@@ -121,6 +145,7 @@ const VoiceChat = () => {
           transcribedText.includes("네") ||
           transcribedText.includes("맞아")
         ) {
+          storeMessage("user", transcribedText);
           playAlarm();
           return;
         } else if (
@@ -128,6 +153,7 @@ const VoiceChat = () => {
           transcribedText.includes("괜찮아") ||
           transcribedText.includes("아냐")
         ) {
+          storeMessage("user", transcribedText);
           handleStartConversation(generatePrompt(driverInfo));
         }
       }
@@ -139,6 +165,7 @@ const VoiceChat = () => {
   // 대화 시작
   const handleStartConversation = async (prompt: string) => {
     setLoading(true);
+    willSendRef.current = true;
     try {
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
@@ -169,51 +196,60 @@ const VoiceChat = () => {
   // 사용자 대화 stt
   const handleChat = async (message: string) => {
     setLoading(true);
-    const newMessage: Message = { role: "user", content: message };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+    // 새로운 사용자 메시지 저장
+    storeMessage("user", message);
 
     // 졸음 단어 감지
     if (message.includes("졸려")) {
       await detectSleepy();
+      setLoading(false); // 종료되었으므로 로딩 상태 해제
       return;
-      // 종료 단어 감지
-    } else if (message.includes("종료")) {
+    }
+    // 종료 단어 감지
+    if (message.includes("종료")) {
       await detectQuit();
+      setLoading(false); // 종료되었으므로 로딩 상태 해제
       return;
-      // 둘 다 아닐 때
-    } else {
-      try {
-        const response = await axios.post(
-          "https://api.openai.com/v1/chat/completions",
-          {
-            model: "gpt-4o",
-            messages: [
-              {
-                role: "system",
-                content: generatePrompt(driverInfo),
-              },
-              { role: "user", content: message },
-            ],
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${API_KEY}`,
-              "Content-Type": "application/json",
+    }
+
+    // 둘 다 아닐 때
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-4o",
+          messages: [
+            {
+              role: "system",
+              content: generatePrompt(driverInfo),
             },
-          }
-        );
-        botFunc(response);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+            { role: "user", content: message },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      botFunc(response);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false); // 로딩 상태 해제
     }
   };
 
   // 종료 단어 감지
   const detectQuit = async () => {
     setLoading(true);
+    willSendRef.current = false;
+
+    storeMessage("bot", "대화 종료할게 안전 운전해.");
+
     Speech.speak("대화 종료할게 안전 운전해.", {
       language: "ko",
       onDone: () => router.push("endchat"),
@@ -224,6 +260,8 @@ const VoiceChat = () => {
   const detectSleepy = async () => {
     setLoading(true);
     willSendRef.current = false;
+
+    storeMessage("bot", "졸려? 큰 알람소리 들려줄까?");
 
     Speech.speak("졸려? 큰 알람소리 들려줄까?", {
       language: "ko",
@@ -262,10 +300,8 @@ const VoiceChat = () => {
 
     const intervalID = setInterval(async () => {
       const status = await recording.getStatusAsync();
-      console.log("Metering level:", status.metering); // Check the metering level
-
       // 소리가 -120보다 작으면 타이머 시작
-      if (status.metering < -90) {
+      if (status.metering < -80) {
         if (!silenceTimeoutRef.current) {
           silenceTimeoutRef.current = setTimeout(() => {
             stopRecording();
@@ -287,6 +323,10 @@ const VoiceChat = () => {
       }
     };
   }, [recording]);
+
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
