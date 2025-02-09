@@ -7,8 +7,8 @@ import EditBtn from "@/components/EditBtn";
 import useUserStore from "@/store/userStore";
 
 const EditHobby = () => {
-  const { user, setHobby } = useUserStore();
-  const [hobbies, setHobbies] = useState<string[]>(user.hobby);
+  const { user, setInterests } = useUserStore();
+  const [hobbies, setHobbies] = useState<string[]>(user.interests);
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
@@ -23,7 +23,7 @@ const EditHobby = () => {
   };
 
   const handleComplete = async () => {
-    await setHobby(hobbies);
+    await setInterests(hobbies);
   };
 
   return (

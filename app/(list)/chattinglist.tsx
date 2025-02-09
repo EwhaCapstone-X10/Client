@@ -8,27 +8,27 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const mockData: Summary[] = [
   {
-    id: 0,
+    session_id: 0,
     year: 2025,
-    date: "02월 01일 12:32",
+    started_at: new Date("2025-02-09T23:10:00"),
     summary: "하루종일 일해서 피곤해 함",
   },
   {
-    id: 1,
+    session_id: 1,
     year: 2025,
-    date: "01월 25일 12:32",
+    started_at: new Date("2025-01-15T07:10:00"),
     summary: "친구랑 일본 여행을 갔다와서 피곤함",
   },
   {
-    id: 2,
+    session_id: 2,
     year: 2024,
-    date: "08월 25일 12:32",
+    started_at: new Date("2024-03-09T11:10:00"),
     summary: "다음주 금요일에 있을 딸의 학예회가 매우 기대됨",
   },
   {
-    id: 3,
+    session_id: 3,
     year: 2024,
-    date: "06월 25일 12:32",
+    started_at: new Date("2024-02-09T16:10:00"),
     summary: "날씨가 좋아서 혼자 한강까지 드라이브 함",
   },
 ];
@@ -60,7 +60,9 @@ const ChattingList = () => {
       </TouchableOpacity>
 
       {filteredData.length > 0 ? (
-        filteredData.map((item) => <ChatSummary key={item.id} item={item} />)
+        filteredData.map((item) => (
+          <ChatSummary key={item.session_id} item={item} />
+        ))
       ) : (
         <NoChat />
       )}

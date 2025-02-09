@@ -9,7 +9,7 @@ export type Detail = {
   chatId: number;
   date: Date;
   summary: string;
-  keywords: string[];
+  keywords: string;
   chatting: Chat[];
 };
 

@@ -14,7 +14,7 @@ const mockData: User = {
   birthdate: "2001-02-18",
   sex: "여성",
   occupation: "학생",
-  hobby: ["자전거", "서핑", "볼링", "테니스", "야구"],
+  interests: ["자전거", "서핑", "볼링", "테니스", "야구"],
   mode: "반말",
 };
 
@@ -113,7 +113,7 @@ const MyInfo = () => {
           case "직업":
             return { ...info, value: mockData.occupation };
           case "취미 및 관심사":
-            return { ...info, value: mockData.hobby.join(", ") };
+            return { ...info, value: mockData.interests.join(", ") };
           default:
             return info;
         }
