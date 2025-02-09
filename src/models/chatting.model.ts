@@ -1,3 +1,9 @@
+export type Message = {
+  idx: number;
+  role: "user" | "bot";
+  content: string;
+};
+
 export type Summary = {
   id: number;
   year: number;

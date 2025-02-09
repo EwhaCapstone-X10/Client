@@ -9,14 +9,10 @@ import { OPENAI_API_KEY } from "@env";
 import { useAudioPlayer } from "expo-audio";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
+import { Message } from "@/models/chatting.model";
 
 const audioSource = require("../assets/sounds/alarm.mp3");
 
-type Message = {
-  idx: number;
-  role: "user" | "bot";
-  content: string;
-};
 const API_KEY = OPENAI_API_KEY;
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
 
