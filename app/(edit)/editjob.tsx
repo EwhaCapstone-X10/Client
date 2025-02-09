@@ -1,14 +1,12 @@
-import MainBtn from "@/components/MainBtn";
-import Custom from "@/styles/Custom";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
+import EditBtn from "@/components/EditBtn";
+import Custom from "@/styles/Custom";
+import useUserStore from "@/store/userStore";
 
 const EditJob = () => {
-  const [job, onChangeJob] = useState("");
   const [focus, setFocus] = useState(false);
-  const handleComplete = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const { user, setOccupation } = useUserStore();
 
   return (
     <View style={{ flex: 1 }}>
@@ -24,20 +22,15 @@ const EditJob = () => {
         <Text style={Custom.myTitle}>직업</Text>
 
         <TextInput
-          onChangeText={onChangeJob}
-          value={job}
+          onChangeText={setOccupation}
+          value={user.occupation}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
           style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
         />
       </View>
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={!job}
-      />
+      <EditBtn isAbled={!user.occupation} onClick={() => {}} />
     </View>
   );
 };

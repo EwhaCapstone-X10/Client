@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Text, View } from "react-native";
 import Custom from "@/styles/Custom";
 import MainBtn from "@/components/MainBtn";
+import { router } from "expo-router";
 
 const EndChat = () => {
   return (
@@ -39,8 +40,9 @@ const EndChat = () => {
       </View>
       <MainBtn
         text="메인화면으로 이동"
-        nav="main"
-        onClick={() => {}}
+        onClick={() => {
+          router.push("main");
+        }}
         isAbled={false}
       />
     </View>

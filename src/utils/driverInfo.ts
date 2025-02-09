@@ -1,10 +1,11 @@
-import { User } from '../models/user.model';
+import { User } from "../models/user.model";
 
 export const driverInfo: User = {
-  name: '김화물',
-  age: '47',
-  gender: '남성',
-  job: '화물 트럭 운전 기사',
-  hobby: ['축구', '야구', '여행'],
-  mode: '반말',
+  memberId: 1,
+  name: "김화물",
+  birthdate: "1988-01-01",
+  sex: "남성",
+  mode: "반말",
+  occupation: "화물 트럭 운전 기사",
+  hobby: ["축구", "야구", "여행"],
 };

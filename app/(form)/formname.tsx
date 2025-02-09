@@ -1,15 +1,13 @@
 import MainBtn from "@/components/MainBtn";
+import useUserStore from "@/store/userStore";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
 
 const FormName = () => {
-  const [name, onChangeName] = useState("");
   const [focus, setFocus] = useState(false);
-
-  const handleNext = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const { user, setName } = useUserStore();
 
   return (
     <View style={{ flex: 1 }}>
@@ -35,8 +33,8 @@ const FormName = () => {
       >
         <Text style={Custom.inputinfo}>이름</Text>
         <TextInput
-          onChangeText={onChangeName}
-          value={name}
+          onChangeText={setName}
+          value={user.name}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
@@ -45,9 +43,10 @@ const FormName = () => {
       </View>
       <MainBtn
         text="다음"
-        nav="formbirth"
-        onClick={handleNext}
-        isAbled={!name}
+        onClick={() => {
+          router.push("formbirth");
+        }}
+        isAbled={!user.name}
       />
     </View>
   );

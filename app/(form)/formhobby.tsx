@@ -4,9 +4,13 @@ import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import HobbyBtn from "@/components/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
+import { router } from "expo-router";
+import useUserStore from "@/store/userStore";
+import { postUserInfo } from "@/api/user.api";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
+  const { setHobby } = useUserStore();
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
@@ -19,10 +23,27 @@ const FormHobby = () => {
       return prevHobbies;
     });
   };
-  const handleNext = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const handleNext = async () => {
+    await setHobby(hobbies);
 
+    router.push("main");
+
+    /* 버튼 클릭 시 백에 정보 보내기
+    try {
+      const res = await postUserInfo(user);
+      console.log(res);
+
+      if (res.status === 200) {
+        router.push("main");
+      }
+    } catch (err: any) {
+      if (err.response.statue === 400 || err.response.status === 500) {
+        console.log("error: ", err.response.data.error);
+      } else {
+        console.log(err);
+      }
+    } */
+  };
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -90,7 +111,7 @@ const FormHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn text="완료" nav="welcome" onClick={handleNext} isAbled={false} />
+      <MainBtn text="완료" onClick={handleNext} isAbled={false} />
     </View>
   );
 };

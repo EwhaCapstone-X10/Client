@@ -1,14 +1,16 @@
 export type User = {
+  memberId: number;
   name: string;
   birthdate: string;
-  gender: string;
-  job: string;
-  hobby: string[];
+  sex: string;
   mode: string;
+  occupation: string;
+  hobby: string[];
 };
 
 export type Gender = {
   id: number;
+  title: string;
   type: string;
   isClicked: boolean;
 };

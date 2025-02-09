@@ -1,23 +1,20 @@
-import MainBtn from "@/components/MainBtn";
-import Custom from "@/styles/Custom";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
+import useUserStore from "@/store/userStore";
+import EditBtn from "@/components/EditBtn";
+import Custom from "@/styles/Custom";
 
 const EditName = () => {
-  const [name, onChangeName] = useState("");
   const [focus, setFocus] = useState(false);
-
-  const handleComplete = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const { user, setName } = useUserStore();
 
   return (
     <View style={{ flex: 1 }}>
       <View style={[Custom.leftview, { flex: 1, gap: 12 }]}>
         <Text style={Custom.myTitle}>이름</Text>
         <TextInput
-          onChangeText={onChangeName}
-          value={name}
+          onChangeText={setName}
+          value={user.name}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
@@ -25,12 +22,7 @@ const EditName = () => {
         />
       </View>
 
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={!name}
-      />
+      <EditBtn isAbled={!user.name} onClick={() => {}} />
     </View>
   );
 };
