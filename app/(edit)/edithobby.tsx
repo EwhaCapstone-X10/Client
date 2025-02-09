@@ -4,6 +4,7 @@ import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import HobbyBtn from "@/components/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
+import { router } from "expo-router";
 
 const EditHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
@@ -21,6 +22,7 @@ const EditHobby = () => {
   };
   const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
+    router.push("myinfo");
   };
 
   return (
@@ -90,12 +92,7 @@ const EditHobby = () => {
           />
         </View>
       </ScrollView>
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={false}
-      />
+      <MainBtn text="완료" onClick={handleComplete} isAbled={false} />
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
 
@@ -9,6 +10,7 @@ const EditName = () => {
 
   const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
+    router.push("myinfo");
   };
 
   return (
@@ -25,12 +27,7 @@ const EditName = () => {
         />
       </View>
 
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={!name}
-      />
+      <MainBtn text="완료" onClick={handleComplete} isAbled={!name} />
     </View>
   );
 };

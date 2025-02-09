@@ -36,7 +36,7 @@ const GenderBtn = (props: GenderProps) => {
               color: gender.isClicked ? "#5299FF" : "black",
             }}
           >
-            {gender.type}
+            {gender.title}
           </Text>
         </TouchableOpacity>
       ))}

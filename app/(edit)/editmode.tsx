@@ -4,11 +4,12 @@ import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import { Gender } from "@/models/user.model";
 import GenderBtn from "@/components/GenderBtn";
+import { router } from "expo-router";
 
 const EditMode = () => {
   const [modes, setModes] = useState<Gender[]>([
-    { id: 0, type: "반말", isClicked: false },
-    { id: 1, type: "존댓말", isClicked: false },
+    { id: 0, title: "반말", type: "CASUAL", isClicked: false },
+    { id: 1, title: "존댓말", type: "FORMAL", isClicked: false },
   ]);
 
   const [btnDisbled, setBtnDisabled] = useState(true);
@@ -30,6 +31,7 @@ const EditMode = () => {
 
   const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
+    router.push("myinfo");
   };
   return (
     <View style={{ flex: 1 }}>
@@ -45,12 +47,7 @@ const EditMode = () => {
         <Text style={Custom.myTitle}>대화모드</Text>
         <GenderBtn genders={modes} onClick={onClickMode} />
       </View>
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={btnDisbled}
-      />
+      <MainBtn text="완료" onClick={handleComplete} isAbled={btnDisbled} />
     </View>
   );
 };

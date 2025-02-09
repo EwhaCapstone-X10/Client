@@ -3,8 +3,8 @@ export const generatePrompt = (info: User) => `
 사용자 정보
 이름: ${info.name}
 생년월일: ${info.birthdate}
-성별: ${info.gender}
-직업: ${info.job}
+성별: ${info.sex}
+직업: ${info.occupation}
 취미: ${info.hobby}
 대화모드: ${info.mode}
 

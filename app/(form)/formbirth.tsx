@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Text, View } from "react-native";
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
 import DatePicker from "react-native-date-picker";
+import useUserStore from "@/store/userStore";
+import { router } from "expo-router";
 
 const FormBirth = () => {
-  const [birthDate, setBirthDate] = useState(new Date("2005-01-01"));
-  const handleNext = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const { user, setBirthdate } = useUserStore();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -37,8 +40,8 @@ const FormBirth = () => {
         <Text style={Custom.inputinfo}>생년월일</Text>
         <DatePicker
           mode="date"
-          date={birthDate}
-          onDateChange={setBirthDate}
+          date={new Date(user.birthdate)}
+          onDateChange={setBirthdate}
           maximumDate={new Date("2005-12-31")}
           minimumDate={new Date("1945-01-01")}
           dividerColor="#EDEDEC"
@@ -46,8 +49,9 @@ const FormBirth = () => {
       </View>
       <MainBtn
         text="다음"
-        nav="formgender"
-        onClick={handleNext}
+        onClick={() => {
+          router.push("formgender");
+        }}
         isAbled={false}
       />
     </View>

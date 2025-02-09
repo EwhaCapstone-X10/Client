@@ -1,22 +1,14 @@
 import Custom from "@/styles/Custom";
-import { useRouter } from "expo-router"; // useRouter 훅 사용
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 type ButtonProps = {
   text: string;
   isAbled: boolean;
-  nav: string;
   onClick: () => void;
 };
 
-const MainBtn = (props: ButtonProps) => {
-  const router = useRouter(); // useRouter 훅 사용
-
-  const handlePress = () => {
-    router.push(props.nav); // 문자열 경로로 이동
-  };
-
+const MainBtn = ({ text, isAbled, onClick }: ButtonProps) => {
   return (
     <View style={Custom.view}>
       <TouchableOpacity
@@ -27,12 +19,12 @@ const MainBtn = (props: ButtonProps) => {
             paddingVertical: 12,
             borderRadius: 12,
           },
-          props.isAbled
+          isAbled
             ? { backgroundColor: "#DFDEDA" }
             : { backgroundColor: "#5299FF" },
         ]}
-        onPress={handlePress}
-        disabled={props.isAbled}
+        onPress={onClick}
+        disabled={isAbled}
       >
         <Text
           style={{
@@ -41,7 +33,7 @@ const MainBtn = (props: ButtonProps) => {
             fontSize: 12,
           }}
         >
-          {props.text}
+          {text}
         </Text>
       </TouchableOpacity>
     </View>

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, TextInput } from "react-native";
-
-import Header from "@/components/Header";
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
+import useUserStore from "@/store/userStore";
+import { router } from "expo-router";
 
 const FormJob = () => {
-  const [job, onChangeJob] = useState("");
   const [focus, setFocus] = useState(false);
-  const handleNext = () => {
-    // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
-  };
+  const { user, setOccupation } = useUserStore();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -36,8 +37,8 @@ const FormJob = () => {
       >
         <Text style={Custom.inputinfo}>직업</Text>
         <TextInput
-          onChangeText={onChangeJob}
-          value={job}
+          onChangeText={setOccupation}
+          value={user.occupation}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
@@ -46,8 +47,9 @@ const FormJob = () => {
       </View>
       <MainBtn
         text="다음"
-        nav="formhobby"
-        onClick={handleNext}
+        onClick={() => {
+          router.push("formhobby");
+        }}
         isAbled={false}
       />
     </View>

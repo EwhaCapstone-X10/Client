@@ -1,5 +1,6 @@
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
 
@@ -8,6 +9,7 @@ const EditJob = () => {
   const [focus, setFocus] = useState(false);
   const handleComplete = () => {
     // 버튼 클릭 시 백에 정보 보내거나 localstorage에 저장
+    router.push("myinfo");
   };
 
   return (
@@ -32,12 +34,7 @@ const EditJob = () => {
           style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
         />
       </View>
-      <MainBtn
-        text="완료"
-        nav="myinfo"
-        onClick={handleComplete}
-        isAbled={!job}
-      />
+      <MainBtn text="완료" onClick={handleComplete} isAbled={!job} />
     </View>
   );
 };
