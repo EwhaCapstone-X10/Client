@@ -364,7 +364,7 @@ const VoiceChat = () => {
 
       <Button
         title="대화 시작"
-        onPress={() => handleStartConversation(start)}
+        onPress={() => handleStartConversation(generatePrompt(driverInfo))}
         disabled={loading || isRecording}
       />
       <Button title="종료" onPress={handleQuit} />
