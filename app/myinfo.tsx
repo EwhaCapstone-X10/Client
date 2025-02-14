@@ -11,11 +11,11 @@ import { getUserInfo } from "@/api/user.api";
 const mockData: User = {
   memberId: 0,
   name: "안수이",
-  birthdate: "2001-02-18",
-  sex: "여성",
+  birthdate: new Date("2001-02-18"),
+  sex: "FEMALE",
   occupation: "학생",
   interests: ["자전거", "서핑", "볼링", "테니스", "야구"],
-  mode: "반말",
+  mode: "FORMAL",
 };
 
 const MyInfo = () => {

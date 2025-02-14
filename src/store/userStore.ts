@@ -16,7 +16,7 @@ const useUserStore = create<UserStore>((set) => ({
   user: {
     memberId: 0, // 나중에 로그인 후 response로 받아서 추가하기
     name: "",
-    birthdate: "2005-01-01",
+    birthdate: new Date("2005-01-01"),
     sex: "",
     mode: "",
     occupation: "",
@@ -29,7 +29,7 @@ const useUserStore = create<UserStore>((set) => ({
     })),
   setBirthdate: (birthdate: Date) =>
     set((state) => ({
-      user: { ...state.user, birthdate: birthdate.toISOString().split("T")[0] }, // 'YYYY-MM-DD'
+      user: { ...state.user, birthdate },
     })),
   setSex: (sex: string) =>
     set((state) => ({

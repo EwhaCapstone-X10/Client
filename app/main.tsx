@@ -8,7 +8,7 @@ import NavBar from "@/components/NavBar";
 import { router } from "expo-router";
 import NoChat from "@/components/NoChat";
 import { StyleSheet } from "react-native";
-import { getChatList } from "@/api/chat.api";
+import { getChatListMain } from "@/api/chat.api";
 
 const mockData: Summary[] = [
   {
@@ -43,7 +43,7 @@ const Main = () => {
     // 백에서 최근 대화 4개 가져오기
     const fetchRecentChat = async () => {
       try {
-        const res = await getChatList();
+        const res = await getChatListMain();
         const data = res.data;
         console.log(res);
         if (res.status === 200) {
