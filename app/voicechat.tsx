@@ -297,7 +297,7 @@ const VoiceChat = () => {
   const handleQuit = async () => {
     /*
     try {
-      const res = await postChatting(messages);
+      const res = await postChatting(chat);
       console.log(res);
       if (res.status === 200) {
         router.push("endchat");

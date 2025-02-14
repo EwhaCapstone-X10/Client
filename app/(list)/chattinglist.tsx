@@ -3,9 +3,9 @@ import NoChat from "@/components/NoChat";
 import YearModal from "@/components/YearModal";
 import { Summary } from "@/models/chatting.model";
 import Custom from "@/styles/Custom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { getChatList } from "@/api/chat.api";
+import { getChatListYear } from "@/api/chat.api";
 
 const mockData: Summary[] = [
   {
@@ -36,18 +36,18 @@ const mockData: Summary[] = [
 
 const ChattingList = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const filteredData = mockData.filter((item) => item.year === selectedYear);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [chattingData, setChattingData] = useState<Summary[]>([]);
   /*
   useEffect(() => {
-    // 백에서 최근 대화 4개 가져오기
+    // 백에서 전체 대화 가져오기
     const fetchRecentChat = async () => {
       try {
-        const res = await getChatList();
+        const res = await getChatListYear(selectedYear);
         const data = res.data;
         console.log(res);
         if (res.status === 200) {
+        // setChattingData(data)
         }
       } catch (err: any) {
         if (err.response.statue === 400 || err.response.status === 500) {
@@ -83,8 +83,8 @@ const ChattingList = () => {
         />
       </TouchableOpacity>
 
-      {filteredData.length > 0 ? (
-        filteredData.map((item) => (
+      {mockData.length > 0 ? (
+        mockData.map((item) => (
           <ChatSummary key={item.session_id} item={item} />
         ))
       ) : (
