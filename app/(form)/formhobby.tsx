@@ -23,6 +23,7 @@ const FormHobby = () => {
       return prevHobbies;
     });
   };
+
   const handleSubmit = async () => {
     await setInterests(hobbies);
 

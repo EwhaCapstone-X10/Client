@@ -1,7 +1,7 @@
 export type User = {
   memberId: number;
   name: string;
-  birthdate: string;
+  birthdate: Date;
   sex: string;
   mode: string;
   occupation: string;
@@ -18,6 +18,6 @@ export type Gender = {
 export interface InfoItem {
   id: number;
   title: string;
-  value: string;
+  value: string | Date;
   canedit: boolean;
 }
