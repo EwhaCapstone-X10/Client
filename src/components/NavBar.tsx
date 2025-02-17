@@ -17,6 +17,7 @@ import {
   showFloatingBubble,
 } from "react-native-floating-bubble-plugin";
 import backgroundServer from "react-native-background-actions";
+import ChatStartModal from "./ChatStartModal";
 
 type NavProps = {
   type: string;
@@ -45,6 +46,8 @@ const NavBar = (props: NavProps) => {
   });
 
   const plusSrc = require("../../assets/images/plus.png");
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (props.type === "home") {
@@ -130,13 +133,16 @@ const NavBar = (props: NavProps) => {
       {/* Plus */}
       <TouchableOpacity
         style={{ flex: 0, alignItems: "center" }}
-        onPress={handleStart}
+        onPress={() => setModalOpen(true)}
       >
         <Image style={{ width: 70, height: 70 }} source={plusSrc} />
       </TouchableOpacity>
 
       {/* 내 정보 */}
       <NavBtn type={my} nav="myinfo" />
+
+      {/* 대화 여부 모달창 */}
+      {modalOpen && <ChatStartModal setModalOpen={setModalOpen} />}
     </View>
   );
 };
