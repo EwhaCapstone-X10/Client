@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useRef } from "react";
-import { Text, View, Button, Alert } from "react-native";
+import React, { useState, useCallback } from "react";
+import { Text, View, Alert } from "react-native";
 import Custom from "@/styles/Custom";
 import { Stretching } from "@/models/video.model";
 import YoutubePlayer from "react-native-youtube-iframe";
