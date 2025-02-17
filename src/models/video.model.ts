@@ -1,6 +1,8 @@
-export type Video = {
-  id: number;
-  src: string;
+export type Stretching = {
+  stretchingId: number;
+  src: null | string;
+  source: null | string;
   title: string;
-  author: string;
+  description: null | string;
+  video: boolean;
 };

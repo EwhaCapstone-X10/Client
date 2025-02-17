@@ -9,6 +9,9 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <!-- END OPTIONAL PERMISSIONS -->
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <!-- background 작업 -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
 
   <queries>
     <!-- Support checking for http(s) links via the Linking API -->
