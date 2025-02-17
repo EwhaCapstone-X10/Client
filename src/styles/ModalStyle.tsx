@@ -36,6 +36,50 @@ const ModalStyle = StyleSheet.create({
     fontFamily: "Pretendard-Regular",
     fontSize: 12,
   },
+
+  // 하단 모달창
+  bottomoutside: {
+    position: "absolute",
+    top: -640,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 50,
+    backgroundColor: "rgba(0,0,0,0.4)",
+  },
+
+  bottom: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    paddingHorizontal: 16,
+    paddingVertical: 32,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    gap: 50,
+  },
+
+  closebtn: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
+    backgroundColor: "#EDEDEC",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 32,
+  },
+
+  startbtn: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
+    backgroundColor: "#5299FF",
+    color: "white",
+    paddingVertical: 12,
+    paddingHorizontal: 54,
+    borderRadius: 32,
+  },
 });
 
 export default ModalStyle;
