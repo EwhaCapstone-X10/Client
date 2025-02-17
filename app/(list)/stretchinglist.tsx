@@ -13,7 +13,12 @@ const StretchingList = () => {
         contentContainerStyle={{ gap: 30 }}
       >
         {videoList.map((item) => (
-          <StretchingVideo key={item.id} item={item} width={320} height={180} />
+          <StretchingVideo
+            key={item.stretchingId}
+            item={item}
+            width={320}
+            height={180}
+          />
         ))}
       </ScrollView>
     </View>

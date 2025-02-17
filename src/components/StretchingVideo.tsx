@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useRef } from "react";
 import { Text, View, Button, Alert } from "react-native";
 import Custom from "@/styles/Custom";
-import { Video } from "@/models/video.model";
+import { Stretching } from "@/models/video.model";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 type StretchingProps = {
-  item: Video;
+  item: Stretching;
   width: number;
   height: number;
 };
@@ -35,7 +35,7 @@ const StretchingVideo = ({ item, width, height }: StretchingProps) => {
         />
       </View>
       <Text style={Custom.myTitle}>{item.title}</Text>
-      <Text style={Custom.description}>{item.author}</Text>
+      <Text style={Custom.description}>{item.source}</Text>
     </View>
   );
 };
