@@ -28,7 +28,7 @@ const MyInfo = () => {
     },
     {
       id: 1,
-      title: "나이",
+      title: "생년월일",
       value: "",
       canedit: false,
     },
@@ -88,7 +88,7 @@ const MyInfo = () => {
           );
         }
       } catch (err: any) {
-        if (err.response.statue === 400 || err.response.status === 500) {
+        if (err.response.status === 400 || err.response.status === 500) {
           console.log("error: ", err.response.data.error);
         } else {
           console.log(err);
@@ -104,12 +104,18 @@ const MyInfo = () => {
         switch (info.title) {
           case "이름":
             return { ...info, value: mockData.name };
-          case "나이":
-            return { ...info, value: mockData.birthdate };
+          case "생년월일":
+            return { ...info, value: mockData.birthdate.toLocaleDateString() };
           case "성별":
-            return { ...info, value: mockData.sex };
+            return {
+              ...info,
+              value: mockData.sex === "FEMALE" ? "여성" : "남성",
+            };
           case "대화모드":
-            return { ...info, value: mockData.mode };
+            return {
+              ...info,
+              value: mockData.mode === "FORMAL" ? "존댓말" : "반말",
+            };
           case "직업":
             return { ...info, value: mockData.occupation };
           case "취미 및 관심사":

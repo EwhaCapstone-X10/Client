@@ -18,6 +18,6 @@ export type Gender = {
 export interface InfoItem {
   id: number;
   title: string;
-  value: string | Date;
+  value: string;
   canedit: boolean;
 }
