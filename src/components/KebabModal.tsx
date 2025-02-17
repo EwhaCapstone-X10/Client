@@ -1,7 +1,7 @@
 import { deleteChat } from "@/api/chat.api";
 import ModalStyle from "@/styles/ModalStyle";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
 type ModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
