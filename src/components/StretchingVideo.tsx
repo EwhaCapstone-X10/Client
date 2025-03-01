@@ -22,20 +22,24 @@ const StretchingVideo = ({ item, width, height }: StretchingProps) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View
-        style={{
-          width: width,
-        }}
-      >
-        <YoutubePlayer
-          height={height}
-          play={playing}
-          videoId={item.src}
-          onChangeState={onStateChange}
-        />
-      </View>
-      <Text style={Custom.myTitle}>{item.title}</Text>
-      <Text style={Custom.description}>{item.source}</Text>
+      {item.src && (
+        <>
+          <View
+            style={{
+              width: width,
+            }}
+          >
+            <YoutubePlayer
+              height={height}
+              play={playing}
+              videoId={item.src}
+              onChangeState={onStateChange}
+            />
+          </View>
+          <Text style={Custom.myTitle}>{item.title}</Text>
+          <Text style={Custom.description}>{item.source}</Text>
+        </>
+      )}
     </View>
   );
 };
