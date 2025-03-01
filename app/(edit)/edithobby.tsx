@@ -22,9 +22,9 @@ const EditHobby = () => {
     });
   };
 
-  const handleComplete = async () => {
-    await setInterests(hobbies);
-  };
+  useEffect(() => {
+    setInterests(hobbies);
+  }, [hobbies]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -93,7 +93,7 @@ const EditHobby = () => {
           />
         </View>
       </ScrollView>
-      <EditBtn isAbled={false} onClick={handleComplete} />
+      <EditBtn isAbled={false} />
     </View>
   );
 };

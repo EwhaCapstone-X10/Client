@@ -14,8 +14,6 @@ const EditMode = () => {
     { id: 1, title: "존댓말", type: "FORMAL", isClicked: false },
   ]);
 
-  const [btnDisbled, setBtnDisabled] = useState(true);
-
   const onClickMode = (id: number) => {
     setModes(
       modes.map((mode) =>
@@ -25,11 +23,6 @@ const EditMode = () => {
       )
     );
   };
-
-  useEffect(() => {
-    const isClickedMode = modes.some((mode) => mode.isClicked);
-    setBtnDisabled(!isClickedMode);
-  }, [[modes]]);
 
   useEffect(() => {
     const selectedMode = modes.find((mode) => mode.type === user.mode);
@@ -42,10 +35,10 @@ const EditMode = () => {
     );
   }, []);
 
-  const handleComplete = () => {
+  useEffect(() => {
     const selectedMode = modes.find((mode) => mode.isClicked);
     if (selectedMode) setMode(selectedMode.type);
-  };
+  }, [modes]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -61,7 +54,7 @@ const EditMode = () => {
         <Text style={Custom.myTitle}>대화모드</Text>
         <GenderBtn genders={modes} onClick={onClickMode} />
       </View>
-      <EditBtn isAbled={btnDisbled} onClick={handleComplete} />
+      <EditBtn isAbled={false} />
     </View>
   );
 };

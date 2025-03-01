@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, TextInput } from "react-native";
 import useUserStore from "@/store/userStore";
 import EditBtn from "@/components/EditBtn";
@@ -22,7 +22,7 @@ const EditName = () => {
         />
       </View>
 
-      <EditBtn isAbled={!user.name} onClick={() => {}} />
+      <EditBtn isAbled={!user.name} />
     </View>
   );
 };

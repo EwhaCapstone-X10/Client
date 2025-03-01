@@ -30,7 +30,7 @@ const EditJob = () => {
           style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
         />
       </View>
-      <EditBtn isAbled={!user.occupation} onClick={() => {}} />
+      <EditBtn isAbled={!user.occupation} />
     </View>
   );
 };

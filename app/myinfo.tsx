@@ -7,18 +7,20 @@ import { User, InfoItem } from "@/models/user.model";
 import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
-
-const mockData: User = {
-  memberId: 0,
-  name: "안수이",
-  birthdate: new Date("2001-02-18"),
-  sex: "FEMALE",
-  occupation: "학생",
-  interests: ["자전거", "서핑", "볼링", "테니스", "야구"],
-  mode: "FORMAL",
-};
+import useUserStore from "@/store/userStore";
 
 const MyInfo = () => {
+  // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
+  const {
+    user,
+    setName,
+    setBirthdate,
+    setSex,
+    setMode,
+    setOccupation,
+    setInterests,
+  } = useUserStore();
+
   const [infoList, setInfoList] = useState<InfoItem[]>([
     {
       id: 0,
@@ -59,28 +61,36 @@ const MyInfo = () => {
   ]);
 
   useEffect(() => {
-    /* 백에서 user 정보 가져오기
     const fetchUser = async () => {
       try {
-        const res = await getUserInfo();
-        const data = res.data;
-        console.log(res);
+        const res = await getUserInfo(1);
+        const data = res.data.result;
+
         if (res.status === 200) {
           setInfoList((prevInfoList) =>
             prevInfoList.map((info) => {
               switch (info.title) {
                 case "이름":
+                  setName(data.name);
                   return { ...info, value: data.name };
-                case "나이":
+                case "생년월일":
+                  setBirthdate(data.birthdate);
                   return { ...info, value: data.birthdate };
                 case "성별":
+                  setSex(data.sex);
                   return { ...info, value: data.sex };
                 case "대화모드":
-                  return { ...info, value: data.mode };
+                  setMode(data.mode);
+                  return {
+                    ...info,
+                    value: data.mode === "CASUAL" ? "반말" : "존댓말",
+                  };
                 case "직업":
+                  setOccupation(data.occupation);
                   return { ...info, value: data.occupation };
                 case "취미 및 관심사":
-                  return { ...info, value: data.hobby.join(", ") };
+                  setInterests(data.interests);
+                  return { ...info, value: data.interests.join(", ") };
                 default:
                   return info;
               }
@@ -96,35 +106,7 @@ const MyInfo = () => {
       }
     };
 
-    fetchUser()
-    */
-
-    setInfoList((prevInfoList) =>
-      prevInfoList.map((info) => {
-        switch (info.title) {
-          case "이름":
-            return { ...info, value: mockData.name };
-          case "생년월일":
-            return { ...info, value: mockData.birthdate.toLocaleDateString() };
-          case "성별":
-            return {
-              ...info,
-              value: mockData.sex === "FEMALE" ? "여성" : "남성",
-            };
-          case "대화모드":
-            return {
-              ...info,
-              value: mockData.mode === "FORMAL" ? "존댓말" : "반말",
-            };
-          case "직업":
-            return { ...info, value: mockData.occupation };
-          case "취미 및 관심사":
-            return { ...info, value: mockData.interests.join(", ") };
-          default:
-            return info;
-        }
-      })
-    );
+    fetchUser();
   }, []);
 
   return (
