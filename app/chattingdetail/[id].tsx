@@ -6,6 +6,7 @@ import KeywordBtn from "@/components/KeywordBtn";
 import { Detail } from "@/models/chatting.model";
 import Custom from "@/styles/Custom";
 import { getDate } from "@/utils/getDate";
+import Loading from "app/loading";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import React, { useEffect, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
@@ -42,7 +43,7 @@ const ChattingList = () => {
 
   // 오류 처리: 데이터가 로드되기 전에 화면을 렌더링하는 것을 방지
   if (!detailData) {
-    return <Text>로딩 중...</Text>;
+    return <Loading />;
   }
 
   return (
