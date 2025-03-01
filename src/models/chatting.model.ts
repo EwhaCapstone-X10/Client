@@ -7,8 +7,8 @@ export type Summary = {
 export type Detail = {
   chatId: number;
   date: Date;
-  summary: string;
-  keywords: string;
+  summary: string | null;
+  keywords: string | null;
   chatting: Chat[];
 };
 
