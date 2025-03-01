@@ -6,12 +6,13 @@ import { getDate } from "@/utils/getDate";
 
 type SummaryProps = {
   item: Summary;
+  idx: number;
 };
 
-const ChatSummary = ({ item }: SummaryProps) => {
-  const date = getDate(item.started_at);
+const ChatSummary = ({ item, idx }: SummaryProps) => {
+  const date = getDate(new Date(item.date));
   const handleClick = () => {
-    router.push(`chattingdetail/${item.session_id}`);
+    router.push(`chattingdetail/${item.chatId}`);
   };
   return (
     <TouchableOpacity
@@ -22,7 +23,7 @@ const ChatSummary = ({ item }: SummaryProps) => {
         gap: 16,
       }}
     >
-      {item.session_id % 2 === 0 ? (
+      {idx % 2 === 0 ? (
         <Image
           style={{ width: 40, height: 40 }}
           source={require("../../assets/images/note_blue.png")}

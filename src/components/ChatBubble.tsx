@@ -24,11 +24,11 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
               {
                 fontFamily: "Pretendard-SemiBold",
                 fontSize: 10,
-                borderRadius: 50,
-                paddingHorizontal: 18,
-                paddingVertical: 12,
-              },
-              {
+                lineHeight: 16,
+                borderRadius: 24,
+                paddingHorizontal: 16,
+                paddingVertical: 8,
+                maxWidth: 260,
                 backgroundColor: item.idx % 2 === 0 ? "#EDEDEC" : "#5299FF",
                 color: item.idx % 2 === 0 ? "black" : "white",
               },

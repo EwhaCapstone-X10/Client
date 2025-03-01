@@ -1,5 +1,6 @@
 import { deleteChat } from "@/api/chat.api";
 import ModalStyle from "@/styles/ModalStyle";
+import { router } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
@@ -10,21 +11,20 @@ type ModalProps = {
 
 const KebabModal = ({ setModalOpen, id }: ModalProps) => {
   const handleDelete = async () => {
-    /*
     try {
       const res = await deleteChat(id);
-      console.log(res);
       if (res.status === 200) {
+        router.back();
       }
     } catch (err: any) {
-      if (err.response.statue === 400 || err.response.status === 500) {
+      if (err.response.status === 400 || err.response.status === 500) {
         console.log("error: ", err.response.data.error);
       } else {
         console.log(err);
       }
     } finally {
       setModalOpen(false);
-    } */
+    }
     setModalOpen(false);
   };
 

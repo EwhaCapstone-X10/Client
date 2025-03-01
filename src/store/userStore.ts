@@ -14,7 +14,7 @@ interface UserStore {
 
 const useUserStore = create<UserStore>((set) => ({
   user: {
-    memberId: 0, // 나중에 로그인 후 response로 받아서 추가하기
+    memberId: 1, // 나중에 로그인 후 response로 받아서 추가하기
     name: "",
     birthdate: new Date("2005-01-01"),
     sex: "",

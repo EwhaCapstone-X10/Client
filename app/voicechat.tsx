@@ -105,7 +105,6 @@ const VoiceChat = () => {
         setIsRecording(false);
         await recording.stopAndUnloadAsync();
         const uri = recording.getURI();
-        console.log("녹음 완료:", uri);
         setRecording(null);
 
         await transcribeAudio(uri);
@@ -133,8 +132,6 @@ const VoiceChat = () => {
 
       const parsedResponse = JSON.parse(response.body);
       const transcribedText = parsedResponse.text;
-
-      console.log("Transcribed Text:", transcribedText);
 
       if (transcribedText && willSendRef.current) {
         setSpokenText(transcribedText);
@@ -252,7 +249,9 @@ const VoiceChat = () => {
 
     Speech.speak("대화 종료할게 안전 운전해.", {
       language: "ko",
-      onDone: () => handleQuit,
+      onDone: () => {
+        handleQuit();
+      },
     });
   };
 
@@ -295,7 +294,6 @@ const VoiceChat = () => {
   };
 
   const handleQuit = async () => {
-    /*
     try {
       const res = await postChatting(chat);
       console.log(res);
@@ -303,14 +301,12 @@ const VoiceChat = () => {
         router.push("endchat");
       }
     } catch (err: any) {
-      if (err.response.statue === 400 || err.response.status === 500) {
+      if (err.response.status === 400 || err.response.status === 500) {
         console.log("error: ", err.response.data.error);
       } else {
         console.log(err);
       }
     }
-*/
-    router.push("endchat");
   };
 
   useEffect(() => {

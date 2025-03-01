@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
 import MainBtn from "@/components/MainBtn";
 import Custom from "@/styles/Custom";
@@ -10,7 +10,11 @@ import { postUserInfo } from "@/api/user.api";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
-  const { setInterests } = useUserStore();
+  const { user, setInterests } = useUserStore();
+
+  useEffect(() => {
+    setInterests(hobbies);
+  }, [hobbies]);
 
   const onClickHobby = (title: string) => {
     setHobbies((prevHobbies) => {
@@ -25,26 +29,18 @@ const FormHobby = () => {
   };
 
   const handleSubmit = async () => {
-    await setInterests(hobbies);
-
-    router.push("main");
-
-    /* 버튼 클릭 시 백에 정보 보내기
+    console.log(user);
     try {
       const res = await postUserInfo(user);
       console.log(res);
-
       if (res.status === 200) {
         router.push("main");
       }
     } catch (err: any) {
-      if (err.response.statue === 400 || err.response.status === 500) {
-        console.log("error: ", err.response.data.error);
-      } else {
-        console.log(err);
-      }
-    } */
+      console.log("Error occurred:", err);
+    }
   };
+
   return (
     <View style={{ flex: 1 }}>
       <View

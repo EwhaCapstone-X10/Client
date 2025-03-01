@@ -48,9 +48,6 @@ const FormGender = () => {
 
     if (selectedGender) setSex(selectedGender.type);
     if (selectedMode) setMode(selectedMode.type);
-
-    console.log(selectedGender, selectedMode);
-
     router.push("formjob");
   };
 
@@ -58,7 +55,6 @@ const FormGender = () => {
     const isClickedGender = genders.some((gender) => gender.isClicked);
     const isClickedMode = modes.some((mode) => mode.isClicked);
     setBtnDisabled(!(isClickedGender && isClickedMode));
-    console.log(genders);
   }, [[genders, modes]]);
 
   return (

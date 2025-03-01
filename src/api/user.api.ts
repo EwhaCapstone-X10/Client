@@ -15,8 +15,8 @@ export const postUserInfo = async (userInfo: User) => {
 };
 
 // 개인 정보 조회
-export const getUserInfo = async () => {
-  const res = axios.get(`${baseURL}/members/info`, {
+export const getUserInfo = async (memberId: number) => {
+  const res = axios.get(`${baseURL}/members/info/${memberId}`, {
     headers: {
       "Content-Type": "application/json",
     },
