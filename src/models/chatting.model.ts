@@ -1,8 +1,7 @@
 export type Summary = {
-  session_id: number;
-  year: number;
-  started_at: Date;
-  summary: string;
+  chatId: number;
+  date: Date;
+  summary: string | null;
 };
 
 export type Detail = {
