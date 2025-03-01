@@ -9,7 +9,7 @@ interface UserStore {
 
 const useChatStore = create<UserStore>((set) => ({
   chat: {
-    memberId: 0, // 나중에 로그인 후 response로 받아서 추가하기
+    memberId: 1, // 나중에 로그인 후 response로 받아서 추가하기
     date: new Date(),
     chatting: [],
   },
