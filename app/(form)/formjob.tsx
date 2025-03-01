@@ -9,10 +9,6 @@ const FormJob = () => {
   const [focus, setFocus] = useState(false);
   const { user, setOccupation } = useUserStore();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <View style={{ flex: 1 }}>
       <View

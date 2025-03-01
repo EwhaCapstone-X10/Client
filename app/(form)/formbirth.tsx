@@ -9,10 +9,6 @@ import { router } from "expo-router";
 const FormBirth = () => {
   const { user, setBirthdate } = useUserStore();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <View style={{ flex: 1 }}>
       <View
