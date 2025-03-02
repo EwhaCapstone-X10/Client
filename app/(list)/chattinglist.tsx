@@ -13,10 +13,9 @@ const ChattingList = () => {
   const [chattingData, setChattingData] = useState<Summary[]>([]);
 
   useEffect(() => {
-    // 백에서 전체 대화 가져오기
-    const fetchRecentChat = async () => {
+    const fetchChatList = async () => {
       try {
-        const res = await getChatListYear(selectedYear);
+        const res = await getChatListYear(1, selectedYear);
         if (res.status === 200) {
           setChattingData(res.data.result);
         }
@@ -29,7 +28,7 @@ const ChattingList = () => {
       }
     };
 
-    fetchRecentChat();
+    fetchChatList();
   }, [selectedYear]);
 
   return (

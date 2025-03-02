@@ -14,12 +14,12 @@ const Main = () => {
   const [data, setData] = useState<Summary[]>([]);
 
   useEffect(() => {
-    // 백에서 최근 대화 4개 가져오기
     const fetchRecentChat = async () => {
       try {
-        const res = await getChatListMain();
+        const res = await getChatListMain(1);
 
         if (res.status === 200) {
+          console.log(res);
           setData(res.data.result);
         }
       } catch (err: any) {
