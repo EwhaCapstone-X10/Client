@@ -21,12 +21,14 @@ const KakaoBtn = () => {
           paddingVertical: 12,
           borderRadius: 12,
           backgroundColor: "#FFF175",
+          marginBottom: 16,
+          marginTop: 20,
         }}
         onPress={handlePress}
       >
         <Image
           style={{
-            width: 16,
+            width: 18,
             height: 16,
           }}
           source={require("../../assets/images/kakao.png")}

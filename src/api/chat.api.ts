@@ -15,21 +15,24 @@ export const postChatting = async (message: SaveChat) => {
 };
 
 // 대화 내역 목록 조회
-export const getChatListMain = async () => {
-  const res = axios.get(`${baseURL}/chats`, {
+export const getChatListMain = async (memberId: number) => {
+  const res = axios.get(`${baseURL}/chats/list/${memberId}`, {
     headers: {
       "Content-Type": "application/json",
     },
     params: {
       size: 4,
-      year: 2025,
+      year: new Date().getFullYear,
     },
   });
   return res;
 };
 
-export const getChatListYear = async (selectedYear: number) => {
-  const res = axios.get(`${baseURL}/chats`, {
+export const getChatListYear = async (
+  memberId: number,
+  selectedYear: number
+) => {
+  const res = axios.get(`${baseURL}/chats/list/${memberId}`, {
     headers: {
       "Content-Type": "application/json",
     },
