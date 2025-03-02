@@ -53,6 +53,14 @@ const Splash = () => {
       >
         <Text>voicechat</Text>
       </Link>
+
+      <Link
+        href={{
+          pathname: "/kakao",
+        }}
+      >
+        <Text>kakao</Text>
+      </Link>
     </View>
   );
 };

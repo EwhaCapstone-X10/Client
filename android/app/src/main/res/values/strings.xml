@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">drivemate</string>
+    <string name="kakao_app_key">e7b5c13052c473f0ae078888168e6665</string>
 </resources>
