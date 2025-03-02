@@ -111,7 +111,7 @@ const ChatStartModal = ({ setModalOpen }: ModalProps) => {
         <View style={{ alignItems: "center", gap: 32, paddingTop: 24 }}>
           <Image
             style={{ width: 90, height: 90 }}
-            source={require("../../assets/images/heart.png")}
+            source={require("../../assets/images/star.png")}
           />
 
           <View style={{ alignItems: "center", gap: 8 }}>
