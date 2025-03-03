@@ -2,7 +2,7 @@ import { User } from "@/models/user.model";
 import { BASE_URL } from "@env";
 import axios from "axios";
 
-const baseURL = BASE_URL;
+const baseURL = "http://43.203.100.235:8080";
 
 // 개인정보 저장 및 수정
 export const postUserInfo = async (userInfo: User) => {

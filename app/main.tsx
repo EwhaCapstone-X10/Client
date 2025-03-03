@@ -19,7 +19,6 @@ const Main = () => {
         const res = await getChatListMain(1);
 
         if (res.status === 200) {
-          console.log(res);
           setData(res.data.result);
         }
       } catch (err: any) {

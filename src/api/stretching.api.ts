@@ -1,7 +1,7 @@
 import { BASE_URL } from "@env";
 import axios from "axios";
 
-const baseURL = BASE_URL;
+const baseURL = "http://43.203.100.235:8080";
 
 // 대화 내역 저장
 export const getStretching = async () => {
