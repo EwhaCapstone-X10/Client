@@ -80,6 +80,42 @@ const ModalStyle = StyleSheet.create({
     paddingHorizontal: 54,
     borderRadius: 32,
   },
+
+  // 로그아웃 모달창
+  logout: {
+    position: "absolute",
+    left: 25,
+    bottom: 250,
+    width: 310,
+    paddingHorizontal: 16,
+    paddingVertical: 32,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 16,
+    gap: 30,
+  },
+
+  logoutbtn: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
+    backgroundColor: "#5299FF",
+    color: "white",
+    paddingVertical: 12,
+    borderRadius: 32,
+    textAlign: "center",
+    minWidth: 125,
+  },
+
+  cancelbtn: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
+    backgroundColor: "#EDEDEC",
+    paddingVertical: 12,
+    borderRadius: 32,
+    textAlign: "center",
+    minWidth: 125,
+  },
 });
 
 export default ModalStyle;

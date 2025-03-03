@@ -3,13 +3,15 @@ import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 
 import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
-import { User, InfoItem } from "@/models/user.model";
+import { InfoItem } from "@/models/user.model";
 import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
+import LogoutModal from "@/components/LogoutModal";
 
 const MyInfo = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
   const {
     user,
@@ -78,7 +80,10 @@ const MyInfo = () => {
                   return { ...info, value: data.birthdate };
                 case "성별":
                   setSex(data.sex);
-                  return { ...info, value: data.sex };
+                  return {
+                    ...info,
+                    value: data.sex === "MALE" ? "남성" : "여성",
+                  };
                 case "대화모드":
                   setMode(data.mode);
                   return {
@@ -142,12 +147,14 @@ const MyInfo = () => {
           <TouchableOpacity>
             <Text style={Custom.myTitle}>고객센터</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalOpen(true)}>
             <Text style={Custom.myTitle}>로그아웃</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
       <NavBar type={"my"} />
+
+      {modalOpen && <LogoutModal setModalOpen={setModalOpen} />}
     </View>
   );
 };

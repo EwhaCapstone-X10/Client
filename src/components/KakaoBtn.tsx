@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import Custom from "@/styles/Custom";
 import { router } from "expo-router";
+import { login, logout } from "@react-native-seoul/kakao-login";
 
 const KakaoBtn = () => {
-  const handlePress = () => {
-    // 카카오 로그인 코드 추가하기
-    router.push("/formname");
+  const [result, setResult] = useState<string>("");
+
+  const signInWithKakao = async (): Promise<void> => {
+    try {
+      const token = await login();
+      setResult(JSON.stringify(token));
+      console.log("로그인 성공", token.accessToken);
+      router.push("/formname");
+    } catch (err) {
+      console.error("로그인 실패", err);
+    }
   };
 
   return (
@@ -24,7 +33,7 @@ const KakaoBtn = () => {
           marginBottom: 16,
           marginTop: 20,
         }}
-        onPress={handlePress}
+        onPress={signInWithKakao}
       >
         <Image
           style={{
