@@ -98,7 +98,7 @@ const ModalStyle = StyleSheet.create({
 
   logoutbtn: {
     fontFamily: "Pretendard-SemiBold",
-    fontSize: 12,
+    fontSize: 10,
     backgroundColor: "#5299FF",
     color: "white",
     paddingVertical: 12,
@@ -109,7 +109,7 @@ const ModalStyle = StyleSheet.create({
 
   cancelbtn: {
     fontFamily: "Pretendard-SemiBold",
-    fontSize: 12,
+    fontSize: 10,
     backgroundColor: "#EDEDEC",
     paddingVertical: 12,
     borderRadius: 32,
