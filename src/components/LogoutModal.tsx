@@ -1,4 +1,3 @@
-import Custom from "@/styles/Custom";
 import ModalStyle from "@/styles/ModalStyle";
 import React, { useEffect } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
@@ -49,7 +48,7 @@ const LogoutModal = ({ setModalOpen }: ModalProps) => {
           <Text
             style={{
               fontFamily: "Pretendard-SemiBold",
-              fontSize: 13,
+              fontSize: 12,
             }}
           >
             로그아웃 하시겠습니까?
