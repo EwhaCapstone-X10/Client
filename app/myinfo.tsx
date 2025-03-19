@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
-
 import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
 import { InfoItem } from "@/models/user.model";
@@ -9,6 +8,7 @@ import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
 import LogoutModal from "@/components/LogoutModal";
+import { router } from "expo-router";
 
 const MyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -141,12 +141,10 @@ const MyInfo = () => {
             },
           ]}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("userpolicy")}>
             <Text style={Custom.myTitle}>이용약관</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={Custom.myTitle}>고객센터</Text>
-          </TouchableOpacity>
+
           <TouchableOpacity onPress={() => setModalOpen(true)}>
             <Text style={Custom.myTitle}>로그아웃</Text>
           </TouchableOpacity>

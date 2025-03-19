@@ -15,6 +15,13 @@ const Custom = StyleSheet.create({
     paddingVertical: 12,
   },
 
+  scrollview: {
+    width: "100%",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    gap: 16,
+  },
+
   title: {
     fontFamily: "Pretendard-Bold",
     fontSize: 14,
@@ -66,6 +73,12 @@ const Custom = StyleSheet.create({
   myTitle: {
     fontSize: 11,
     fontFamily: "Pretendard-SemiBold",
+  },
+
+  borderbottom: {
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#C6C4C1",
   },
 });
 export default Custom;
