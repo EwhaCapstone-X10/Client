@@ -17,6 +17,8 @@ const ListLayout = () => {
         return "대화 모드 수정하기";
       case "editname":
         return "이름 수정하기";
+      case "userpolicy":
+        return "이용약관";
       default:
         return "페이지";
     }
