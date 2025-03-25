@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import Custom from "@/styles/Custom";
 import { router } from "expo-router";
-import { login, logout } from "@react-native-seoul/kakao-login";
+import { login } from "@react-native-seoul/kakao-login";
+import { postOauth } from "@/api/user.api";
 
 const KakaoBtn = () => {
-  const [result, setResult] = useState<string>("");
-
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
-      setResult(JSON.stringify(token));
       console.log("로그인 성공", token.accessToken);
-      router.push("/formname");
+
+      if (token?.accessToken) {
+        const res = await postOauth(token.accessToken);
+        console.log("OAuth 응답:", res.status);
+
+        if (res?.status === 200) {
+          router.push("/formname");
+        }
+      }
     } catch (err) {
-      console.error("로그인 실패", err);
+      console.error("로그인 실패:", err);
     }
   };
-
   return (
     <View style={Custom.view}>
       <TouchableOpacity

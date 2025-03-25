@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   login,
   logout,
@@ -60,6 +60,10 @@ const Kakao = () => {
       console.error("signOut error", err);
     }
   };
+
+  useEffect(() => {
+    console.log(result);
+  }, [result]);
 
   return (
     <View style={styles.container}>
