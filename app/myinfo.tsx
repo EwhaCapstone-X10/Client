@@ -9,12 +9,13 @@ import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
 import LogoutModal from "@/components/LogoutModal";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
   const {
-    user,
+    setId,
     setName,
     setBirthdate,
     setSex,
@@ -65,7 +66,9 @@ const MyInfo = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await getUserInfo(1);
+        const jwtToken = await AsyncStorage.getItem("jwtToken");
+
+        const res = await getUserInfo(jwtToken);
         const data = res.data.result;
 
         if (res.status === 200) {

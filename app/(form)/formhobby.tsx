@@ -7,10 +7,11 @@ import { hobbyList } from "@/utils/hobbyList";
 import { router } from "expo-router";
 import useUserStore from "@/store/userStore";
 import { postUserInfo } from "@/api/user.api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
-  const { user, setInterests } = useUserStore();
+  const { user, setId, setInterests } = useUserStore();
 
   useEffect(() => {
     setInterests(hobbies);
@@ -31,7 +32,11 @@ const FormHobby = () => {
   const handleSubmit = async () => {
     console.log(user);
     try {
-      const res = await postUserInfo(user);
+      const jwtToken = await AsyncStorage.getItem("jwtToken");
+      const memberId = await AsyncStorage.getItem("memberId");
+      setId(Number(memberId));
+
+      const res = await postUserInfo(user, jwtToken);
       console.log(res);
       if (res.status === 200) {
         router.push("main");
