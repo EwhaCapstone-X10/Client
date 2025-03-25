@@ -4,18 +4,22 @@ import Custom from "@/styles/Custom";
 import { router } from "expo-router";
 import { login } from "@react-native-seoul/kakao-login";
 import { postOauth } from "@/api/user.api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const KakaoBtn = () => {
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
-      console.log("로그인 성공", token.accessToken);
 
       if (token?.accessToken) {
         const res = await postOauth(token.accessToken);
-        console.log("OAuth 응답:", res.status);
 
         if (res?.status === 200) {
+          await AsyncStorage.setItem(
+            "memberId",
+            String(res.data.result.memberId)
+          );
+          await AsyncStorage.setItem("jwtToken", res.data.result.jwtToken);
           router.push("/formname");
         }
       }
