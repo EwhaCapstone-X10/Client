@@ -29,7 +29,7 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
                 paddingHorizontal: 16,
                 paddingVertical: 8,
                 maxWidth: 260,
-                backgroundColor: item.idx % 2 === 0 ? "#EDEDEC" : "#5299FF",
+                backgroundColor: item.idx % 2 === 0 ? "#EDEDEC" : "#988BFD",
                 color: item.idx % 2 === 0 ? "black" : "white",
               },
             ]}

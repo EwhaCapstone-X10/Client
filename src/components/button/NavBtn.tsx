@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, Image } from "react-native";
-import { Nav } from "./NavBar";
+import { Nav } from "../NavBar";
 import { router } from "expo-router";
 
 type NavButtonProps = {
@@ -23,7 +23,7 @@ const NavBtn = (props: NavButtonProps) => {
         style={{
           fontFamily: "Pretendard-SemiBold",
           fontSize: 9,
-          color: props.type.isBlue ? "#3182f6" : "#9db2ce",
+          color: props.type.isBlue ? "#988BFD" : "#8D8D8A",
         }}
       >
         {props.type.title}

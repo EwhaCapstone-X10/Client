@@ -1,8 +1,8 @@
 import { getChatDetail } from "@/api/chat.api";
 import ChatBubble from "@/components/ChatBubble";
 import Header from "@/components/Header";
-import KebabModal from "@/components/KebabModal";
-import KeywordBtn from "@/components/KeywordBtn";
+import KebabModal from "@/components/modal/KebabModal";
+import KeywordBtn from "@/components/button/KeywordBtn";
 import { Detail } from "@/models/chatting.model";
 import Custom from "@/styles/Custom";
 import { getDate } from "@/utils/getDate";

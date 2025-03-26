@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Text, View } from "react-native";
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import Custom from "@/styles/Custom";
 import DatePicker from "react-native-date-picker";
 import useUserStore from "@/store/userStore";

@@ -12,20 +12,29 @@ const Custom = StyleSheet.create({
   leftview: {
     width: "100%",
     paddingHorizontal: 24,
-    paddingVertical: 12,
+    paddingVertical: 4,
   },
 
   scrollview: {
     width: "100%",
+    backgroundColor: "#ffffff",
     paddingHorizontal: 24,
     paddingVertical: 12,
     gap: 16,
   },
 
   title: {
+    color: "#333331",
     fontFamily: "Pretendard-Bold",
     fontSize: 14,
-    lineHeight: 26,
+    lineHeight: 34,
+  },
+
+  title_m: {
+    color: "#333331",
+    fontFamily: "Pretendard-Bold",
+    fontSize: 13,
+    lineHeight: 32,
   },
 
   description: {
@@ -38,18 +47,20 @@ const Custom = StyleSheet.create({
   logo: {
     fontFamily: "Jalnan",
     fontSize: 12,
-    color: "#3182F6",
+    color: "#ffffff",
   },
 
   header: {
     fontFamily: "Pretendard-SemiBold",
     fontSize: 12,
+    color: "#333331",
   },
 
   inputinfo: {
     width: "100%",
     fontSize: 10,
     fontFamily: "Pretendard-Regular",
+    color: "#333331",
   },
 
   input: {
@@ -59,6 +70,7 @@ const Custom = StyleSheet.create({
     borderBottomColor: "#6A6967",
     borderBottomWidth: 1,
     paddingVertical: 4,
+    color: "#333331",
   },
 
   genderbtn: {
@@ -70,9 +82,22 @@ const Custom = StyleSheet.create({
     borderWidth: 1,
   },
 
+  kakaobtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    gap: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: "#FFF48E",
+    marginBottom: 8,
+  },
+
   myTitle: {
     fontSize: 11,
     fontFamily: "Pretendard-SemiBold",
+    color: "#333331",
   },
 
   borderbottom: {

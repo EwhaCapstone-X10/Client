@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, TextInput } from "react-native";
-import EditBtn from "@/components/EditBtn";
+import EditBtn from "@/components/button/EditBtn";
 import Custom from "@/styles/Custom";
 import useUserStore from "@/store/userStore";
 
@@ -27,7 +27,7 @@ const EditJob = () => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
-          style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
+          style={[Custom.input, focus && { borderBottomColor: "#988BFD" }]}
         />
       </View>
       <EditBtn isAbled={!user.occupation} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TextInput } from "react-native";
 import useUserStore from "@/store/userStore";
-import EditBtn from "@/components/EditBtn";
+import EditBtn from "@/components/button/EditBtn";
 import Custom from "@/styles/Custom";
 
 const EditName = () => {

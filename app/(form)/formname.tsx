@@ -1,4 +1,4 @@
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import useUserStore from "@/store/userStore";
 import Custom from "@/styles/Custom";
 import { router } from "expo-router";
@@ -38,7 +38,7 @@ const FormName = () => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           cursorColor="black"
-          style={[Custom.input, focus && { borderBottomColor: "#5299FF" }]}
+          style={[Custom.input, focus && { borderBottomColor: "#988BFD" }]}
         />
       </View>
       <MainBtn

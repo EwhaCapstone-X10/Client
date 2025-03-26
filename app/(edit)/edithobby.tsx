@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
 import Custom from "@/styles/Custom";
-import HobbyBtn from "@/components/HobbyBtn";
+import HobbyBtn from "@/components/button/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
-import EditBtn from "@/components/EditBtn";
+import EditBtn from "@/components/button/EditBtn";
 import useUserStore from "@/store/userStore";
 
 const EditHobby = () => {

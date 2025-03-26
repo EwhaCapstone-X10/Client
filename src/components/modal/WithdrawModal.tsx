@@ -29,7 +29,7 @@ const WithdrawModal = ({ setModalOpen }: ModalProps) => {
               width: 30,
               height: 30,
             }}
-            source={require("../../assets/images/close.png")}
+            source={require("../../../assets/images/close.png")}
           />
         </TouchableOpacity>
         <View style={{ alignItems: "center", paddingTop: 24 }}>

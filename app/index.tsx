@@ -1,4 +1,5 @@
 import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Text, View } from "react-native";
 
@@ -17,17 +18,20 @@ const Splash = () => {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#ffffff",
       }}
     >
+      <StatusBar backgroundColor="#ffffff" />
+
       <Text
         style={{
           fontFamily: "Jalnan",
-          color: "#3182F6",
+          color: "#988BFD",
           fontSize: 40,
           textAlign: "center",
         }}
       >
-        drivemate
+        DRIVEMATE
       </Text>
 
       <Link

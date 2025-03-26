@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import Custom from "@/styles/Custom";
 import { Gender } from "@/models/user.model";
-import GenderBtn from "@/components/GenderBtn";
+import GenderBtn from "@/components/button/GenderBtn";
 import useUserStore from "@/store/userStore";
 import { router } from "expo-router";
 

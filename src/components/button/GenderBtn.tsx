@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, Text } from "react-native";
-import { Gender } from "../models/user.model";
+import { Gender } from "../../models/user.model";
 import Custom from "@/styles/Custom";
 
 type GenderProps = {
@@ -25,7 +25,7 @@ const GenderBtn = (props: GenderProps) => {
           style={[
             Custom.genderbtn,
             {
-              borderColor: gender.isClicked ? "#5299FF" : "#DFDEDA",
+              borderColor: gender.isClicked ? "#988BFD" : "#DFDEDA",
             },
           ]}
         >
@@ -33,7 +33,7 @@ const GenderBtn = (props: GenderProps) => {
             style={{
               fontFamily: "Pretendard-Regular",
               fontSize: 9,
-              color: gender.isClicked ? "#5299FF" : "black",
+              color: gender.isClicked ? "#988BFD" : "black",
             }}
           >
             {gender.title}
