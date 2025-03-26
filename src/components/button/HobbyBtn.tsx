@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, Text } from "react-native";
-import { Hobby } from "../models/hobby.model";
+import { Hobby } from "../../models/hobby.model";
 
 type HobbyProps = {
   hobby: Hobby[];
@@ -30,7 +30,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
               paddingHorizontal: 18,
             },
             {
-              borderColor: hobbies.includes(item.title) ? "#5299FF" : "#DFDEDA",
+              borderColor: hobbies.includes(item.title) ? "#988BFD" : "#DFDEDA",
             },
           ]}
         >
@@ -38,7 +38,7 @@ const HobbyBtn = ({ hobbies, hobby, onClick }: HobbyProps) => {
             style={{
               fontFamily: "Pretendard-Regular",
               fontSize: 10,
-              color: hobbies.includes(item.title) ? "#5299FF" : "black",
+              color: hobbies.includes(item.title) ? "#988BFD" : "black",
             }}
           >
             {item.title}

@@ -24,14 +24,15 @@ const Header = (props: HeaderProps) => {
         width: "100%",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: 24,
+        paddingHorizontal: 24,
+        paddingVertical: 16,
       }}
     >
-      <Text style={Custom.header} onPress={() => onClickLeft(props.left)}>
+      <Text style={Custom[props.style]} onPress={() => onClickLeft(props.left)}>
         {props.left}
       </Text>
       <Text style={Custom[props.style]}>{props.title}</Text>
-      <Text />
+      <Text> </Text>
     </View>
   );
 };

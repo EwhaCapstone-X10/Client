@@ -18,7 +18,7 @@ const KeywordBtn = ({ keywords }: KeywordProps) => {
           key={idx}
           style={{
             borderRadius: 20,
-            backgroundColor: "#E5EDFF",
+            backgroundColor: "#F4F3FF",
             paddingVertical: 7,
             paddingHorizontal: 16,
           }}
@@ -27,7 +27,7 @@ const KeywordBtn = ({ keywords }: KeywordProps) => {
             style={{
               fontFamily: "Pretendard-SemiBold",
               fontSize: 10,
-              color: "#3182F6",
+              color: "#988BFD",
             }}
           >
             {item}

@@ -7,14 +7,15 @@ import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
-import LogoutModal from "@/components/LogoutModal";
+import LogoutModal from "@/components/modal/LogoutModal";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const MyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
   const {
-    user,
+    setId,
     setName,
     setBirthdate,
     setSex,
@@ -65,7 +66,7 @@ const MyInfo = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await getUserInfo(1);
+        const res = await getUserInfo();
         const data = res.data.result;
 
         if (res.status === 200) {
@@ -115,7 +116,9 @@ const MyInfo = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <StatusBar backgroundColor="#ffffff" />
+
       <Header left="<-" title="내 정보" style="header" />
       <ScrollView style={{ flex: 1, gap: 10 }}>
         <View
@@ -138,6 +141,7 @@ const MyInfo = () => {
             Custom.leftview,
             {
               gap: 18,
+              marginTop: 12,
             },
           ]}
         >

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import Custom from "@/styles/Custom";
-import HobbyBtn from "@/components/HobbyBtn";
+import HobbyBtn from "@/components/button/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
 import { router } from "expo-router";
 import useUserStore from "@/store/userStore";
 import { postUserInfo } from "@/api/user.api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);

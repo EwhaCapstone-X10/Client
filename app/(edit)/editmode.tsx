@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import Custom from "@/styles/Custom";
 import { Gender } from "@/models/user.model";
-import GenderBtn from "@/components/GenderBtn";
-import EditBtn from "@/components/EditBtn";
+import GenderBtn from "@/components/button/GenderBtn";
+import EditBtn from "@/components/button/EditBtn";
 import useUserStore from "@/store/userStore";
 
 const EditMode = () => {

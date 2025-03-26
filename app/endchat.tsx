@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
 import Custom from "@/styles/Custom";
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import { router } from "expo-router";
 
 const EndChat = () => {

@@ -57,8 +57,8 @@ const ModalStyle = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#ddd",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     gap: 50,
   },
 
@@ -74,7 +74,7 @@ const ModalStyle = StyleSheet.create({
   startbtn: {
     fontFamily: "Pretendard-SemiBold",
     fontSize: 12,
-    backgroundColor: "#5299FF",
+    backgroundColor: "#988BFD",
     color: "white",
     paddingVertical: 12,
     paddingHorizontal: 54,
@@ -99,7 +99,7 @@ const ModalStyle = StyleSheet.create({
   logoutbtn: {
     fontFamily: "Pretendard-SemiBold",
     fontSize: 10,
-    backgroundColor: "#5299FF",
+    backgroundColor: "#988BFD",
     color: "white",
     paddingVertical: 12,
     borderRadius: 32,

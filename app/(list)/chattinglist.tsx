@@ -1,6 +1,6 @@
 import ChatSummary from "@/components/ChatSummary";
 import NoChat from "@/components/NoChat";
-import YearModal from "@/components/YearModal";
+import YearModal from "@/components/modal/YearModal";
 import { Summary } from "@/models/chatting.model";
 import Custom from "@/styles/Custom";
 import React, { useEffect, useState } from "react";

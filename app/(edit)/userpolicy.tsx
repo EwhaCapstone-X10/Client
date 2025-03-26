@@ -7,7 +7,7 @@ import {
   termsOfService3,
 } from "@/utils/termsOfSerivces";
 import Custom from "@/styles/Custom";
-import WithdrawModal from "@/components/WithdrawModal";
+import WithdrawModal from "@/components/modal/WithdrawModal";
 
 const UserPolicy = () => {
   const [modalOpen, setModalOpen] = useState(false);

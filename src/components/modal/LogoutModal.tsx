@@ -1,8 +1,9 @@
 import ModalStyle from "@/styles/ModalStyle";
-import React, { useEffect } from "react";
+import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { logout } from "@react-native-seoul/kakao-login";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type ModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +14,7 @@ const LogoutModal = ({ setModalOpen }: ModalProps) => {
     try {
       const message = await logout();
       console.log(message);
+      AsyncStorage.clear();
       router.push("/");
     } catch (err) {
       console.error("로그아웃 실패", err);
@@ -41,7 +43,7 @@ const LogoutModal = ({ setModalOpen }: ModalProps) => {
               width: 30,
               height: 30,
             }}
-            source={require("../../assets/images/close.png")}
+            source={require("../../../assets/images/close.png")}
           />
         </TouchableOpacity>
         <View style={{ alignItems: "center", paddingTop: 24 }}>

@@ -1,14 +1,32 @@
+import { postUserInfo } from "@/api/user.api";
+import useUserStore from "@/store/userStore";
 import Custom from "@/styles/Custom";
+import { router } from "expo-router";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 type ButtonProps = {
-  text: string;
   isAbled: boolean;
-  onClick: () => void;
 };
 
-const MainBtn = ({ text, isAbled, onClick }: ButtonProps) => {
+const EditBtn = ({ isAbled }: ButtonProps) => {
+  const { user } = useUserStore();
+
+  const handleComplete = async () => {
+    try {
+      const res = await postUserInfo(user);
+      if (res.status === 200) {
+        router.push("myinfo");
+      }
+    } catch (err: any) {
+      if (err.response.status === 400 || err.response.status === 500) {
+        console.log("error: ", err.response.data.error);
+      } else {
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <View style={Custom.view}>
       <TouchableOpacity
@@ -21,9 +39,9 @@ const MainBtn = ({ text, isAbled, onClick }: ButtonProps) => {
           },
           isAbled
             ? { backgroundColor: "#DFDEDA" }
-            : { backgroundColor: "#5299FF" },
+            : { backgroundColor: "#988BFD" },
         ]}
-        onPress={onClick}
+        onPress={handleComplete}
         disabled={isAbled}
       >
         <Text
@@ -33,11 +51,11 @@ const MainBtn = ({ text, isAbled, onClick }: ButtonProps) => {
             fontSize: 12,
           }}
         >
-          {text}
+          완료
         </Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default MainBtn;
+export default EditBtn;
