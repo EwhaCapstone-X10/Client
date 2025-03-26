@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
-import MainBtn from "@/components/MainBtn";
+import MainBtn from "@/components/button/MainBtn";
 import Custom from "@/styles/Custom";
-import HobbyBtn from "@/components/HobbyBtn";
+import HobbyBtn from "@/components/button/HobbyBtn";
 import { hobbyList } from "@/utils/hobbyList";
 import { router } from "expo-router";
 import useUserStore from "@/store/userStore";
@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
-  const { user, setId, setInterests } = useUserStore();
+  const { user, setInterests } = useUserStore();
 
   useEffect(() => {
     setInterests(hobbies);
@@ -32,11 +32,7 @@ const FormHobby = () => {
   const handleSubmit = async () => {
     console.log(user);
     try {
-      const jwtToken = await AsyncStorage.getItem("jwtToken");
-      const memberId = await AsyncStorage.getItem("memberId");
-      setId(Number(memberId));
-
-      const res = await postUserInfo(user, jwtToken);
+      const res = await postUserInfo(user);
       console.log(res);
       if (res.status === 200) {
         router.push("main");

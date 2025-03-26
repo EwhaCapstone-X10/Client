@@ -7,9 +7,9 @@ import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
-import LogoutModal from "@/components/LogoutModal";
+import LogoutModal from "@/components/modal/LogoutModal";
 import { router } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 const MyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,9 +66,7 @@ const MyInfo = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const jwtToken = await AsyncStorage.getItem("jwtToken");
-
-        const res = await getUserInfo(jwtToken);
+        const res = await getUserInfo();
         const data = res.data.result;
 
         if (res.status === 200) {
@@ -118,7 +116,9 @@ const MyInfo = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <StatusBar backgroundColor="#ffffff" />
+
       <Header left="<-" title="내 정보" style="header" />
       <ScrollView style={{ flex: 1, gap: 10 }}>
         <View
@@ -141,6 +141,7 @@ const MyInfo = () => {
             Custom.leftview,
             {
               gap: 18,
+              marginTop: 12,
             },
           ]}
         >
