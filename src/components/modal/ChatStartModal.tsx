@@ -123,9 +123,7 @@ const ChatStartModal = ({ setModalOpen }: ModalProps) => {
             >
               개인 맞춤형 대화를 시작하시겠습니까?
             </Text>
-            <Text style={Custom.description}>
-              다른 앱 위에서 대화가 가능합니다 !
-            </Text>
+            <Text style={Custom.description}>졸음 운전을 예방해보세요 !</Text>
           </View>
         </View>
 
