@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import NavBtn from "./button/NavBtn";
-import ChatStartModal from "./modal/ChatStartModal";
+import ChatStartModal_chat from "./modal/ChatStartModal_chat";
 
 type NavProps = {
   type: string;
@@ -77,7 +77,7 @@ const NavBar = (props: NavProps) => {
       <NavBtn type={my} nav="myinfo" />
 
       {/* 대화 여부 모달창 */}
-      {modalOpen && <ChatStartModal setModalOpen={setModalOpen} />}
+      {modalOpen && <ChatStartModal_chat setModalOpen={setModalOpen} />}
     </View>
   );
 };

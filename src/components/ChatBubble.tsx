@@ -1,4 +1,5 @@
 import { Chat } from "@/models/chatting.model";
+import ChatStyle from "@/styles/ChatStyle";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
 
@@ -12,23 +13,17 @@ const ChatBubble = ({ chatting }: BubbleProps) => {
       {chatting.map((item) => (
         <View
           key={item.idx}
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: item.idx % 2 === 0 ? "flex-start" : "flex-end",
-            marginBottom: 12,
-          }}
+          style={[
+            ChatStyle.chatview,
+            {
+              justifyContent: item.idx % 2 === 0 ? "flex-start" : "flex-end",
+            },
+          ]}
         >
           <Text
             style={[
+              ChatStyle.bubble,
               {
-                fontFamily: "Pretendard-SemiBold",
-                fontSize: 10,
-                lineHeight: 16,
-                borderRadius: 24,
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-                maxWidth: 260,
                 backgroundColor: item.idx % 2 === 0 ? "#EDEDEC" : "#988BFD",
                 color: item.idx % 2 === 0 ? "black" : "white",
               },

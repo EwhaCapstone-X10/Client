@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, View, Button, Text, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import axios from "axios";
 import { router } from "expo-router";
 import * as Speech from "expo-speech";
@@ -12,6 +18,11 @@ import * as FileSystem from "expo-file-system";
 import { Chat } from "@/models/chatting.model";
 import useChatStore from "@/store/chatStore";
 import { postChatting } from "@/api/chat.api";
+import { StatusBar } from "expo-status-bar";
+import Custom from "@/styles/Custom";
+import Header from "@/components/Header";
+import ModalStyle from "@/styles/ModalStyle";
+import ChatStyle from "@/styles/ChatStyle";
 
 const audioSource = require("../assets/sounds/alarm.mp3");
 
@@ -294,6 +305,7 @@ const VoiceChat = () => {
   };
 
   const handleQuit = async () => {
+    /*
     try {
       const res = await postChatting(chat);
       console.log(res);
@@ -307,6 +319,8 @@ const VoiceChat = () => {
         console.log(err);
       }
     }
+      */
+    router.push("endchat");
   };
 
   useEffect(() => {
@@ -320,7 +334,7 @@ const VoiceChat = () => {
         if (!silenceTimeoutRef.current) {
           silenceTimeoutRef.current = setTimeout(() => {
             stopRecording();
-          }, 1500); // 2초동안 말 안하면 녹음 종료
+          }, 1200); // 1.2초동안 말 안하면 녹음 종료
         }
       } else {
         // 소리가 감지되면 타이머 리셋
@@ -344,58 +358,87 @@ const VoiceChat = () => {
     console.log(chat);
   }, [messages]);
 
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {messages.map((message, index) => (
-        <View
-          key={index}
-          style={[
-            styles.messageBubble,
-            message.role === "user" ? styles.userBubble : styles.botBubble,
-          ]}
-        >
-          <Text style={styles.messageText}>{message.chat}</Text>
-        </View>
-      ))}
+  useEffect(() => {
+    handleStartConversation(start);
+  }, []);
 
-      <Button
-        title="대화 시작"
-        onPress={() => handleStartConversation(generatePrompt(driverInfo))}
-        disabled={loading || isRecording}
-      />
-      <Button title="종료" onPress={handleQuit} />
-      {isRecording && <Text style={styles.listeningText}>Listening...</Text>}
-    </ScrollView>
+  return (
+    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <StatusBar backgroundColor="#ffffff" />
+
+      <Header left="" title="개인 맞춤형 대화" style="header" />
+
+      <View style={Custom.leftview}>
+        <Text style={Custom.title_m}>대화 목록</Text>
+
+        <View style={{ height: 550 }}>
+          <ScrollView
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          >
+            {messages.map((message, index) => (
+              <View
+                key={index}
+                style={[
+                  ChatStyle.chatview,
+                  {
+                    justifyContent:
+                      message.role === "user" ? "flex-end" : "flex-start",
+                  },
+                ]}
+              >
+                <Text
+                  style={[
+                    ChatStyle.bubble,
+                    {
+                      backgroundColor:
+                        message.role === "user" ? "#988BFD" : "#EDEDEC",
+                      color: message.role === "user" ? "white" : "black",
+                    },
+                  ]}
+                >
+                  {message.chat}
+                </Text>
+              </View>
+            ))}
+
+            {isRecording && (
+              <Text style={styles.listeningText}>Listening...</Text>
+            )}
+          </ScrollView>
+        </View>
+
+        <TouchableOpacity onPress={handleQuit}>
+          <Text style={styles.quitbtn}>대화 종료</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flexGrow: 1,
+    paddingTop: 20,
+    paddingBottom: 40,
   },
-  messageBubble: {
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 10,
-    maxWidth: "80%",
-  },
-  userBubble: {
-    alignSelf: "flex-end",
-    backgroundColor: "#d3f8e2",
-  },
-  botBubble: {
-    alignSelf: "flex-start",
-    backgroundColor: "#f1f1f1",
-  },
-  messageText: {
-    fontSize: 14,
-    color: "#333",
-  },
+
   listeningText: {
     fontSize: 16,
     color: "blue",
     marginTop: 10,
     fontStyle: "italic",
+  },
+
+  quitbtn: {
+    fontFamily: "Pretendard-SemiBold",
+    fontSize: 12,
+    backgroundColor: "#FF6666",
+    color: "white",
+    paddingVertical: 12,
+    borderRadius: 12,
+    textAlign: "center",
+    width: "100%",
   },
 });
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
-import Header from "@/components/Header";
 import Custom from "@/styles/Custom";
 import { Summary } from "@/models/chatting.model";
 import ChatSummary from "@/components/ChatSummary";
