@@ -371,37 +371,42 @@ const VoiceChat = () => {
       <View style={Custom.leftview}>
         <Text style={Custom.title_m}>대화 목록</Text>
 
-        <ScrollView contentContainerStyle={styles.container}>
-          {messages.map((message, index) => (
-            <View
-              key={index}
-              style={[
-                ChatStyle.chatview,
-                {
-                  justifyContent:
-                    message.role === "user" ? "flex-end" : "flex-start",
-                },
-              ]}
-            >
-              <Text
+        <View style={{ height: 550 }}>
+          <ScrollView
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          >
+            {messages.map((message, index) => (
+              <View
+                key={index}
                 style={[
-                  ChatStyle.bubble,
+                  ChatStyle.chatview,
                   {
-                    backgroundColor:
-                      message.role === "user" ? "#988BFD" : "#EDEDEC",
-                    color: message.role === "user" ? "white" : "black",
+                    justifyContent:
+                      message.role === "user" ? "flex-end" : "flex-start",
                   },
                 ]}
               >
-                {message.chat}
-              </Text>
-            </View>
-          ))}
+                <Text
+                  style={[
+                    ChatStyle.bubble,
+                    {
+                      backgroundColor:
+                        message.role === "user" ? "#988BFD" : "#EDEDEC",
+                      color: message.role === "user" ? "white" : "black",
+                    },
+                  ]}
+                >
+                  {message.chat}
+                </Text>
+              </View>
+            ))}
 
-          {isRecording && (
-            <Text style={styles.listeningText}>Listening...</Text>
-          )}
-        </ScrollView>
+            {isRecording && (
+              <Text style={styles.listeningText}>Listening...</Text>
+            )}
+          </ScrollView>
+        </View>
 
         <TouchableOpacity onPress={handleQuit}>
           <Text style={styles.quitbtn}>대화 종료</Text>
@@ -413,27 +418,11 @@ const VoiceChat = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
-    minHeight: 550,
+    flexGrow: 1,
+    paddingTop: 20,
+    paddingBottom: 40,
   },
-  messageBubble: {
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 10,
-    maxWidth: "80%",
-  },
-  userBubble: {
-    alignSelf: "flex-end",
-    backgroundColor: "#d3f8e2",
-  },
-  botBubble: {
-    alignSelf: "flex-start",
-    backgroundColor: "#f1f1f1",
-  },
-  messageText: {
-    fontSize: 14,
-    color: "#333",
-  },
+
   listeningText: {
     fontSize: 16,
     color: "blue",
