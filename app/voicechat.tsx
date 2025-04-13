@@ -28,12 +28,13 @@ const audioSource = require("../assets/sounds/alarm.mp3");
 
 const API_KEY = OPENAI_API_KEY;
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
+const AIEndPoint = "http://192.168.219.103:8000/predict";
 
 const start = "Just say '오늘 기분 어때? 어디 가는 길이야?' ";
+const stretching =
+  "차에서 할 수 있는 스트레칭 2문장으로 알려줘. 한국어 반말로 알려줘";
 
 const VoiceChat = () => {
-  const player = useAudioPlayer(audioSource);
-
   const { chat, setChat } = useChatStore();
 
   const [messages, setMessages] = useState<Chat[]>([]); // gpt, user 메시지
@@ -141,6 +142,29 @@ const VoiceChat = () => {
         },
       });
 
+      const sleepRes = await FileSystem.uploadAsync(AIEndPoint, uri, {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "multipart/form-data",
+        },
+        httpMethod: "POST",
+        uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+        fieldName: "file",
+        mimeType: "audio/mpeg",
+      });
+
+      const result = JSON.parse(sleepRes.body);
+      console.log(result);
+
+      if (result.yawn || result.sleepy) {
+        setLoading(true);
+        willSendRef.current = false;
+
+        await playAlarm();
+        setLoading(false); // 종료되었으므로 로딩 상태 해제
+        return;
+      }
+
       const parsedResponse = JSON.parse(response.body);
       const transcribedText = parsedResponse.text;
 
@@ -150,17 +174,13 @@ const VoiceChat = () => {
       } else if (transcribedText && !willSendRef.current) {
         if (
           transcribedText.includes("응") ||
-          transcribedText.includes("네") ||
+          transcribedText.includes("좋아") ||
           transcribedText.includes("맞아")
         ) {
           storeMessage("user", transcribedText);
-          playAlarm();
+          introduceStretching();
           return;
-        } else if (
-          transcribedText.includes("아니") ||
-          transcribedText.includes("괜찮아") ||
-          transcribedText.includes("아냐")
-        ) {
+        } else {
           storeMessage("user", transcribedText);
           handleStartConversation(generatePrompt(driverInfo));
         }
@@ -210,7 +230,10 @@ const VoiceChat = () => {
 
     // 졸음 단어 감지
     if (message.includes("졸려")) {
-      await detectSleepy();
+      setLoading(true);
+      willSendRef.current = false;
+
+      await playAlarm();
       setLoading(false); // 종료되었으므로 로딩 상태 해제
       return;
     }
@@ -266,24 +289,34 @@ const VoiceChat = () => {
     });
   };
 
-  // 졸려 단어 감지
-  const detectSleepy = async () => {
+  // 스트레칭 물어보기
+  const askStretching = async () => {
     setLoading(true);
     willSendRef.current = false;
 
-    storeMessage("gpt", "졸려? 큰 알람소리 들려줄까?");
+    storeMessage("gpt", "간단한 스트레칭 알려줄까?");
 
-    Speech.speak("졸려? 큰 알람소리 들려줄까?", {
+    Speech.speak("간단한 스트레칭 알려줄까?", {
       language: "ko",
       onDone: sleepyResponse,
     });
   };
 
-  // 졸리다고 물어봤을 때 대답듣기
+  const introduceStretching = async () => {
+    try {
+      willSendRef.current = true;
+      setTimeout(() => {
+        handleStartConversation(stretching);
+      }, 10000);
+    } catch (error) {
+      console.error("Failed to load and play sound", error);
+    }
+  };
+
+  // 스트레칭 물어봤을 때 대답듣기
   const sleepyResponse = () => {
     try {
       setIsRecording(true);
-
       startRecording();
     } catch (err) {
       console.error("Speech recognition failed:", err);
@@ -292,12 +325,16 @@ const VoiceChat = () => {
     }
   };
 
-  const playAlarm = () => {
+  const playAlarm = async () => {
     try {
-      player.play(); // 알람 소리 재생
+      const { sound } = await Audio.Sound.createAsync(
+        require("../assets/sounds/alarm.mp3")
+      );
+      await sound.playAsync();
+
       willSendRef.current = true;
       setTimeout(() => {
-        handleStartConversation(generatePrompt(driverInfo));
+        askStretching();
       }, 10000);
     } catch (error) {
       console.error("Failed to load and play sound", error);
@@ -320,6 +357,7 @@ const VoiceChat = () => {
       }
     }
       */
+    await recording.stopAndUnloadAsync();
     router.push("endchat");
   };
 
