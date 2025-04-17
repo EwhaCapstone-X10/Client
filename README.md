@@ -1,26 +1,77 @@
-## 설치 필수 (버전은 달라도 상관없지만 아래 버전으로 개발함)
-1. VSCode v1.99 (2025.05)
-2. Node v22.14.0
-3. Java v19.0.1
-4. Android Studio meerkat버전 (2024.03)
+# 🚗 Capstone X10 Client 실행 가이드
 
-## 실행 방법
-1. git clone
-2. VSCode에서 폴더 열기
-3. npm i로 dependencies 설치
--> 설치 불가 시 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 입력 후 다시 실행 
-4. npm i expo
-   npm i --save-dev @types/babel__core 
-5. 휴대폰 연결 후 npm run android
+### 설치 필수 항목
 
-## AI 서버 연결 방법 
-1. VSCode 창 2개 열어놓고 각각 프론트, AI 폴더 열기 
-2. 파이썬창 uvicorn main:app --reload --host 0.0.0.0 --port 8000 
-3. cmd창 ipconfig -> ipv4 주소 복사 
-4. 리액트 네이티브 코드 수정
+아래 버전에서 개발되었습니다. 버전이 달라도 실행은 가능하지만, 동일한 환경에서의 실행을 권장합니다.
 
-   Client > app > voiceChat 31줄
+| 항목             | 권장 버전          |
+|------------------|--------------------|
+| VSCode           | v1.99 (2025.05)    |
+| Node.js          | v22.14.0           |
+| Java             | v19.0.1            |
+| Android Studio   | Meerkat (2024.03)  |
+| Git              | 최신 버전          |
 
-   const AIEndPoint = "http://192.168.219.103:8000/predict"
+---
 
-5. 리액트 네이티브창 npm run android
+### ✅ 실행 방법
+
+#### 1. 레포지토리 클론
+```bash
+git clone https://github.com/EwhaCapstone-X10/Client.git
+```
+
+#### 2. VSCode에서 폴더 열기
+#### 3. 의존성 설치
+```bash
+npm install
+```
+#### ❗ 오류 발생 시: 아래 코드 입력 후 다시 의존성 설치
+```bash
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+#### 4. Expo 및 Babel 타입 정의 설치
+```bash
+npm install expo
+npm install --save-dev @types/babel__core
+```
+#### 5. Android 기기 연결 후 앱 실행
+```bash
+npm run android
+```
+
+---
+### 🤖 AI 서버 연결 방법
+#### 1. VSCode에서 두 개의 창 열기
+- Client 폴더
+- AI 서버 폴더
+
+#### 2. AI 서버 실행
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+#### 3. CMD에서 IPv4 주소 확인
+```bash
+ipconfig
+```
+IPv4 주소 예시: 192.168.219.103
+
+#### 4. React Native 코드에서 AI 서버 주소 수정
+수정 파일 경로: Client/app/voiceChat.tsx
+
+31번째 줄 수정:
+
+```tsx
+const AIEndPoint = "http://192.168.219.103:8000/predict"
+```
+위 주소는 예시이며, 자신의 IPv4 주소로 변경해야 합니다.
+
+#### 5. 앱 실행
+```bash
+npm run android
+```
+
+#### 6. AI 서버 실행
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
