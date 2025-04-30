@@ -5,7 +5,7 @@ export const driverInfo: User = {
   name: "안수이",
   birthdate: new Date("2001-02-18"),
   sex: "FEMALE",
-  mode: "FORMAL",
+  mode: "반말",
   occupation: "대학생",
   interests: ["반려 동물", "영화", "여행"],
 };
