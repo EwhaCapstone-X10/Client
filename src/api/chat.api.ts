@@ -8,8 +8,8 @@ export const postChatting = async (message: SaveChat) => {
 };
 
 // 대화 내역 목록 조회
-export const getChatListMain = async (memberId: number) => {
-  const res = instance.get(`/chats/list/${memberId}`, {
+export const getChatListMain = async () => {
+  const res = instance.get(`/chats/list`, {
     params: {
       size: 4,
       year: new Date().getFullYear(),
@@ -18,11 +18,8 @@ export const getChatListMain = async (memberId: number) => {
   return res;
 };
 
-export const getChatListYear = async (
-  memberId: number,
-  selectedYear: number
-) => {
-  const res = instance.get(`/chats/list/${memberId}`, {
+export const getChatListYear = async (selectedYear: number) => {
+  const res = instance.get(`/chats/list`, {
     params: {
       year: selectedYear,
     },
