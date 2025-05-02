@@ -10,6 +10,7 @@ import { StyleSheet } from "react-native";
 import { getChatListMain } from "@/api/chat.api";
 import { StatusBar } from "expo-status-bar";
 import useUserStore from "@/store/userStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Main = () => {
   const [data, setData] = useState<Summary[]>([]);
@@ -18,17 +19,21 @@ const Main = () => {
   useEffect(() => {
     const fetchRecentChat = async () => {
       try {
-        const res = await getChatListMain(1);
+        const memberIdString = await AsyncStorage.getItem("memberId");
+        const memberId = Number(memberIdString);
+
+        if (!memberId) {
+          console.log("Invalid memberId");
+          return;
+        }
+
+        const res = await getChatListMain();
 
         if (res.status === 200) {
           setData(res.data.result);
         }
       } catch (err: any) {
-        if (err.response.status === 400 || err.response.status === 500) {
-          console.log("error: ", err.response.data.error);
-        } else {
-          console.log(err);
-        }
+        console.log("error: ", err.response.data.error);
       }
     };
 

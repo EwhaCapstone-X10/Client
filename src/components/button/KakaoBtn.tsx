@@ -25,7 +25,9 @@ const KakaoBtn = () => {
           );
           await AsyncStorage.setItem("jwtToken", res.data.result.jwtToken);
           await setId(res.data.result.memberId);
-          router.push("/formname");
+
+          if (res.data.result.loginStatus == "finished") router.push("/main");
+          else router.push("/formname");
         }
       }
     } catch (err) {

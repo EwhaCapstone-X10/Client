@@ -15,7 +15,7 @@ const ChattingList = () => {
   useEffect(() => {
     const fetchChatList = async () => {
       try {
-        const res = await getChatListYear(1, selectedYear);
+        const res = await getChatListYear(selectedYear);
         if (res.status === 200) {
           setChattingData(res.data.result);
         }
