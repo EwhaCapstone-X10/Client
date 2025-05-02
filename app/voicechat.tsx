@@ -94,7 +94,7 @@ const VoiceChat = () => {
         alert("녹음 권한이 필요합니다.");
         return;
       }
-  
+
       // 기존 녹음 객체가 있으면 정리
       if (recording) {
         const status = await recording.getStatusAsync();
@@ -102,18 +102,19 @@ const VoiceChat = () => {
           await recording.stopAndUnloadAsync();
         }
       }
-  
+
       const newRecording = new Audio.Recording();
-      await newRecording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-  
-      await newRecording.startAsync(); // 안정적으로 시작  
+      await newRecording.prepareToRecordAsync(
+        Audio.RecordingOptionsPresets.HIGH_QUALITY
+      );
+
+      await newRecording.startAsync(); // 안정적으로 시작
       setRecording(newRecording);
       setIsRecording(true);
     } catch (error) {
       console.error("녹음 실패:", error);
     }
   };
-  
 
   // 사용자 녹음 종료
   const stopRecording = async () => {
@@ -148,8 +149,8 @@ const VoiceChat = () => {
           model: "whisper-1",
         },
       });
-
-     const sleepRes = await FileSystem.uploadAsync(AIEndPoint, uri, {
+      /*
+      const sleepRes = await FileSystem.uploadAsync(AIEndPoint, uri, {
         headers: {
           Authorization: `Bearer ${OPENAI_API_KEY}`,
           "Content-Type": "multipart/form-data",
@@ -171,7 +172,7 @@ const VoiceChat = () => {
         setLoading(false); // 종료되었으므로 로딩 상태 해제
         return;
       }
-
+*/
       const parsedResponse = JSON.parse(response.body);
       const transcribedText = parsedResponse.text;
 
@@ -319,19 +320,23 @@ const VoiceChat = () => {
     });
   };
 
-  const introduceStretching = async () => { 
+  const introduceStretching = async () => {
     if (isQuittingRef.current) return; // 종료 중이면 동작하지 않음
 
     setLoading(true);
     willSendRef.current = false;
 
-    storeMessage("gpt", "어깨를 으쓱 올렸다 내리면서 굳은 근육을 풀어줘. 잠 깼어?");
+    storeMessage(
+      "gpt",
+      "어깨를 으쓱 올렸다 내리면서 굳은 근육을 풀어줘. 잠 깼어?"
+    );
 
     Speech.speak("어깨를 으쓱 올렸다 내리면서 굳은 근육을 풀어줘. 잠 깼어?", {
       language: "ko",
       onDone: () => {
         startRecording();
-      }    });
+      },
+    });
   };
 
   // 스트레칭 물어봤을 때 대답듣기
@@ -351,10 +356,10 @@ const VoiceChat = () => {
       const { sound } = await Audio.Sound.createAsync(
         require("../assets/sounds/alarm.mp3")
       );
-  
+
       playbackObject.current = sound;
       await sound.playAsync();
-  
+
       willSendRef.current = true;
       setTimeout(() => {
         askStretching();
@@ -363,10 +368,8 @@ const VoiceChat = () => {
       console.error("Failed to load and play sound", error);
     }
   };
-  
 
   const handleQuit = async () => {
-    /*
     try {
       const res = await postChatting(chat);
       console.log(res);
@@ -380,7 +383,6 @@ const VoiceChat = () => {
         console.log(err);
       }
     }
-      */
 
     isQuittingRef.current = true;
 
@@ -397,7 +399,7 @@ const VoiceChat = () => {
     if (recording) {
       setIsRecording(false);
       await recording.stopAndUnloadAsync();
-   }
+    }
 
     // Axios 요청 중단
     if (axiosSourceRef.current) {
@@ -414,16 +416,15 @@ const VoiceChat = () => {
 
   useEffect(() => {
     if (!recording) return;
-  
+
     const timeoutId = setTimeout(() => {
       stopRecording(); // 5초 후 자동 종료
     }, 5000);
-  
+
     return () => {
       clearTimeout(timeoutId);
     };
   }, [recording]);
-  
 
   useEffect(() => {
     setChat(messages);
@@ -432,48 +433,49 @@ const VoiceChat = () => {
 
   useEffect(() => {
     axiosSourceRef.current = null;
-    setMessages([])
+    setMessages([]);
 
     setLoading(true);
     willSendRef.current = true;
 
     const source = axios.CancelToken.source();
     axiosSourceRef.current = source;
-    
+
     const startMSG = async () => {
       try {
         const response = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          model: "gpt-4o",
-          messages: [
-            {
-              role: "system",
-              content: generatePrompt(driverInfo),
+          "https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o",
+            messages: [
+              {
+                role: "system",
+                content: generatePrompt(driverInfo),
+              },
+              {
+                role: "user",
+                content:
+                  "'오늘 기분 어때? 어디 가는 길이야?' 라고 그대로 말해줘",
+              },
+            ],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${OPENAI_API_KEY}`,
+              "Content-Type": "application/json",
             },
-            {
-              role: "user",
-              content: "'오늘 기분 어때? 어디 가는 길이야?' 라고 그대로 말해줘"
-            },
-          ],
-        },
-      {
-        headers: {
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        cancelToken: source.token,
+            cancelToken: source.token,
+          }
+        );
+        botFunc(response);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
       }
-    );
-    botFunc(response);
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoading(false);
-  }
-}
-   startMSG();
-    }, []);
+    };
+    startMSG();
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>

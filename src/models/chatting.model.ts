@@ -19,7 +19,6 @@ export type Chat = {
 };
 
 export type SaveChat = {
-  memberId: number;
   date: Date;
   chatting: Chat[];
 };
