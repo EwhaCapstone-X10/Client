@@ -3,8 +3,6 @@ import { create } from "zustand";
 
 interface UserStore {
   user: User;
-
-  setId: (memberId: number) => void;
   setName: (name: string) => void;
   setBirthdate: (birthdate: Date) => void;
   setSex: (sex: string) => void;
@@ -15,7 +13,6 @@ interface UserStore {
 
 const useUserStore = create<UserStore>((set) => ({
   user: {
-    memberId: 0,
     name: "",
     birthdate: new Date("2005-01-01"),
     sex: "",
@@ -23,11 +20,6 @@ const useUserStore = create<UserStore>((set) => ({
     occupation: "",
     interests: [],
   },
-
-  setId: (memberId: number) =>
-    set((state) => ({
-      user: { ...state.user, memberId },
-    })),
 
   setName: (name: string) =>
     set((state) => ({

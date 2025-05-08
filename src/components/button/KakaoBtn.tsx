@@ -5,11 +5,8 @@ import { router } from "expo-router";
 import { login } from "@react-native-seoul/kakao-login";
 import { postOauth } from "@/api/user.api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import useUserStore from "@/store/userStore";
 
 const KakaoBtn = () => {
-  const { setId } = useUserStore();
-
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
@@ -24,7 +21,6 @@ const KakaoBtn = () => {
             String(res.data.result.memberId)
           );
           await AsyncStorage.setItem("jwtToken", res.data.result.jwtToken);
-          await setId(res.data.result.memberId);
 
           if (res.data.result.loginStatus == "finished") router.push("/main");
           else router.push("/formname");
