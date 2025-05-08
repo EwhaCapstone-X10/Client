@@ -15,7 +15,6 @@ const MyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
   const {
-    setId,
     setName,
     setBirthdate,
     setSex,

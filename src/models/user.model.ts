@@ -1,5 +1,4 @@
 export type User = {
-  memberId: number;
   name: string;
   birthdate: Date;
   sex: string;

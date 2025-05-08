@@ -10,7 +10,6 @@ import axios, { CancelTokenSource } from "axios";
 import { router } from "expo-router";
 import * as Speech from "expo-speech";
 import { generatePrompt } from "@/utils/generatePrompt";
-import { driverInfo } from "@/utils/driverInfo";
 import { OPENAI_API_KEY } from "@env";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
@@ -21,9 +20,10 @@ import { StatusBar } from "expo-status-bar";
 import Custom from "@/styles/Custom";
 import Header from "@/components/Header";
 import ChatStyle from "@/styles/ChatStyle";
+import useUserStore from "@/store/userStore";
 
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
-const AIEndPoint = "http://172.20.10.4:8000/predict";
+const AIEndPoint = "http://192.168.219.101:8000/predict";
 
 const VoiceChat = () => {
   const { chat, setChat } = useChatStore();
@@ -37,6 +37,7 @@ const VoiceChat = () => {
   const playbackObject = useRef<Audio.Sound | null>(null); // 알람/tts 재생 객체
   const axiosSourceRef = useRef<CancelTokenSource | null>(null); // Axios 요청 취소
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
+  const { user } = useUserStore();
 
   const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
@@ -149,7 +150,7 @@ const VoiceChat = () => {
           model: "whisper-1",
         },
       });
-      /*
+
       const sleepRes = await FileSystem.uploadAsync(AIEndPoint, uri, {
         headers: {
           Authorization: `Bearer ${OPENAI_API_KEY}`,
@@ -172,7 +173,6 @@ const VoiceChat = () => {
         setLoading(false); // 종료되었으므로 로딩 상태 해제
         return;
       }
-*/
       const parsedResponse = JSON.parse(response.body);
       const transcribedText = parsedResponse.text;
 
@@ -189,7 +189,7 @@ const VoiceChat = () => {
           introduceStretching();
         } else {
           storeMessage("user", transcribedText);
-          handleStartConversation(generatePrompt(driverInfo));
+          handleStartConversation(generatePrompt(user));
         }
       }
     } catch (error) {
@@ -268,7 +268,7 @@ const VoiceChat = () => {
           messages: [
             {
               role: "system",
-              content: generatePrompt(driverInfo),
+              content: generatePrompt(user),
             },
             { role: "user", content: message },
           ],
@@ -450,7 +450,7 @@ const VoiceChat = () => {
             messages: [
               {
                 role: "system",
-                content: generatePrompt(driverInfo),
+                content: generatePrompt(user),
               },
               {
                 role: "user",
