@@ -75,3 +75,6 @@ npm run android
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
+---
+### 테스트 방법
+앱을 실행한 후 본인의 카카오 계정으로 회원가입 후 사용합니다.
