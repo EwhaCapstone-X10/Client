@@ -13,9 +13,9 @@ import { generatePrompt } from "@/utils/generatePrompt";
 import { OPENAI_API_KEY } from "@env";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
-import { Chat } from "@/models/chatting.model";
+import { Chat, Summary } from "@/models/chatting.model";
 import useChatStore from "@/store/chatStore";
-import { postChatting } from "@/api/chat.api";
+import { getChatListMain, postChatting } from "@/api/chat.api";
 import { StatusBar } from "expo-status-bar";
 import Custom from "@/styles/Custom";
 import Header from "@/components/Header";
@@ -39,7 +39,9 @@ const VoiceChat = () => {
   const axiosSourceRef = useRef<CancelTokenSource | null>(null); // Axios 요청 취소
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
 
+  // 프롬프트에 들어가는 정보
   const [driverInfo, setDriverInfo] = useState<User>();
+  const [data, setData] = useState<Summary[]>([]);
 
   const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
@@ -191,7 +193,7 @@ const VoiceChat = () => {
           introduceStretching();
         } else {
           storeMessage("user", transcribedText);
-          handleStartConversation(generatePrompt(driverInfo));
+          handleStartConversation(generatePrompt(driverInfo, data));
         }
       }
     } catch (error) {
@@ -270,7 +272,7 @@ const VoiceChat = () => {
           messages: [
             {
               role: "system",
-              content: generatePrompt(driverInfo),
+              content: generatePrompt(driverInfo, data),
             },
             { role: "user", content: message },
           ],
@@ -449,6 +451,11 @@ const VoiceChat = () => {
         const data = res.data.result;
         setDriverInfo(data);
 
+        const res2 = await getChatListMain();
+        if (res.status === 200) {
+          setData(res2.data.result);
+        }
+
         const response = await axios.post(
           "https://api.openai.com/v1/chat/completions",
           {
@@ -456,7 +463,7 @@ const VoiceChat = () => {
             messages: [
               {
                 role: "system",
-                content: generatePrompt(driverInfo),
+                content: generatePrompt(driverInfo, data),
               },
               {
                 role: "user",
