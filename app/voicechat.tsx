@@ -20,7 +20,8 @@ import { StatusBar } from "expo-status-bar";
 import Custom from "@/styles/Custom";
 import Header from "@/components/Header";
 import ChatStyle from "@/styles/ChatStyle";
-import { driverInfo } from "@/utils/driverInfo";
+import { getUserInfo } from "@/api/user.api";
+import { User } from "@/models/user.model";
 
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
 const AIEndPoint = "http://192.168.219.101:8000/predict";
@@ -37,6 +38,8 @@ const VoiceChat = () => {
   const playbackObject = useRef<Audio.Sound | null>(null); // 알람/tts 재생 객체
   const axiosSourceRef = useRef<CancelTokenSource | null>(null); // Axios 요청 취소
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
+
+  const [driverInfo, setDriverInfo] = useState<User>();
 
   const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
@@ -442,6 +445,10 @@ const VoiceChat = () => {
 
     const startMSG = async () => {
       try {
+        const res = await getUserInfo();
+        const data = res.data.result;
+        setDriverInfo(data);
+
         const response = await axios.post(
           "https://api.openai.com/v1/chat/completions",
           {
