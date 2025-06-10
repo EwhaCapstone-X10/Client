@@ -20,7 +20,7 @@ import { StatusBar } from "expo-status-bar";
 import Custom from "@/styles/Custom";
 import Header from "@/components/Header";
 import ChatStyle from "@/styles/ChatStyle";
-import useUserStore from "@/store/userStore";
+import { driverInfo } from "@/utils/driverInfo";
 
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
 const AIEndPoint = "http://192.168.219.101:8000/predict";
@@ -37,7 +37,6 @@ const VoiceChat = () => {
   const playbackObject = useRef<Audio.Sound | null>(null); // 알람/tts 재생 객체
   const axiosSourceRef = useRef<CancelTokenSource | null>(null); // Axios 요청 취소
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null); // 소리 없을 때 타이머
-  const { user } = useUserStore();
 
   const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
@@ -189,7 +188,7 @@ const VoiceChat = () => {
           introduceStretching();
         } else {
           storeMessage("user", transcribedText);
-          handleStartConversation(generatePrompt(user));
+          handleStartConversation(generatePrompt(driverInfo));
         }
       }
     } catch (error) {
@@ -268,7 +267,7 @@ const VoiceChat = () => {
           messages: [
             {
               role: "system",
-              content: generatePrompt(user),
+              content: generatePrompt(driverInfo),
             },
             { role: "user", content: message },
           ],
@@ -418,8 +417,8 @@ const VoiceChat = () => {
     if (!recording) return;
 
     const timeoutId = setTimeout(() => {
-      stopRecording(); // 5초 후 자동 종료
-    }, 5000);
+      stopRecording(); // 6초 후 자동 종료
+    }, 6000);
 
     return () => {
       clearTimeout(timeoutId);
@@ -450,7 +449,7 @@ const VoiceChat = () => {
             messages: [
               {
                 role: "system",
-                content: generatePrompt(user),
+                content: generatePrompt(driverInfo),
               },
               {
                 role: "user",
