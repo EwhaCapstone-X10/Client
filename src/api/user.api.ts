@@ -2,7 +2,7 @@ import { User } from "@/models/user.model";
 import axios from "axios";
 import instance from "./axios";
 
-const baseURL = "http://15.164.68.84:8080";
+const baseURL = "http://3.39.174.69:8080";
 
 // 카카오 토큰 전송
 export const postOauth = async (accessToken: string) => {

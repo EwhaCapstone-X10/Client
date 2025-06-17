@@ -24,7 +24,7 @@ import { getUserInfo } from "@/api/user.api";
 import { User } from "@/models/user.model";
 
 const whisperEndpoint = "https://api.openai.com/v1/audio/transcriptions";
-const AIEndPoint = "http://192.168.219.101:8000/predict";
+const AIEndPoint = "http://13.124.171.137:8000/predict";
 
 const VoiceChat = () => {
   const { chat, setChat } = useChatStore();
@@ -41,7 +41,7 @@ const VoiceChat = () => {
 
   // 프롬프트에 들어가는 정보
   const [driverInfo, setDriverInfo] = useState<User>();
-  const [data, setData] = useState<Summary[]>([]);
+  const [history, setHistory] = useState<Summary[]>([]);
 
   const storeMessage = (role: "user" | "gpt", message: string) => {
     setMessages((prevMessages) => {
@@ -177,6 +177,7 @@ const VoiceChat = () => {
         setLoading(false); // 종료되었으므로 로딩 상태 해제
         return;
       }
+
       const parsedResponse = JSON.parse(response.body);
       const transcribedText = parsedResponse.text;
 
@@ -193,7 +194,7 @@ const VoiceChat = () => {
           introduceStretching();
         } else {
           storeMessage("user", transcribedText);
-          handleStartConversation(generatePrompt(driverInfo, data));
+          handleStartConversation(generatePrompt(driverInfo, history));
         }
       }
     } catch (error) {
@@ -248,7 +249,7 @@ const VoiceChat = () => {
     storeMessage("user", message);
 
     // 졸음 단어 감지
-    if (message.includes("졸려")) {
+    if (message.includes("졸려") || message.includes("피곤")) {
       setLoading(true);
       willSendRef.current = false;
 
@@ -272,7 +273,7 @@ const VoiceChat = () => {
           messages: [
             {
               role: "system",
-              content: generatePrompt(driverInfo, data),
+              content: generatePrompt(driverInfo, history),
             },
             { role: "user", content: message },
           ],
@@ -422,8 +423,8 @@ const VoiceChat = () => {
     if (!recording) return;
 
     const timeoutId = setTimeout(() => {
-      stopRecording(); // 6초 후 자동 종료
-    }, 6000);
+      stopRecording(); // 4초 후 자동 종료
+    }, 4000);
 
     return () => {
       clearTimeout(timeoutId);
@@ -452,8 +453,10 @@ const VoiceChat = () => {
         setDriverInfo(data);
 
         const res2 = await getChatListMain();
+        const data2 = res2.data.result;
+
         if (res.status === 200) {
-          setData(res2.data.result);
+          setHistory(data2);
         }
 
         const response = await axios.post(
@@ -463,7 +466,7 @@ const VoiceChat = () => {
             messages: [
               {
                 role: "system",
-                content: generatePrompt(driverInfo, data),
+                content: generatePrompt(data, data2),
               },
               {
                 role: "user",

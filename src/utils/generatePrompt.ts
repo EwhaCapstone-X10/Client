@@ -1,6 +1,6 @@
 import { Summary } from "@/models/chatting.model";
 import { User } from "../models/user.model";
-export const generatePrompt = (info: User, data: Summary[]) => `
+export const generatePrompt = (info: User, history: Summary[]) => `
 사용자 정보
 이름: ${info.name}
 생년월일: ${info.birthdate}
@@ -8,7 +8,7 @@ export const generatePrompt = (info: User, data: Summary[]) => `
 모드: ${info.mode}
 직업: ${info.occupation}
 취미: ${info.interests}
-이전 대화 내역: ${data}
+이전 대화 내역: ${history}
 
 너는 사용자의 친한 친구이다.
 너는 사용자 정보를 기반으로 대화를 나눌 것이다.
