@@ -9,7 +9,6 @@ import NoChat from "@/components/NoChat";
 import { StyleSheet } from "react-native";
 import { getChatListMain } from "@/api/chat.api";
 import { StatusBar } from "expo-status-bar";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Main = () => {
   const [data, setData] = useState<Summary[]>([]);
@@ -17,14 +16,6 @@ const Main = () => {
   useEffect(() => {
     const fetchRecentChat = async () => {
       try {
-        const memberIdString = await AsyncStorage.getItem("memberId");
-        const memberId = Number(memberIdString);
-
-        if (!memberId) {
-          console.log("Invalid memberId");
-          return;
-        }
-
         const res = await getChatListMain();
 
         if (res.status === 200) {
