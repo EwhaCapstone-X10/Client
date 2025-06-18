@@ -3,6 +3,7 @@ import Custom from "@/styles/Custom";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import DirectBtn from "@/components/button/DirectBtn";
 
 const Entry = () => {
   return (
@@ -12,8 +13,8 @@ const Entry = () => {
       }}
     >
       <StatusBar backgroundColor="transparent" />
-      <View style={[Custom.leftview, { paddingVertical: 60, gap: 16 }]}>
-        <View style={{ gap: 8 }}>
+      <View style={[Custom.leftview, { paddingVertical: 50, gap: 16 }]}>
+        <View>
           <Text style={Custom.title}>개인 맞춤형 음성 대화와</Text>
           <Text style={Custom.title}>졸음 감지를 동시에 ! </Text>
         </View>
@@ -37,7 +38,7 @@ const Entry = () => {
         />
       </View>
 
-      <KakaoBtn />
+      <DirectBtn />
     </View>
   );
 };

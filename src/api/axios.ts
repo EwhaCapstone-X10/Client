@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const instance: AxiosInstance = axios.create({
   baseURL: "http://3.39.174.69:8080",
@@ -12,7 +11,8 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use(
   async (config) => {
     try {
-      const jwtToken = await AsyncStorage.getItem("jwtToken");
+      const jwtToken =
+        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOTQ0OTUwMTQ4IiwiaWF0IjoxNzUwMjYxMDA0LCJleHAiOjE3NTA4NjU4MDR9.BPe9vohVQUcKHumkbM5pXjTVu03cZGdAxvZAN6b0D7M";
 
       if (jwtToken) {
         config.headers.Authorization = `Bearer ${jwtToken}`;

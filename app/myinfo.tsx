@@ -7,13 +7,10 @@ import MyInfoEdit from "@/components/MyInfoEdit";
 import NavBar from "@/components/NavBar";
 import { getUserInfo } from "@/api/user.api";
 import useUserStore from "@/store/userStore";
-import LogoutModal from "@/components/modal/LogoutModal";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
 const MyInfo = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  // 로그인 구현하면 로그인 완료 시 개인정보 받아서 미리 저장하기
   const {
     setName,
     setBirthdate,
@@ -147,15 +144,9 @@ const MyInfo = () => {
           <TouchableOpacity onPress={() => router.push("userpolicy")}>
             <Text style={Custom.myTitle}>이용약관</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => setModalOpen(true)}>
-            <Text style={Custom.myTitle}>로그아웃</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
       <NavBar type={"my"} />
-
-      {modalOpen && <LogoutModal setModalOpen={setModalOpen} />}
     </View>
   );
 };
