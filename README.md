@@ -1,6 +1,17 @@
 
 ![X10_최종발표](https://github.com/user-attachments/assets/59d03f47-7971-4939-a1b1-4cdc7d3c8c7c)
 
+### ✨ Project Goal
+졸음 운전 사고를 예방하기 위해,
+1. **운전자 음성 분석**을 통해 졸음을 감지하는 시스템 개발
+2. **생성형 AI**를 활용한 개인 맞춤형 음성 대화 제공
+3. **실시간 경고 및 간단한 스트레칭 음성 안내**로 졸음 운전 상황 방지
+
+이 서비스는 사용자의 음성을 기반으로 졸음의 징후를 실시간으로 감지하며, AI와의 자연스러운 대화를 통해 운전자가 깨어 있을 수 있도록 돕는 것을 목표로 합니다.
+
+---
+
+
 ### Source Code 설명
 
 이 프로젝트는 React Native (Expo) 기반의 모바일 클라이언트로, 음성 기반 AI와 연동하여 개인맞춤 대화형 서비스 및 졸음 감지 서비스를 제공합니다.
@@ -84,7 +95,6 @@ npm run android
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
----
 ### How to Test
 테스트 계정이 생성되어 있으므로 앱을 실행한 후 새로 시작하기 버튼을 눌러 개인 정보를 입력합니다.
 
@@ -106,3 +116,13 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 | **Whisper API (OpenAI)**                      | 사용자의 음성 입력을 텍스트로 변환하는 STT 기능 구현         |
 | **TypeScript**                                | 정적 타입 언어 지원으로 안정적인 코드 작성                |
 | **EAS (Expo Application Services)**           | 앱 빌드 및 배포 자동화 도구                        |
+
+---
+### 주요 기능 및 UI
+![12](https://github.com/user-attachments/assets/4882411c-96a1-4446-a9e8-74ea1d5c3b7a)
+![13](https://github.com/user-attachments/assets/ca83a089-40ec-4edc-87c2-e97f993a09e8)
+![14](https://github.com/user-attachments/assets/ed180aaf-f911-496a-85d0-c742f660418f)
+![15](https://github.com/user-attachments/assets/13866a1d-89f7-444c-9c69-5eff3e69170e)
+
+### SW Architecture
+![Service Architecture_Simple](https://github.com/user-attachments/assets/dea6c748-1a6c-40ef-9b26-dd138acc845e)
