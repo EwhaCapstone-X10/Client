@@ -1,4 +1,5 @@
-# 🚗 Capstone X10 Client 실행 가이드
+
+![X10_최종발표](https://github.com/user-attachments/assets/59d03f47-7971-4939-a1b1-4cdc7d3c8c7c)
 
 ### Source Code 설명
 
