@@ -5,8 +5,24 @@
     "version": "1.0.0",
     "plugins": [
       "expo-router",
-      "expo-audio"
+      "expo-audio",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
     ],
-    "scheme": "drivemate"
+    "scheme": "drivemate",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8d571331-2379-49a9-8b64-0583ee64ebdc"
+      }
+    }
   }
 }

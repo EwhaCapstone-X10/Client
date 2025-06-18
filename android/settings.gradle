@@ -24,6 +24,17 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
 rootProject.name = 'drivemate'
 
 dependencyResolutionManagement {
+
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS) // or just remove this line
+  repositories {
+    google()
+    mavenCentral()
+    maven { url = uri("https://devrepo.kakao.com/nexus/content/groups/public/") }
+  }
+}
+
+  
   versionCatalogs {
     reactAndroidLibs {
       from(files(new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), "../gradle/libs.versions.toml")))
