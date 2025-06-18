@@ -26,7 +26,7 @@ const Custom = StyleSheet.create({
   title: {
     color: "#333331",
     fontFamily: "Pretendard-Bold",
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 34,
   },
 
@@ -82,7 +82,7 @@ const Custom = StyleSheet.create({
     borderWidth: 1,
   },
 
-  kakaobtn: {
+  yesbtn: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -90,7 +90,19 @@ const Custom = StyleSheet.create({
     gap: 12,
     paddingVertical: 10,
     borderRadius: 12,
-    backgroundColor: "#FFF48E",
+    backgroundColor: "#E0DCFF",
+    marginBottom: 8,
+  },
+
+  nobtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    gap: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: "#EDEDEC",
     marginBottom: 8,
   },
 

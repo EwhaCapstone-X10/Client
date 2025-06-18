@@ -9,24 +9,13 @@ import NoChat from "@/components/NoChat";
 import { StyleSheet } from "react-native";
 import { getChatListMain } from "@/api/chat.api";
 import { StatusBar } from "expo-status-bar";
-import useUserStore from "@/store/userStore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Main = () => {
   const [data, setData] = useState<Summary[]>([]);
-  const { user } = useUserStore();
 
   useEffect(() => {
     const fetchRecentChat = async () => {
       try {
-        const memberIdString = await AsyncStorage.getItem("memberId");
-        const memberId = Number(memberIdString);
-
-        if (!memberId) {
-          console.log("Invalid memberId");
-          return;
-        }
-
         const res = await getChatListMain();
 
         if (res.status === 200) {
@@ -58,7 +47,7 @@ const Main = () => {
           }}
         >
           <Text style={Custom.title_m}>
-            반가워요, {user.name}님 ! {"\n"}
+            반가워요! {"\n"}
             <Text style={{ color: "#988BFD" }}>개인 맞춤형 대화</Text>를 통해
             {"\n"}졸음 운전을 예방해보세요
           </Text>

@@ -7,7 +7,6 @@ import { hobbyList } from "@/utils/hobbyList";
 import { router } from "expo-router";
 import useUserStore from "@/store/userStore";
 import { postUserInfo } from "@/api/user.api";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FormHobby = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
